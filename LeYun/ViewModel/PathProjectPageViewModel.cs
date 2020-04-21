@@ -306,7 +306,7 @@ namespace LeYun.ViewModel
             }
 
             CarInfoDlg dlg = new CarInfoDlg();
-            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "添加车辆", WeightLimit = Record.Cars[index].WeightLimit, DisLimit = Record.Cars[index].DisLimit };
+            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "编辑车辆", WeightLimit = Record.Cars[index].WeightLimit, DisLimit = Record.Cars[index].DisLimit };
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
 

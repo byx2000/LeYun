@@ -11,37 +11,12 @@ using System.Windows.Data;
 
 namespace LeYun.ViewModel.Dlg
 {
-    class NodeInfoDlgViewModel : ViewModelBase
+    class NodeInfoDlgViewModel : DlgViewModelBase
     {
         public string Title { get; set; }
-
         public double X { get; set; }
         public double Y { get; set; }
         public double Demand { get; set; }
-
-        public bool IsCancel { get; private set; }
-
-        public DelegateCommand OkCommand { get; }
-        public DelegateCommand CancelCommand { get; }
-
-        public NodeInfoDlgViewModel()
-        {
-            OkCommand = new DelegateCommand(Ok);
-            CancelCommand = new DelegateCommand(Cancel);
-            IsCancel = true;
-        }
-
-        private void Cancel(object obj)
-        {
-            IsCancel = true;
-            ((Window)obj).Close();
-        }
-
-        private void Ok(object obj)
-        {
-            IsCancel = false;
-            ((Window)obj).Close();
-        }
     }
 
     class XValidationRule : ValidationRule

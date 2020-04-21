@@ -10,36 +10,10 @@ using System.Windows.Controls;
 
 namespace LeYun.ViewModel.Dlg
 {
-    class RunParamSetDlgViewModel : ViewModelBase
+    class RunParamSetDlgViewModel : DlgViewModelBase
     {
         public double CarSpeed { get; set; }
-        public Collection<ValidationRule> CarSpeedValidationRules { get; set; } = new Collection<ValidationRule>();
         public double NodeStayTime { get; set; }
-
-        public bool IsCancel { get; private set; }
-
-        public DelegateCommand OkCommand { get; }
-        public DelegateCommand CancelCommand { get; }
-
-        public RunParamSetDlgViewModel()
-        {
-            IsCancel = true;
-            OkCommand = new DelegateCommand(Ok);
-            CancelCommand = new DelegateCommand(Cancel);
-            CarSpeedValidationRules.Add(new CarSpeedValidationRule());
-        }
-
-        private void Cancel(object obj)
-        {
-            IsCancel = true;
-            ((Window)obj).Close();
-        }
-
-        private void Ok(object obj)
-        {
-            IsCancel = false;
-            ((Window)obj).Close();
-        }
     }
 
     class CarSpeedValidationRule : ValidationRule

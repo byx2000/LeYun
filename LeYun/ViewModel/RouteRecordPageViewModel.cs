@@ -109,12 +109,15 @@ namespace LeYun.ViewModel
             NodeDetailDlg dlg = new NodeDetailDlg();
             NodeDetailDlgViewModel viewModel = new NodeDetailDlgViewModel();
             List<Node> nodes = new List<Node>();
+            int oldID = CurrentRecord.Nodes[iNode].ID;
             nodes.Add(CurrentRecord.Nodes[iNode]);
             nodes[0].ID = 1;
             viewModel.Nodes = nodes;
 
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
+
+            CurrentRecord.Nodes[iNode].ID = oldID;
         }
 
         // 导入历史记录
