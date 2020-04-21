@@ -1,0 +1,283 @@
+﻿<Page x:Class="LeYun.View.RouteRecordPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+      xmlns:local="clr-namespace:LeYun.View"
+      mc:Ignorable="d" 
+      x:Name="page"
+      xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
+      xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
+      d:DesignHeight="800" d:DesignWidth="1200">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
+        <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}"/>
+        <!--<viewmodel:CreateTimeConverter x:Key="createTimeConverter"/>
+        <viewmodel:PathConverter x:Key="PathConverter"/>-->
+        <dlg:Times100 x:Key="times100"/>
+    </Page.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction 
+                Command="{Binding LoadRecordsCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Border CornerRadius="10" Background="#f1f1f1" BorderBrush="#387cdf" BorderThickness="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--历史记录栏-->
+            <custom:FloatingCard Grid.Column="0" Margin="15"/>
+            <Grid Grid.Column="0" Margin="15">
+                <DataGrid x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
+                    SelectedIndex="{Binding CurrentRecordIndex}"
+                    SelectedItem="{Binding CurrentRecord}"
+                    ItemsSource="{Binding Records}">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="导入"
+                                      Command="{Binding ImportRecordCommand}"/>
+                            <MenuItem Header="重命名"
+                                      Command="{Binding RenameRecordCommand}"/>
+                            <MenuItem Header="删除"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="记录名称" Width="*" Binding="{Binding Name}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
+                        <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime, Converter={StaticResource createTimeConverter}}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
+                        <!--<DataGridTemplateColumn Header="操作" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="导入" Margin="10 0 10 0" 
+                                            Command="{Binding ElementName=page, Path=DataContext.ImportRecordCommand}"
+                                            CommandParameter="{Binding ElementName=page, Path=DataContext.CurrentRecordIndex}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            
+            <!--历史记录详情-->
+            <Grid Grid.Column="1" Margin="0 15 15 15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--参数信息-->
+                <custom:FloatingCard Grid.Row="0"/>
+                <Grid Grid.Row="0" Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#3a7bff" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0e4;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2}KM}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#5fd288" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf015;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2}min}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <!--总体信息-->
+                <custom:FloatingCard Grid.Row="1" Margin="0 15 0 0"/>
+                <Grid Grid.Row="1" Margin="0 15 0 0">
+                    <Grid Margin="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#763cfc" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf017;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2}min}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#fc6a9c" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf018;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2}KM}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#ffbd39" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0d1;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.UseCarCount}"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="50" Height="50" Background="#cee03d" CornerRadius="60" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0ae;" FontSize="30" Foreground="White"/>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <!--车辆信息-->
+                <custom:FloatingCard Grid.Row="2" Margin="0 15 0 0"/>
+                <Border Grid.Row="2" Margin="0 15 0 0">
+                    <Grid>
+                        <DataGrid Grid.Row="1" x:Name="carList" Style="{StaticResource DataGridStyle}" Margin="10"
+                                  ItemsSource="{Binding Path=CurrentRecord.Cars}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="车辆编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
+                                                    Binding="{Binding ID}"/>
+                                <DataGridTextColumn Header="载重" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
+                                                    Binding="{Binding Path=Weight, StringFormat={}{0:F2}}"/>
+                                <DataGridTextColumn Header="里程" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding Dis, StringFormat={}{0:F2}}"/>
+                                <DataGridTemplateColumn Header="配送路径" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                                       Text="{Binding Path, Converter={StaticResource PathConverter}}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="操作" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="详情" Margin="10 0 0 0"
+                                                    Command="{Binding ElementName=page, Path=DataContext.ViewCarDetailCommand}"
+                                                    CommandParameter="{Binding ElementName=carList, Path=SelectedIndex}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+
+                <!--节点信息-->
+                <custom:FloatingCard Grid.Row="3" Margin="0 15 0 0"/>
+                <Border Grid.Row="3" Margin="0 15 0 0">
+                    <Grid>
+                        <DataGrid Grid.Row="2" x:Name="nodeList" Style="{StaticResource DataGridStyle}" Margin="10"
+                                  ItemsSource="{Binding Path=CurrentRecord.Nodes}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="节点编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding ID}"/>
+                                <DataGridTextColumn Header="X坐标" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding X, StringFormat={}{0:F2}}"/>
+                                <DataGridTextColumn Header="Y坐标" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding Y, StringFormat={}{0:F2}}"/>
+                                <DataGridTextColumn Header="需求量" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding Demand, StringFormat={}{0:F2}}"/>
+                                <DataGridTemplateColumn Header="操作" Width="*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="详情" Margin="10 0 0 0"
+                                                    Command="{Binding ElementName=page, Path=DataContext.ViewNodeDetailCommand}"
+                                                    CommandParameter="{Binding ElementName=nodeList, Path=SelectedIndex}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

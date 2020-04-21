@@ -1,0 +1,74 @@
+﻿<wpfcustomcontrols:Dialog  
+        xmlns:wpfcustomcontrols="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
+        x:Class="LeYun.View.Dlg.NodeInfoDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
+    mc:Ignorable="d"
+        x:Name="dlg"
+        Title="{Binding Title}" Height="230" Width="300" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="X坐标：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="需求量：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="xVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="X" StringFormat="{}{0:F2}">
+                        <Binding.ValidationRules>
+                            <dlg:XValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left" >
+                <TextBox.Text>
+                    <Binding Path="Y" StringFormat="{}{0:F2}">
+                        <Binding.ValidationRules>
+                            <dlg:YValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+                <TextBox.Text>
+                    <Binding Path="Demand" StringFormat="{}{0:F2}">
+                        <Binding.ValidationRules>
+                            <dlg:DemandValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="0 10 0 0"
+                       Text="{Binding Converter={StaticResource xRangeConverter}}"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="0 10 0 0"
+                       Text="{Binding Converter={StaticResource yRangeConverter}}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="t" HorizontalAlignment="Left"/>
+
+            <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="0 20 0 0">
+                <Button x:Name="okBtn" Style="{StaticResource ButtonStyle}" Width="70" Height="25" HorizontalAlignment="Left" Content="确定"
+                        Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=dlg}"/>
+                <Button x:Name="cancalBtn" Style="{StaticResource ButtonStyle}" Width="70" Height="25" HorizontalAlignment="Right" Content="取消"
+                        Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=dlg}"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</wpfcustomcontrols:Dialog>
