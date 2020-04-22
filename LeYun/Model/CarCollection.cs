@@ -14,5 +14,10 @@ namespace LeYun.Model
             car.ID = Count;
             base.Add(car);
         }
+
+        public void SaveToFile(string filename)
+        {
+
+        }
     }
 }

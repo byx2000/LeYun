@@ -36,6 +36,18 @@ namespace LeYun.Model
             }
         }
 
+        // 文件名
+        private string filename;
+        public string Filename
+        {
+            get { return filename; }
+            set
+            {
+                filename = value;
+                RaisePropertyChanged("Filename");
+            }
+        }
+
         // 车辆平均速度(km/h)
         private double carSpeed = 50;
         public double CarSpeed 
@@ -159,7 +171,6 @@ namespace LeYun.Model
 
                     // 写入车辆速度
                     sw.WriteLine(CarSpeed);
-                    //MessageBox.Show(CarSpeed.ToString());
 
                     // 写入配送点停留时间
                     sw.WriteLine(NodeStayTime);

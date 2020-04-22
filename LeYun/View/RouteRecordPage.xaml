@@ -14,8 +14,6 @@
     <Page.Resources>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
         <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}"/>
-        <!--<viewmodel:CreateTimeConverter x:Key="createTimeConverter"/>
-        <viewmodel:PathConverter x:Key="PathConverter"/>-->
         <dlg:Times100 x:Key="times100"/>
     </Page.Resources>
 
@@ -36,7 +34,15 @@
             <!--历史记录栏-->
             <custom:FloatingCard Grid.Column="0" Margin="15"/>
             <Grid Grid.Column="0" Margin="15">
-                <DataGrid x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!--搜索框-->
+                <TextBox Grid.Row="0" x:Name="searchBox" Style="{StaticResource SearchTextBoxStyle}" Margin="10" 
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                <!--全部记录列表-->
+                <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
                     SelectedIndex="{Binding CurrentRecordIndex}"
                     SelectedItem="{Binding CurrentRecord}"
                     ItemsSource="{Binding Records}">
@@ -52,19 +58,29 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="记录名称" Width="*" Binding="{Binding Name}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
                         <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime, Converter={StaticResource createTimeConverter}}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
-                        <!--<DataGridTemplateColumn Header="操作" Width="Auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="导入" Margin="10 0 10 0" 
-                                            Command="{Binding ElementName=page, Path=DataContext.ImportRecordCommand}"
-                                            CommandParameter="{Binding ElementName=page, Path=DataContext.CurrentRecordIndex}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
                     </DataGrid.Columns>
                 </DataGrid>
+                <!--搜索结果列表-->
+                <Border Grid.Row="1" Background="White"
+                        Visibility="{Binding ElementName=searchBox, Path=Text.Length, Converter={StaticResource searchResultVisibilityConverter}}">
+                    <DataGrid x:Name="searchResult" Style="{StaticResource DataGridStyle}" Margin="10"
+                              ItemsSource="{Binding SearchResult}"
+                              SelectedItem="{Binding CurrentRecord}">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="导入"
+                                      Command="{Binding ImportRecordCommand}"/>
+                                <MenuItem Header="重命名"
+                                      Command="{Binding RenameRecordCommand}"/>
+                                <MenuItem Header="删除"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="记录名称" Width="*" Binding="{Binding Name}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
+                            <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime, Converter={StaticResource createTimeConverter}}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
             </Grid>
             
             <!--历史记录详情-->

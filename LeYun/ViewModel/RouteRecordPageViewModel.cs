@@ -35,7 +35,7 @@ namespace LeYun.ViewModel
         public ObservableCollection<ProblemRecord> Records { get; }
 
         // 历史记录对应的文件名
-        private List<string> RecordFileNames = new List<string>();
+        //private List<string> RecordFileNames = new List<string>();
 
         // 当前选中的记录编号
         private int currentRecordIndex;
@@ -61,6 +61,33 @@ namespace LeYun.ViewModel
                 RaisePropertyChanged("CurrentRecord");
             }
         }
+
+        // 当前搜索文本
+        private string searchText;
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+
+                // 搜索文本改变时更新搜索结果
+                SearchResult.Clear();
+                for (int i = 0; i < Records.Count; ++i)
+                {
+                    if (Records[i].Name.Contains(searchText))
+                    {
+                        SearchResult.Add(Records[i]);
+                    }
+                }
+
+                RaisePropertyChanged("SearchText");
+                RaisePropertyChanged("SearchResult");
+            }
+        }
+
+        // 搜索结果
+        public ObservableCollection<ProblemRecord> SearchResult { get; } = new ObservableCollection<ProblemRecord>();
 
         // 构造函数
         public RouteRecordPageViewModel(MainWindowViewModel mainWindowViewModel, PathProjectPageViewModel pathProjectPageViewModel)
@@ -92,7 +119,8 @@ namespace LeYun.ViewModel
                 try
                 {
                     CurrentRecord.Name = viewModel.NewName;
-                    CurrentRecord.SaveToFile(RecordFileNames[CurrentRecordIndex]);
+                    //CurrentRecord.SaveToFile(RecordFileNames[CurrentRecordIndex]);
+                    CurrentRecord.SaveToFile(CurrentRecord.Filename);
                 }
                 catch (Exception)
                 {
@@ -176,26 +204,32 @@ namespace LeYun.ViewModel
             dlg.ShowDialog();
         }
 
-        // 读取所有历史记录
+        // 加载时读取所有历史记录
         private void LoadRecords(object obj)
         {
-            Records.Clear();
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
                 FileInfo[] files = dir.GetFiles();
-                // 按创建时间进行排序
-                Array.Sort(files,
-                    delegate (FileInfo x, FileInfo y)
-                    {
-                        return y.CreationTime.CompareTo(x.CreationTime);
-                    });
+
+                List<ProblemRecord> records = new List<ProblemRecord>();
                 for (int i = 0; i < files.Length; ++i)
                 {
-                    Records.Add(new ProblemRecord());
-                    Records[i].ReadFromFile(files[i].FullName);
-                    // 保存记录对应的文件名
-                    RecordFileNames.Add(files[i].FullName);
+                    records.Add(new ProblemRecord());
+                    records[i].ReadFromFile(files[i].FullName);
+                    records[i].Filename = files[i].FullName;
+                }
+
+                // 按照时间先后排序
+                records.Sort(delegate (ProblemRecord r1, ProblemRecord r2) 
+                {
+                    return r2.CreateTime.CompareTo(r1.CreateTime);
+                });
+
+                Records.Clear();
+                for (int i = 0; i < records.Count; ++i)
+                {
+                    Records.Add(records[i]);
                 }
 
                 if (Records.Count > 0)
@@ -209,7 +243,7 @@ namespace LeYun.ViewModel
             }
             catch (Exception)
             {
-
+                MessageBox.Show("读取记录出错");
             }
 
             // 计算相关数据
@@ -276,6 +310,26 @@ namespace LeYun.ViewModel
             }
             str += "0";
             return str;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class SearchResultVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((int)value > 0)
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Hidden;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

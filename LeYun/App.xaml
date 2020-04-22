@@ -19,6 +19,7 @@
                     <viewmodel:NodeButtonColorConverter x:Key="nodeButtonColorConverter"/>
                     <viewmodel:CreateTimeConverter x:Key="createTimeConverter"/>
                     <viewmodel:PathConverter x:Key="PathConverter"/>
+                    <viewmodel:SearchResultVisibilityConverter x:Key="searchResultVisibilityConverter"/>
                     <dlg:XRangeConverter x:Key="xRangeConverter"/>
                     <dlg:YRangeConverter x:Key="yRangeConverter"/>
 
@@ -395,6 +396,38 @@
                         </Style.Triggers>
                     </Style>
 
+                    <!--搜索编辑框样式-->
+                    <Style x:Key="SearchTextBoxStyle" TargetType="{x:Type TextBox}">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border x:Name="border" BorderBrush="#387cdf" BorderThickness="2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Background="#387cdf" Margin="0 0 5 0">
+                                                <TextBlock Style="{StaticResource IconTextBlock}" Foreground="White" Text="&#xf002;" Margin="5 0 5 0"/>
+                                            </Border>
+                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="按名称查找" Foreground="LightGray" HorizontalAlignment="Left" Visibility="Hidden"/>
+                                            <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter TargetName="hint" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter TargetName="hint" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
 
                     <!--组合框下拉按钮样式-->
                     <Style x:Key="ComboBoxToggleStyle" TargetType="{x:Type ToggleButton}">
