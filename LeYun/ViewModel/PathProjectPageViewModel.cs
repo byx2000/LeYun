@@ -43,6 +43,7 @@ namespace LeYun.ViewModel
         public DelegateCommand MouseAddNodeCommand { get; }
         public DelegateCommand ShowSavePopupCommand { get; }
         public DelegateCommand SaveCarCommand { get; }
+        public DelegateCommand SaveNodeCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -128,6 +129,32 @@ namespace LeYun.ViewModel
             MouseAddNodeCommand = new DelegateCommand(MouseAddNode);
             ShowSavePopupCommand = new DelegateCommand(ShowSavePopup);
             SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
+            SaveNodeCommand = new DelegateCommand(SaveNode, CanSaveNode);
+        }
+
+        // 判断是否能保存节点数据
+        private bool CanSaveNode(object arg)
+        {
+            return Record.Nodes.Count > 0;
+        }
+
+        // 保存节点数据
+        private void SaveNode(object obj)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "保存节点数据到文件";
+            dlg.Filter = "节点数据文件 (.node)|*.node|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                try
+                {
+                    Record.Nodes.SaveToFile(dlg.FileName);
+                }
+                catch (Exception e)
+                {
+                    MsgBox.Show("保存节点数据文件失败！\n" + e.Message);
+                }
+            }
         }
 
         // 判断是否能保存车辆数据
@@ -231,53 +258,23 @@ namespace LeYun.ViewModel
             }
         }
 
-        // 解析节点数据文件
-        public bool LoadNodesInfo(string path)
-        {
-            try
-            {
-                StreamReader reader = new StreamReader(path);
-                string txt = reader.ReadToEnd();
-                char[] sep = { ' ', '\t', '\n' };
-                string[] input = txt.Split(sep);
-
-                int index = 0;
-
-                int numNode = Convert.ToInt32(input[index++]);
-                double[] x = new double[numNode];
-                double[] y = new double[numNode];
-                double[] demand = new double[numNode];
-                for (int i = 0; i < numNode; ++i)
-                {
-                    x[i] = Convert.ToDouble(input[index++]);
-                    y[i] = Convert.ToDouble(input[index++]);
-                    demand[i] = Convert.ToDouble(input[index++]);
-                    Record.Nodes.Add(new Node { X = x[i], Y = y[i], Demand = demand[i] });
-                }               
-
-                return true;
-            }
-            catch (Exception)
-            {
-                Record.Nodes.Clear();
-                return false;
-            }
-        }
-
         // 从文件导入节点信息
         private void ImportNodesFromFile(object obj)
         {
             OpenFileDialog dlg = new OpenFileDialog()
             {
-                Filter = "节点数据文件 (.txt)|*.txt|All files (*.*)|*.*"
+                Filter = "节点数据文件 (.node)|*.node|All files (*.*)|*.*"
             };
             if (dlg.ShowDialog() == true)
             {
-                Record.Nodes.Clear();
                 Segments.Clear();
-                if (!LoadNodesInfo(dlg.FileName))
+                try
                 {
-                    MsgBox.Show("读取节点数据文件失败！");
+                    Record.Nodes.ReadFromFile(dlg.FileName);
+                }
+                catch (Exception e)
+                {
+                    MsgBox.Show("读取节点数据文件失败！\n" + e.Message);
                 }
             }
         }
