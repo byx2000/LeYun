@@ -150,7 +150,7 @@ namespace LeYun.ViewModel
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("保存车辆数据文件失败！\n" + e.Message);
+                    MsgBox.Show("保存车辆数据文件失败！\n" + e.Message);
                 }
             }
         }
@@ -226,7 +226,7 @@ namespace LeYun.ViewModel
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("车辆数据文件读取失败！\n" + e.Message);
+                    MsgBox.Show("读取车辆数据文件失败！\n" + e.Message);
                 }
             }
         }
@@ -277,7 +277,7 @@ namespace LeYun.ViewModel
                 Segments.Clear();
                 if (!LoadNodesInfo(dlg.FileName))
                 {
-                    MessageBox.Show("节点数据文件读取失败！");
+                    MsgBox.Show("读取节点数据文件失败！");
                 }
             }
         }
@@ -426,7 +426,7 @@ namespace LeYun.ViewModel
         {
             Application.Current.Dispatcher.BeginInvoke(new Action(delegate
             {
-                MessageBox.Show("求解失败！");
+                MsgBox.Show("求解失败！");
             }));
         }
 
@@ -457,17 +457,15 @@ namespace LeYun.ViewModel
                 }
 
                 // 保存结果
-                //ProblemRecord record = GetProblemRecord();
                 try
                 {
-                    //record.SaveToFile(GlobalData.RecordPath + record.Name + ".txt");
                     Record.CreateTime = DateTime.Now;
                     Record.Name = record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
                     Record.SaveToFile(GlobalData.RecordPath + record.Name + ".txt");
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("保存求解记录失败！\n" + e.Message);
+                    MsgBox.Show("保存求解记录失败！\n" + e.Message);
                 }
             }));
         }

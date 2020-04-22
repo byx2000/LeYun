@@ -1,0 +1,34 @@
+﻿<Window x:Class="LeYun.View.Dlg.MsgBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg"
+        mc:Ignorable="d"
+        Title="MsgBox" Height="200" Width="300" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove" BorderThickness="0" Style="{StaticResource WindowLoadAnimationStyle}">
+    <Grid>
+        <Border Background="White" BorderBrush="#387cdf" BorderThickness="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="#387cdf">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" Margin="10 0 0 0" Foreground="White" FontSize="25"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" x:Name="titleText" Text="消息" Margin="10 0 0 0" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource TitleBarButtonStyle}" x:Name="close" HorizontalAlignment="Right" Text="&#xf00d;" Foreground="White" Margin="0 0 10 0" MouseLeftButtonUp="closeWindow" FontSize="25"/>
+                    </Grid>
+                </Border>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}"  x:Name="infoText" Foreground="Black" TextWrapping="Wrap" Margin="10 0 10 0"/>
+
+                <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="ok" Content="确定"  Width="80" Height="30" Click="closeWindow" VerticalAlignment="Bottom" Margin="0 0 0 10"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

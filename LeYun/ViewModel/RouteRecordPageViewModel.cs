@@ -119,12 +119,11 @@ namespace LeYun.ViewModel
                 try
                 {
                     CurrentRecord.Name = viewModel.NewName;
-                    //CurrentRecord.SaveToFile(RecordFileNames[CurrentRecordIndex]);
                     CurrentRecord.SaveToFile(CurrentRecord.Filename);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    MessageBox.Show("更新记录失败！");
+                    MsgBox.Show("更新记录失败！\n" + e.Message);
                 }
             }
         }
@@ -241,9 +240,9 @@ namespace LeYun.ViewModel
                     CurrentRecordIndex = -1;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("读取记录出错");
+                MsgBox.Show("读取记录出错！\n" + e.Message);
             }
 
             // 计算相关数据
