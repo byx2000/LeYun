@@ -26,7 +26,6 @@ namespace LeYun.ViewModel
     class PathProjectPageViewModel : ViewModelBase
     {
         // 命令
-        public DelegateCommand SaveResultCommand { get; }
         public DelegateCommand AddCarCommand { get; }
         public DelegateCommand EditCarCommand { get; }
         public DelegateCommand AddNodeCommand { get; }
@@ -44,6 +43,7 @@ namespace LeYun.ViewModel
         public DelegateCommand ShowSavePopupCommand { get; }
         public DelegateCommand SaveCarCommand { get; }
         public DelegateCommand SaveNodeCommand { get; }
+        public DelegateCommand SaveResultCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -111,8 +111,7 @@ namespace LeYun.ViewModel
         
         // 构造函数
         public PathProjectPageViewModel()
-        {
-            SaveResultCommand = new DelegateCommand(SaveResult);
+        {           
             AddCarCommand = new DelegateCommand(AddCar);
             EditCarCommand = new DelegateCommand(EditCar);
             AddNodeCommand = new DelegateCommand(AddNode);
@@ -130,6 +129,7 @@ namespace LeYun.ViewModel
             ShowSavePopupCommand = new DelegateCommand(ShowSavePopup);
             SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
             SaveNodeCommand = new DelegateCommand(SaveNode, CanSaveNode);
+            SaveResultCommand = new DelegateCommand(SaveResult, CanSaveResult);
         }
 
         // 判断是否能保存节点数据
@@ -291,11 +291,31 @@ namespace LeYun.ViewModel
             return Record.Nodes.Count > 0 || Record.Cars.Count > 0;
         }
 
+        // 判断是否能保存结果
+        private bool CanSaveResult(object arg)
+        {
+            return Record.Cars.Count > 0 && Record.Nodes.Count > 0 && Segments.Count > 0;
+        }
+
         // 保存结果
         private void SaveResult(object parameter)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.ShowDialog();
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "保存求解结果到文件";
+            dlg.Filter = "求解记录文件 (.rec)|*.rec|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                try
+                {
+                    Record.CreateTime = DateTime.Now;
+                    Record.Name = dlg.SafeFileName;
+                    Record.SaveToFile(dlg.FileName);
+                }
+                catch (Exception e)
+                {
+                    MsgBox.Show("保存求解结果到文件失败！\n" + e.Message);
+                }
+            }
         }
 
         // 添加车辆
@@ -458,7 +478,7 @@ namespace LeYun.ViewModel
                 {
                     Record.CreateTime = DateTime.Now;
                     Record.Name = record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
-                    Record.SaveToFile(GlobalData.RecordPath + record.Name + ".txt");
+                    Record.SaveToFile(GlobalData.RecordPath + record.Name + ".rec");
                 }
                 catch (Exception e)
                 {

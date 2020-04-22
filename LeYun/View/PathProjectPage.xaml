@@ -54,7 +54,8 @@
                                     Command="{Binding SaveCarCommand}"/>
                             <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="保存节点" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
                                     Command="{Binding SaveNodeCommand}"/>
-                            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Content="保存结果" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"/>
+                            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Content="保存结果" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                                    Command="{Binding SaveResultCommand}"/>
                         </Grid>
                     </Border>
                 </Popup>
