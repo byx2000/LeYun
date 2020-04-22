@@ -1,4 +1,5 @@
 ﻿using LeYun.View;
+using LeYun.View.Dlg;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;

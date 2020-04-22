@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeYun.View.Dlg;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace LeYun.View
     {
         public MainWindow()
         {
+            Splash splash = new Splash();
+            splash.ShowDialog();
+
             InitializeComponent();
         }
     }
