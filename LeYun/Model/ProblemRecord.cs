@@ -211,48 +211,48 @@ namespace LeYun.Model
         {
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                using (StreamReader sw = new StreamReader(fs, Encoding.Default))
+                using (StreamReader sr = new StreamReader(fs, Encoding.Default))
                 {
                     // 读取创建时间
-                    CreateTime = DateTime.Parse(sw.ReadLine());
+                    CreateTime = DateTime.Parse(sr.ReadLine());
 
                     // 读取记录名称
-                    Name = sw.ReadLine();
+                    Name = sr.ReadLine();
 
                     // 读取车辆速度
-                    CarSpeed = double.Parse(sw.ReadLine());
+                    CarSpeed = double.Parse(sr.ReadLine());
 
                     // 读取配送点停留时间
-                    NodeStayTime = double.Parse(sw.ReadLine());
+                    NodeStayTime = double.Parse(sr.ReadLine());
 
                     // 读取节点信息
-                    int nodeCount = int.Parse(sw.ReadLine());
+                    int nodeCount = int.Parse(sr.ReadLine());
                     for (int i = 0; i < nodeCount; ++i)
                     {
-                        double x = double.Parse(sw.ReadLine());
-                        double y = double.Parse(sw.ReadLine());
-                        double d = double.Parse(sw.ReadLine());
+                        double x = double.Parse(sr.ReadLine());
+                        double y = double.Parse(sr.ReadLine());
+                        double d = double.Parse(sr.ReadLine());
                         Nodes.Add(new Node { X = x, Y = y, Demand = d });
                     }
 
                     // 读取车辆信息
-                    int carCount = int.Parse(sw.ReadLine());
+                    int carCount = int.Parse(sr.ReadLine());
                     for (int i = 0; i < carCount; ++i)
                     {
-                        double w = double.Parse(sw.ReadLine());
-                        double d = double.Parse(sw.ReadLine());
+                        double w = double.Parse(sr.ReadLine());
+                        double d = double.Parse(sr.ReadLine());
                         Cars.Add(new Car { WeightLimit = w, DisLimit = d });
                     }
 
                     // 读取路径信息
-                    int pathCount = int.Parse(sw.ReadLine());
+                    int pathCount = int.Parse(sr.ReadLine());
                     for (int i = 0; i < pathCount; ++i)
                     {
                         Paths.Add(new ObservableCollection<int>());
-                        int pathLength = int.Parse(sw.ReadLine());
+                        int pathLength = int.Parse(sr.ReadLine());
                         for (int j = 0; j < pathLength; ++j)
                         {
-                            Paths[i].Add(int.Parse(sw.ReadLine()));
+                            Paths[i].Add(int.Parse(sr.ReadLine()));
                         }
                     }
                 }

@@ -41,6 +41,8 @@ namespace LeYun.ViewModel
         public DelegateCommand ShowAddNodePopupCommand { get; }
         public DelegateCommand SetRunParamCommand { get; }
         public DelegateCommand MouseAddNodeCommand { get; }
+        public DelegateCommand ShowSavePopupCommand { get; }
+        public DelegateCommand SaveCarCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -93,6 +95,18 @@ namespace LeYun.ViewModel
                 RaisePropertyChanged("IsAddNodePopupVisible");
             }
         }
+
+        // 保存弹窗
+        private bool isSavePopupVisible = false;
+        public bool IsSavePopupVisible
+        {
+            get { return isSavePopupVisible; }
+            set
+            {
+                isSavePopupVisible = value;
+                RaisePropertyChanged("IsSavePopupVisible");
+            }
+        }
         
         // 构造函数
         public PathProjectPageViewModel()
@@ -112,6 +126,40 @@ namespace LeYun.ViewModel
             ShowAddNodePopupCommand = new DelegateCommand(ShowAddNodePopup);
             SetRunParamCommand = new DelegateCommand(SetRunParam);
             MouseAddNodeCommand = new DelegateCommand(MouseAddNode);
+            ShowSavePopupCommand = new DelegateCommand(ShowSavePopup);
+            SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
+        }
+
+        // 判断是否能保存车辆数据
+        private bool CanSaveCar(object arg)
+        {
+            return Record.Cars.Count > 0;
+        }
+
+        // 保存车辆数据
+        private void SaveCar(object obj)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "保存车辆数据到文件";
+            dlg.Filter = "车辆数据文件 (.car)|*.car|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                try
+                {
+                    Record.Cars.SaveToFile(dlg.FileName);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("保存车辆数据文件失败！\n" + e.Message);
+                }
+            }
+        }
+
+        // 显示保存弹窗
+        private void ShowSavePopup(object obj)
+        {
+            IsSavePopupVisible = false;
+            IsSavePopupVisible = true;
         }
 
         // 鼠标添加节点
@@ -162,52 +210,23 @@ namespace LeYun.ViewModel
             IsAddCarPopupVisible = true;
         }
 
-        // 解析车辆数据文件
-        private bool LoadCarsInfo(string path)
-        {
-            // 打开文件
-            try
-            {
-                StreamReader reader = new StreamReader(path);
-                string txt = reader.ReadToEnd();
-                char[] sep = { ' ', '\t', '\n' };
-                string[] input = txt.Split(sep);
-
-                int index = 0;
-
-                int numCar = Convert.ToInt32(input[index++]);
-                double[] capacity = new double[numCar];
-                double[] disLimit = new double[numCar];
-                for (int i = 0; i < numCar; ++i)
-                {
-                    capacity[i] = Convert.ToDouble(input[index++]);
-                    disLimit[i] = Convert.ToDouble(input[index++]);
-                    Record.Cars.Add(new Car { WeightLimit = capacity[i], DisLimit = disLimit[i] });
-                }                
-
-                return true;
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-        }
-
         // 从文件导入车辆信息
         private void ImportCarsFromFile(object obj)
         {
             OpenFileDialog dlg = new OpenFileDialog()
             {
-                Filter = "车辆数据文件 (.txt)|*.txt|All files (*.*)|*.*"
+                Filter = "车辆数据文件 (.car)|*.car|All files (*.*)|*.*"
             };
             if (dlg.ShowDialog() == true)
             {
-                Record.Cars.Clear();
                 Segments.Clear();
-                if (!LoadCarsInfo(dlg.FileName))
+                try
                 {
-                    MessageBox.Show("车辆数据文件读取失败！");
+                    Record.Cars.ReadFromFile(dlg.FileName);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("车辆数据文件读取失败！\n" + e.Message);
                 }
             }
         }
