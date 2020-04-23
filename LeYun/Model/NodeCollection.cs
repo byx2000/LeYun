@@ -18,6 +18,15 @@ namespace LeYun.Model
             base.Add(node);
         }
 
+        public void Remove(int index)
+        {
+            base.RemoveItem(index);
+            for (int i = 0; i < Count; ++i)
+            {
+                this[i].ID = i;
+            }
+        }
+
         public void SaveToFile(string filename)
         {
             using (FileStream fs = new FileStream(filename, FileMode.Create))

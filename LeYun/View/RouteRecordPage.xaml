@@ -263,7 +263,8 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" 
-                                                       Text="{Binding Path, Converter={StaticResource PathConverter}}"/>
+                                                       Text="{Binding Path, Converter={StaticResource PathConverter}}"
+                                                       ToolTip="{Binding Path, Converter={StaticResource PathConverter}}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -272,7 +273,8 @@
                                         <DataTemplate>
                                             <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="详情" Margin="10 0 0 0"
                                                     Command="{Binding ElementName=page, Path=DataContext.ViewCarDetailCommand}"
-                                                    CommandParameter="{Binding ElementName=carList, Path=SelectedIndex}"/>
+                                                    CommandParameter="{Binding ElementName=carList, Path=SelectedItem.ID}"/>
+                                            <!--<TextBlock Style="{StaticResource LinkTextStyle}" Text="详情" Foreground="#387cdf" FontSize="14"/>-->
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>

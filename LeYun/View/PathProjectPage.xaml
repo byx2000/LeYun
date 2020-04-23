@@ -272,6 +272,9 @@
                                 <MenuItem x:Name="EditNode" Header="编辑" 
                                       Command="{Binding EditNodeCommand}" 
                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}"/>
+                                <MenuItem Header="删除"
+                                          Command="{Binding RemoveNodeCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
                         <ListView.View>

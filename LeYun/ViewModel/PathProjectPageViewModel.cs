@@ -44,6 +44,7 @@ namespace LeYun.ViewModel
         public DelegateCommand SaveCarCommand { get; }
         public DelegateCommand SaveNodeCommand { get; }
         public DelegateCommand SaveResultCommand { get; }
+        public DelegateCommand RemoveNodeCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -130,6 +131,19 @@ namespace LeYun.ViewModel
             SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
             SaveNodeCommand = new DelegateCommand(SaveNode, CanSaveNode);
             SaveResultCommand = new DelegateCommand(SaveResult, CanSaveResult);
+            RemoveNodeCommand = new DelegateCommand(RemoveNode);
+        }
+
+        // 删除节点
+        private void RemoveNode(object obj)
+        {
+            int iNode = (int)obj;
+            if (iNode < 0)
+            {
+                return;
+            }
+
+            Record.Nodes.Remove(iNode);
         }
 
         // 判断是否能保存节点数据
