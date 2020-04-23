@@ -216,6 +216,7 @@ namespace LeYun.ViewModel
         {
             try
             {
+                // 读取所有历史记录
                 DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
                 FileInfo[] files = dir.GetFiles();
 
@@ -239,6 +240,13 @@ namespace LeYun.ViewModel
                     Records.Add(records[i]);
                 }
 
+                // 清空搜索词
+                SearchText = "";
+
+                // 清空搜索结果
+                SearchResult.Clear();
+
+                // 默认选择第一项
                 if (Records.Count > 0)
                 {
                     CurrentRecordIndex = 0;
