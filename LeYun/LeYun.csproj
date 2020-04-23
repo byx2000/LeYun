@@ -295,6 +295,8 @@
   <ItemGroup>
     <Resource Include="Img\icon.png" />
     <Resource Include="icon.ico" />
+    <Resource Include="Img\p2.png" />
+    <Resource Include="Img\p1.png" />
     <Content Include="Lib\VRP-Kernel.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
