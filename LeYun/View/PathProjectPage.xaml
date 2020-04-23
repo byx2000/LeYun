@@ -308,6 +308,9 @@
                                 <MenuItem x:Name="EditCar" Header="编辑"
                                       Command="{Binding EditCarCommand}" 
                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}"/>
+                                <MenuItem Header="删除"
+                                          Command="{Binding RemoveCarCommand}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}"/>
                             </ContextMenu>
                         </ListView.ContextMenu>
                         <ListView.View>
