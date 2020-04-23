@@ -15,6 +15,7 @@
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
         <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}"/>
         <dlg:Times100 x:Key="times100"/>
+        <viewmodel:EmptyPageVisibilityConverter x:Key="emptyPageVisibilityConverter"/>
     </Page.Resources>
 
     <i:Interaction.Triggers>
@@ -80,6 +81,21 @@
                             <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime, Converter={StaticResource createTimeConverter}}" ElementStyle="{StaticResource DataGridCellContentStyle}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                </Border>
+                <!--空白页面-->
+                <Border Grid.Row="1" Background="White">
+                    <Border.Visibility>
+                        <MultiBinding Converter="{StaticResource emptyPageVisibilityConverter}">
+                            <Binding Path="Records.Count"/>
+                            <Binding ElementName="searchBox" Path="Text.Length"/>
+                            <Binding Path="SearchResult.Count"/>
+                        </MultiBinding>
+                    </Border.Visibility>
+
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf217;" FontSize="100" Foreground="#959595"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="没有历史记录" FontSize="25" Foreground="#8f8f8f" Margin="0 20 0 0"/>
+                    </StackPanel>
                 </Border>
             </Grid>
             

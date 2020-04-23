@@ -18,9 +18,9 @@ namespace LeYun.View
     /// <summary>
     /// ConfigurePage.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigurePage : Page
+    public partial class SettingPage : Page
     {
-        public ConfigurePage()
+        public SettingPage()
         {
             InitializeComponent();
         }

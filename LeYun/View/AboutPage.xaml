@@ -5,98 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LeYun.View"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1120">
+      d:DesignHeight="800" d:DesignWidth="1120" Background="White">
 
-    <Page.Resources>
-        <Style TargetType="{x:Type ListViewItem}">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Grid>
-                            <Border x:Name="border" Background="White" BorderThickness="0">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5 0 0 0"/>
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#f0f0f0" TargetName="border"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#e0e0e0" TargetName="border"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        
-    </Page.Resources>
-
-    <Grid Background="Transparent" Margin="20">
+    <Grid Margin="50">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <!--<TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf018;" FontSize="100" Foreground="#387cdf"/>-->
-            <Image Source="pack://application:,,,/Img/logo.png" Width="100"/>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0">
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="乐运" FontSize="50" FontWeight="Bold"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="LeYun" FontSize="20" Foreground="#6f6f6f"/>
-            </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="L" FontSize="50" FontWeight="Bold" Foreground="#09a9d0"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="E" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y" FontSize="50" FontWeight="Bold" Foreground="#2b549b"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="U" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="N" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock x:Name="viewDevelopTeam" Style="{StaticResource LinkTextStyle}" Text="开发团队" HorizontalAlignment="Right"/>
-            <TextBlock x:Name="viewInstruction" Style="{StaticResource LinkTextStyle}" Text="使用说明" HorizontalAlignment="Right" Margin="0 5 0 0"/>
-            <TextBlock x:Name="viewUpdateLog" Style="{StaticResource LinkTextStyle}" Text="更新日志" HorizontalAlignment="Right" Margin="0 5 0 0"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="开发团队" FontSize="25" Foreground="#696969"/>
+            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="功能介绍" FontSize="25" Foreground="#696969"/>
+            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="版本更新" FontSize="25" Foreground="#696969"/>
+            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="商务合作" FontSize="25" Foreground="#696969"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="版本：v1.0  正式版" HorizontalAlignment="Left"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="© 2020 ZERO EXPRESS 零渡速递有限公司" Margin="0 5 0 0" HorizontalAlignment="Left"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="保留所有权利" Margin="0 5 0 0" HorizontalAlignment="Left"/>
-        </StackPanel>
-
-        <Grid Grid.Row="1" Margin="0 20 0 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="组件" HorizontalAlignment="Left" FontSize="20"/>
-            <ListView x:Name="componentList" Grid.Row="1" Margin="0 10 0 0" SelectionMode="Single">
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="核心算法"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Microsoft.WindowsAPICodePack-Shell"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图标"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="UI"/>
-            </ListView>
-        </Grid>
-
-        <Grid Grid.Row="2" Margin="0 30 0 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="详情" HorizontalAlignment="Left" FontSize="20"/>
-            <TextBox x:Name="detailText" Grid.Row="1" Padding="5" IsReadOnly="True" Margin="0 10 0 0" FontSize="16" Text="公司简介：零渡速递公司成立于2020年1月，是基于云计算、大数据，研发现代物流配送路线优化的高科技公司。公司致力于开发一款可视化的VRP求解器桌面程序——乐运，该程序允许用户自行设置相关数据和信息，并最终将解决方案以图形、文档等形式直观地向用户展示，具有实用性、先进性和高可靠性。&#13;&#13;选择组件以查看详情" TextWrapping="Wrap"/>
-        </Grid>
-
-        <Grid Grid.Row="3" Margin="0 20 0 20">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="说明" HorizontalAlignment="Left" FontSize="20"/>
-            <TextBox Grid.Row="1" IsReadOnly="True" Background="Transparent" BorderThickness="0" Margin="0 10 0 0" FontSize="16" Text="本产品专为第十一届服务外包创新创业大赛所开发，您可以自由使用本产品或与他人分享，但请勿用于商业用途 &#13;若在使用本产品过程中有任何问题，欢迎向开发团队反应，项目地址：https://github.com/byx2000/LeYun &#13;因使用本产品造成的任何损失，开发团队概不负责"/>
-        </Grid>
-
     </Grid>
+    
 </Page>

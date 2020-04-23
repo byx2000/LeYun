@@ -22,7 +22,7 @@ namespace LeYun.ViewModel
         // 各个子页面
         public PathProjectPage pathProjectPage = new PathProjectPage();
         public RouteRecordPage routeRecordPage = new RouteRecordPage();
-        public ConfigurePage configurePage = new ConfigurePage();
+        public SettingPage configurePage = new SettingPage();
         public AboutPage otherInfoPage = new AboutPage();
 
         // 子页面的ViewModel

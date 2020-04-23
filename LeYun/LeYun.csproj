@@ -135,8 +135,8 @@
     <Compile Include="ViewModel\PathProjectPageViewModel.cs" />
     <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="View\ConfigurePage.xaml.cs">
-      <DependentUpon>ConfigurePage.xaml</DependentUpon>
+    <Compile Include="View\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dlg\AlgoParamSetDlg.xaml.cs">
       <DependentUpon>AlgoParamSetDlg.xaml</DependentUpon>
@@ -184,7 +184,7 @@
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\ConfigurePage.xaml">
+    <Page Include="View\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
