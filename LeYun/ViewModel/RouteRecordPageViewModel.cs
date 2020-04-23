@@ -25,6 +25,7 @@ namespace LeYun.ViewModel
         public DelegateCommand ViewNodeDetailCommand { get; }
         public DelegateCommand ImportRecordCommand { get; }
         public DelegateCommand RenameRecordCommand { get; }
+        public DelegateCommand DeleteRecordCommand { get; }
 
         // 主窗口视图模型
         private MainWindowViewModel mainWindowViewModel;
@@ -34,9 +35,6 @@ namespace LeYun.ViewModel
 
         // 所有历史记录
         public ObservableCollection<ProblemRecord> Records { get; }
-
-        // 历史记录对应的文件名
-        //private List<string> RecordFileNames = new List<string>();
 
         // 当前选中的记录编号
         private int currentRecordIndex;
@@ -102,6 +100,15 @@ namespace LeYun.ViewModel
             ImportRecordCommand = new DelegateCommand(ImportRecord);
             ViewNodeDetailCommand = new DelegateCommand(ViewNodeDetail);
             RenameRecordCommand = new DelegateCommand(RenameRecord);
+            DeleteRecordCommand = new DelegateCommand(DeleteRecord);
+        }
+
+        // 删除记录
+        private void DeleteRecord(object obj)
+        {            
+            FileInfo file = new FileInfo(CurrentRecord.Filename);
+            file.Delete();
+            Records.Remove(CurrentRecord);
         }
 
         // 重命名记录

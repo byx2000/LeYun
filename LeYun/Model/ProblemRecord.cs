@@ -12,6 +12,8 @@ namespace LeYun.Model
 {
     class ProblemRecord : ViewModelBase
     {
+        private const string RecordDataFileFlag = "RecordData";
+
         // 创建时间
         private DateTime createTime;
         public DateTime CreateTime 
@@ -163,6 +165,9 @@ namespace LeYun.Model
             {
                 using (StreamWriter sw = new StreamWriter(fs, Encoding.Default))
                 {
+                    // 写入文件头
+                    sw.WriteLine(RecordDataFileFlag);
+
                     // 写入创建时间
                     sw.WriteLine(CreateTime.ToString());
 
@@ -213,6 +218,12 @@ namespace LeYun.Model
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.Default))
                 {
+                    // 读取文件头
+                    if (sr.ReadLine() != RecordDataFileFlag)
+                    {
+                        throw new Exception("文件格式错误");
+                    }
+
                     // 读取创建时间
                     CreateTime = DateTime.Parse(sr.ReadLine());
 

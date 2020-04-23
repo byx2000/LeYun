@@ -53,7 +53,8 @@
                                       Command="{Binding ImportRecordCommand}"/>
                             <MenuItem Header="重命名"
                                       Command="{Binding RenameRecordCommand}"/>
-                            <MenuItem Header="删除"/>
+                            <MenuItem Header="删除"
+                                      Command="{Binding DeleteRecordCommand}"/>
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.Columns>
@@ -71,9 +72,9 @@
                             <ContextMenu>
                                 <MenuItem Header="导入"
                                       Command="{Binding ImportRecordCommand}"/>
-                                <MenuItem Header="重命名"
+                                <!--<MenuItem Header="重命名"
                                       Command="{Binding RenameRecordCommand}"/>
-                                <MenuItem Header="删除"/>
+                                <MenuItem Header="删除"/>-->
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
