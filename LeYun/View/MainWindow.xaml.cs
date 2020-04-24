@@ -23,9 +23,6 @@ namespace LeYun.View
     {
         public MainWindow()
         {
-            Splash splash = new Splash();
-            splash.ShowDialog();
-
             InitializeComponent();
         }
     }

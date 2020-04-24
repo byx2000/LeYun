@@ -137,6 +137,9 @@
     <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
     <Compile Include="ViewModel\SettingPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\Dlg\AdDlg.xaml.cs">
+      <DependentUpon>AdDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
     <Compile Include="View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Dlg\AdDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

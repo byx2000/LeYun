@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeYun.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -25,14 +26,36 @@ namespace LeYun.View.Dlg
         {
             InitializeComponent();
 
+            Loaded += Splash_Loaded;
+            Closing += Splash_Closing;          
+        }
+
+        private void Splash_Loaded(object sender, RoutedEventArgs e)
+        {
+            //打开广告窗口
+            if (!GlobalData.IsActive)
+            {
+                AdDlg dlg = new AdDlg();
+                dlg.ShowDialog();
+            }
+
+            // 启动计时器
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 2);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1500);
             timer.Tick += OnTimer;
             timer.Start();
         }
 
+        private void Splash_Closing(object sender, EventArgs e)
+        {           
+            // 打开主窗口
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
         private void OnTimer(object sender, EventArgs e)
         {
+            ((DispatcherTimer)sender).Stop();
             Close();
         }
     }

@@ -5,7 +5,9 @@
              xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
              xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
              xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
-             StartupUri="View/MainWindow.xaml">
+             StartupUri="View/Dlg/Splash.xaml">
+
+    <!--StartupUri="View/MainWindow.xaml"-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -1,0 +1,20 @@
+﻿<Window x:Class="LeYun.View.Dlg.AdDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Style="{StaticResource ShadowWindowStyle}" Background="Transparent" BorderThickness="0"
+        Height="584" Width="734">
+    
+    <Border>
+        <Grid Background="Transparent">
+            <Image x:Name="adImage" Source="pack://application:,,,/Img/ad.png" Stretch="Fill"/>
+            <Border x:Name="skip" Width="80" Height="30" Background="Black" Opacity="0.3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 10 0" MouseDown="skip_MouseDown">
+                <TextBlock x:Name="time" Style="{StaticResource CenterAlignTextBlock}" Background="Transparent" Text="跳过(5s)" Foreground="White"/>
+            </Border>
+        </Grid>
+    </Border>
+    
+</Window>
