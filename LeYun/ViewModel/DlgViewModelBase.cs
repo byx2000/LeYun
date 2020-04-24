@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WPFCustomControls;
 
 namespace LeYun.ViewModel
 {
@@ -29,13 +30,13 @@ namespace LeYun.ViewModel
         private void Ok(object obj)
         {
             IsCancel = false;
-            ((Window)obj).Close();
+            ((Dialog)obj).Close();
         }
 
         private void Cancel(object obj)
         {
             IsCancel = true;
-            ((Window)obj).Close();
+            ((Dialog)obj).Close();
         }
     }
 }

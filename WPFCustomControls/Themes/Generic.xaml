@@ -414,7 +414,7 @@
                     <Grid Margin="10" RenderTransformOrigin="0.5 0.5">
                         <!--scale transform-->
                         <Grid.RenderTransform>
-                            <ScaleTransform x:Name="scale" ScaleX="0" ScaleY="0"/>
+                            <ScaleTransform x:Name="PART_ScaleTransform" ScaleX="0" ScaleY="0"/>
                         </Grid.RenderTransform>
                         <!--shadow-->
                         <Rectangle Grid.Row="0" Fill="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
@@ -470,12 +470,12 @@
                         <EventTrigger RoutedEvent="Window.Loaded">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="scale" From="0" To="1">
+                                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="PART_ScaleTransform" From="0" To="1">
                                         <DoubleAnimation.EasingFunction>
                                             <CircleEase />
                                         </DoubleAnimation.EasingFunction>
                                     </DoubleAnimation>
-                                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="scale" From="0" To="1">
+                                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="PART_ScaleTransform" From="0" To="1">
                                         <DoubleAnimation.EasingFunction>
                                             <CircleEase />
                                         </DoubleAnimation.EasingFunction>

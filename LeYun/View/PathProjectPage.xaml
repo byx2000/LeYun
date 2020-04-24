@@ -211,7 +211,7 @@
             <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 15">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas ClipToBounds="True" Background="Transparent" viewmodel:MouseBehaviour.MouseDownCommand="{Binding MouseAddNodeCommand}"/>
+                        <Canvas ClipToBounds="True" Background="Transparent" viewmodel:MouseBehaviour.MouseLeftButtonDownCommand="{Binding MouseAddNodeCommand}"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
