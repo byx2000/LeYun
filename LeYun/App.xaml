@@ -768,13 +768,13 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ContextMenu}">
-                                    <Grid Margin="10" Background="Transparent">
-                                        <Rectangle Fill="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                                    <Grid Margin="10" Background="White">
+                                        <Rectangle Fill="White" RadiusX="0" RadiusY="0">
                                             <Rectangle.Effect>
                                                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
                                             </Rectangle.Effect>
                                         </Rectangle>
-                                        <Border x:Name="Border" Background="White" Margin="0 5 0 5" Padding="0">
+                                        <Border x:Name="Border" Background="White" Margin="0 5 0 5">
                                             <StackPanel IsItemsHost="True"/>
                                         </Border>
                                     </Grid>

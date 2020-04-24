@@ -254,7 +254,7 @@
             </ItemsControl>
             
             <!--车辆和配送点列表-->
-            <Border Grid.Column="1" CornerRadius="0 0 10 0"/>
+            <Border Grid.Column="1"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
