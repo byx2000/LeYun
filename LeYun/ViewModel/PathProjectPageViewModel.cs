@@ -506,7 +506,7 @@ namespace LeYun.ViewModel
                 {
                     Record.CreateTime = DateTime.Now;
                     Record.Name = record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
-                    Record.SaveToFile(GlobalData.RecordPath + record.Name + ".rec");
+                    Record.SaveToFile(GlobalData.RecordPath + "/" + record.Name + ".rec");
                 }
                 catch (Exception e)
                 {

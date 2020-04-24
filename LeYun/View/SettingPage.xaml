@@ -3,11 +3,27 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:LeYun.View" xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
+      xmlns:local="clr-namespace:LeYun.View" xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1120">
 
+    <Page.DataContext>
+        <viewmodel:SettingPageViewModel />
+    </Page.DataContext>
+    
     <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="20" Text="记录文件存储路径"/>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
+                         Text="{Binding CurrentRecordPath}"/>
+                <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
+                        Command="{Binding ChangeRecordLocationCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+    
+    <!--<Grid Margin="20">
         <UniformGrid Rows="5">
 
             <StackPanel VerticalAlignment="Center">
@@ -55,6 +71,6 @@
             </StackPanel>
 
         </UniformGrid>
-    </Grid>
+    </Grid>-->
 
 </Page>

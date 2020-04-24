@@ -10,6 +10,10 @@ namespace LeYun.Model
 {
     static class GlobalData
     {
+        public const string MaxNodeXKey = "MaxNodeX";
+        public const string MaxNodeYKey = "MaxNodeY";
+        public const string RecordPathKey = "RecordPath";
+
         public static double MaxNodeX = 30;
         public static double MaxNodeY = 20;
         public static string RecordPath = "./record/";
@@ -18,12 +22,9 @@ namespace LeYun.Model
         {
             try
             {
-                // 读取节点坐标最大值
-                MaxNodeX = int.Parse(ConfigurationManager.AppSettings["MaxNodeX"]);
-                MaxNodeY = int.Parse(ConfigurationManager.AppSettings["MaxNodeY"]);
-
-                // 读取记录文件保存路径
-                RecordPath = ConfigurationManager.AppSettings["RecordPath"];
+                MaxNodeX = int.Parse(ReadConfiguration(MaxNodeXKey));
+                MaxNodeY = int.Parse(ReadConfiguration(MaxNodeYKey));
+                RecordPath = ReadConfiguration(RecordPathKey);
             }
             catch (Exception)
             {
@@ -31,6 +32,18 @@ namespace LeYun.Model
                 MaxNodeY = 20;
                 RecordPath = "./record";
             }
+        }
+
+        public static string ReadConfiguration(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+
+        public static void WriteConfiguration(string key, string value)
+        {
+            Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            cfa.AppSettings.Settings[key].Value = value;
+            cfa.Save();
         }
     }
 }
