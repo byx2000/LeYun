@@ -16,6 +16,7 @@
         <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}"/>
         <dlg:Times100 x:Key="times100"/>
         <viewmodel:EmptyPageVisibilityConverter x:Key="emptyPageVisibilityConverter"/>
+        <viewmodel:SearchEnableConverter x:Key="searchEnableConverter"/>
     </Page.Resources>
 
     <i:Interaction.Triggers>
@@ -41,7 +42,8 @@
                 </Grid.RowDefinitions>
                 <!--搜索框-->
                 <TextBox Grid.Row="0" x:Name="searchBox" Style="{StaticResource SearchTextBoxStyle}" Margin="10" 
-                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         IsEnabled="{Binding Converter={StaticResource searchEnableConverter}}"/>
                 <!--全部记录列表-->
                 <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
                     SelectedIndex="{Binding CurrentRecordIndex}"

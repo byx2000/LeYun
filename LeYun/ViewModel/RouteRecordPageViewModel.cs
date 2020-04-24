@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,15 +71,19 @@ namespace LeYun.ViewModel
             {
                 searchText = value;
 
-                // 搜索文本改变时更新搜索结果
-                SearchResult.Clear();
-                for (int i = 0; i < Records.Count; ++i)
+                // 只有正式版软件才能搜索历史记录
+                if (GlobalData.IsActive)
                 {
-                    if (Records[i].Name.Contains(searchText))
+                    // 搜索文本改变时更新搜索结果
+                    SearchResult.Clear();
+                    for (int i = 0; i < Records.Count; ++i)
                     {
-                        SearchResult.Add(Records[i]);
+                        if (Records[i].Name.Contains(searchText))
+                        {
+                            SearchResult.Add(Records[i]);
+                        }
                     }
-                }
+                }                
 
                 RaisePropertyChanged("SearchText");
                 RaisePropertyChanged("SearchResult");
@@ -185,6 +190,14 @@ namespace LeYun.ViewModel
         // 查看车辆详情
         private void ViewCarDetail(object obj)
         {
+            // 只有正式版软件才能查看车辆详情
+            if (!GlobalData.IsActive)
+            {
+                SystemSounds.Beep.Play();
+                MsgBox.Show("只有正式版软件才能查看车辆详情\n请前往“设置”页面激活软件");
+                return;
+            }
+
             int iCar = (int)obj;
             CarDetailDlg dlg = new CarDetailDlg();
             CarDetailDlgViewModel viewModel = new CarDetailDlgViewModel();
@@ -371,6 +384,19 @@ namespace LeYun.ViewModel
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class SearchEnableConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return GlobalData.IsActive;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

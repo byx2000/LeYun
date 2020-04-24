@@ -364,6 +364,10 @@
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsEnabled" Value="False">
                                             <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                            <Setter Property="Foreground" Value="#505050"/>
+                                        </Trigger>
+                                        <Trigger Property="IsReadOnly" Value="True">
+                                            <Setter Property="Foreground" Value="#505050"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
@@ -374,7 +378,6 @@
                                         <!--校验失败时-->
                                         <Trigger Property="Validation.HasError" Value="true">
                                             <Setter TargetName="border" Property="BorderBrush" Value="#de5448"/>
-                                            <!--<Setter Property="Foreground" Value="#de5448"/>-->
                                             <Setter Property="Background" Value="#fff1f0"/>
                                             <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                                         </Trigger>
@@ -450,10 +453,10 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <Border Background="#387cdf" Margin="0 0 5 0">
+                                            <Border x:Name="icon" Background="#387cdf" Margin="0 0 5 0">
                                                 <TextBlock Style="{StaticResource IconTextBlock}" Foreground="White" Text="&#xf002;" Margin="5 0 5 0"/>
                                             </Border>
-                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="按名称查找" Foreground="LightGray" HorizontalAlignment="Left" Visibility="Hidden"/>
+                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="按名称查找" Foreground="#969696" HorizontalAlignment="Left" Visibility="Hidden"/>
                                             <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
@@ -463,6 +466,11 @@
                                         </Trigger>
                                         <Trigger Property="Text" Value="">
                                             <Setter TargetName="hint" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter TargetName="border" Property="BorderBrush" Value="Gray"/>
+                                            <Setter TargetName="icon" Property="Background" Value="Gray"/>
+                                            <Setter TargetName="hint" Property="Text" Value="搜索功能不可用"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
