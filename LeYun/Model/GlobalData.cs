@@ -20,10 +20,34 @@ namespace LeYun.Model
         public const string ActiveStateKey = "IsActive";
         public const string ActivateKeyKey = "ActivateKey";
 
-        public static double MaxNodeX = 30;
-        public static double MaxNodeY = 20;
+        // 节点X坐标最大值
+        private static double maxNodeX = 30;
+        public static double MaxNodeX 
+        { 
+            get { return maxNodeX; }
+            set
+            {
+                maxNodeX = value;
+                RaisePropertyChanged("MaxNodeX");
+            }
+        }
+
+        // 节点Y坐标最大值
+        private static double maxNodeY;
+        public static double MaxNodeY
+        {
+            get { return maxNodeY; }
+            set 
+            { 
+                maxNodeY = value;
+                RaisePropertyChanged("MaxNodeY");
+            }
+        }
+
+        // 记录存储路径
         public static string RecordPath = "./record/";
-        //public static bool IsActive = false;
+
+        // 激活状态
         private static bool isActive = false;
         public static bool IsActive 
         { 
@@ -31,15 +55,14 @@ namespace LeYun.Model
             set
             {
                 isActive = value;
-                if (StaticPropertyChanged != null)
-                {
-                    StaticPropertyChanged.Invoke(null, new PropertyChangedEventArgs("IsActive"));
-                }
+                RaisePropertyChanged("IsActive");
             }
         }
 
+        // 激活密钥
         public static string ActivateKey = "XXX-XXX-XXX";
 
+        // 静态构造函数
         static GlobalData()
         {
             try
@@ -60,11 +83,22 @@ namespace LeYun.Model
             }
         }
 
+        // 通知属性改变
+        private static void RaisePropertyChanged(string propertyName)
+        {
+            if (StaticPropertyChanged != null)
+            {
+                StaticPropertyChanged.Invoke(null, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        // 读取配置文件
         public static string ReadConfiguration(string key)
         {
             return ConfigurationManager.AppSettings[key];
         }
 
+        // 写入配置文件
         public static void WriteConfiguration(string key, string value)
         {
             Configuration cfa = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

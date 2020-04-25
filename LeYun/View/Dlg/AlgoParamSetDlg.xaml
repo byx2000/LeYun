@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
         x:Name="dlg"
-        Title="算法参数设置" Height="250" Width="420" WindowStartupLocation="CenterScreen">
+        Title="算法参数设置" Height="280" Width="420" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <SolidColorBrush x:Key="SliderThumb.Static.Foreground" Color="#FFE5E5E5"/>
         <SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
@@ -274,6 +274,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -281,25 +282,40 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="进化代数：" HorizontalAlignment="Right" ToolTip="增大进化代数可以获得更好的求解结果，但是会延长求解时间"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="总时间权重：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="总里程权重：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="车辆数权重：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="进化代数：" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="总时间权重：" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="总里程权重：" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="车辆数权重：" HorizontalAlignment="Left" Margin="0 10 0 0"/>
 
-            <Slider Style="{DynamicResource SliderStyle}" x:Name="genCntSlider" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" Minimum="1000" Maximum="6000" IsSnapToTickEnabled="True" TickFrequency="1" ToolTip="增大进化代数可以获得更好的求解结果，但是会延长求解时间" Value="{Binding GenerationCount}"/>
-            <Slider Style="{DynamicResource SliderStyle}" x:Name="wTimeSlider" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WTime}"/>
-            <Slider Style="{DynamicResource SliderStyle}" x:Name="wDisSlider" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WDis}"/>
-            <Slider Style="{DynamicResource SliderStyle}" x:Name="wCarCntSlider" Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WCar}"/>
+            <Slider Style="{DynamicResource SliderStyle}" x:Name="genCntSlider" Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" Minimum="1000" Maximum="10000" IsSnapToTickEnabled="True" TickFrequency="1" ToolTip="增大进化代数可以获得更好的求解结果，但是会延长求解时间" Value="{Binding GenerationCount}"/>
+            <Slider Style="{DynamicResource SliderStyle}" x:Name="wTimeSlider" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WTime}"/>
+            <Slider Style="{DynamicResource SliderStyle}" x:Name="wDisSlider" Grid.Row="3" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WDis}"/>
+            <Slider Style="{DynamicResource SliderStyle}" x:Name="wCarCntSlider" Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="0 10 0 0" Minimum="1" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="1" Value="{Binding WCar}"/>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="{Binding Path=Value, ElementName=genCntSlider}"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="{Binding Path=Value, ElementName=wTimeSlider}" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="{Binding Path=Value, ElementName=wDisSlider}" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="{Binding Path=Value, ElementName=wCarCntSlider}" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Margin="5 0 0 0"
+                       Text="{Binding Path=Value, ElementName=genCntSlider}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Margin="5 10 0 0"
+                       Text="{Binding Path=Value, ElementName=wTimeSlider}"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Margin="5 10 0 0"
+                       Text="{Binding Path=Value, ElementName=wDisSlider}"/>
+            <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Margin="5 10 0 0"
+                       Text="{Binding Path=Value, ElementName=wCarCntSlider}"/>
 
-            <Button x:Name="ok" Grid.Row="4" Grid.Column="0" Margin="0 20 0 0" Style="{StaticResource ButtonStyle}" Content="确定" HorizontalAlignment="Left" Width="80" Height="25"
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0" Opacity="0.8">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="13" VerticalAlignment="Top"/>
+                <StackPanel VerticalAlignment="Top">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0" HorizontalAlignment="Left"
+                           Text="增大进化代数可以获得更好的求解结果，"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0" HorizontalAlignment="Left"
+                           Text="但是会延长求解时间"/>
+                </StackPanel>
+                
+            </StackPanel>
+            
+            <Button x:Name="ok" Grid.Row="5" Grid.Column="0" Margin="0 20 0 0" Style="{StaticResource ButtonStyle}" Content="确定" HorizontalAlignment="Left" Width="80" Height="25"
                     Command="{Binding  OkCommand}"
                     CommandParameter="{Binding ElementName=dlg}"/>
-            <Button x:Name="cancel" Grid.Row="4" Grid.Column="2" Margin="0 20 0 0" Style="{StaticResource ButtonStyle}" Content="取消" HorizontalAlignment="Right" Width="80" Height="25"
+            <Button x:Name="cancel" Grid.Row="5" Grid.Column="2" Margin="0 20 0 0" Style="{StaticResource ButtonStyle}" Content="取消" HorizontalAlignment="Right" Width="80" Height="25"
                     Command="{Binding  CancelCommand}"
                     CommandParameter="{Binding ElementName=dlg}"/>
 

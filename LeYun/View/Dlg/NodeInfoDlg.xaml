@@ -6,13 +6,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
-    mc:Ignorable="d"
+        mc:Ignorable="d"
         x:Name="dlg"
-        Title="{Binding Title}" Height="230" Width="300" WindowStartupLocation="CenterScreen">
+        xmlns:model="clr-namespace:LeYun.Model"
+        Title="{Binding Title}" Height="290" Width="300" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -24,9 +27,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="X坐标：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="需求量：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="X坐标：" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标：" HorizontalAlignment="Left" Margin="0 15 0 0"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="需求量：" HorizontalAlignment="Left" Margin="0 15 0 0"/>
 
             <TextBox Grid.Row="0" Grid.Column="1" x:Name="xVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
@@ -37,18 +40,18 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left" >
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left" >
                 <TextBox.Text>
-                    <Binding Path="Y" StringFormat="{}{0:F2}">
+                    <Binding Path="Demand" StringFormat="{}{0:F2}">
                         <Binding.ValidationRules>
                             <dlg:YValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
-                    <Binding Path="Demand" StringFormat="{}{0:F2}">
+                    <Binding Path="Y" StringFormat="{}{0:F2}">
                         <Binding.ValidationRules>
                             <dlg:DemandValidationRule />
                         </Binding.ValidationRules>
@@ -56,13 +59,27 @@
                 </TextBox.Text>
             </TextBox>
 
-            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="0 10 0 0"
+            <!--<TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="5 10 0 0"
                        Text="{Binding Converter={StaticResource xRangeConverter}}"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="0 10 0 0"
-                       Text="{Binding Converter={StaticResource yRangeConverter}}"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="t" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Margin="5 10 0 0"
+                       Text="{Binding Converter={StaticResource yRangeConverter}}"/>-->
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0" Opacity="0.8">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="13"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0"
+                           Text="X坐标的范围为0-"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13"
+                           Text="{Binding Path=(model:GlobalData.MaxNodeX), UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0" Opacity="0.8">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="13"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0"
+                           Text="Y坐标的范围为0-"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13"
+                           Text="{Binding Path=(model:GlobalData.MaxNodeY), UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="t" HorizontalAlignment="Left" Margin="5 15 0 0"/>
 
-            <Grid Grid.Row="3" Grid.ColumnSpan="3" Margin="0 20 0 0">
+            <Grid Grid.Row="5" Grid.ColumnSpan="3" Margin="0 20 0 0">
                 <Button x:Name="okBtn" Style="{StaticResource ButtonStyle}" Width="70" Height="25" HorizontalAlignment="Left" Content="确定"
                         Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=dlg}"/>
                 <Button x:Name="cancalBtn" Style="{StaticResource ButtonStyle}" Width="70" Height="25" HorizontalAlignment="Right" Content="取消"
