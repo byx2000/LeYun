@@ -141,6 +141,9 @@
     <Compile Include="View\Dlg\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dlg\BusinessDlg.xaml.cs">
+      <DependentUpon>BusinessDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dlg\DevelopmentTeamDlg.xaml.cs">
       <DependentUpon>DevelopmentTeamDlg.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Dlg\AdDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dlg\BusinessDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

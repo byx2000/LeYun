@@ -25,7 +25,8 @@ namespace LeYun.ViewModel
 
         private void ViewBusiness(object obj)
         {
-            MsgBox.Show("商务合作");
+            BusinessDlg dlg = new BusinessDlg();
+            dlg.ShowDialog();
         }
 
         // 查看更新日志
