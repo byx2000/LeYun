@@ -198,7 +198,17 @@ namespace LeYun.ViewModel
                 return;
             }
 
+            // 获取车辆索引
             int iCar = (int)obj;
+
+            // 车辆未使用时弹出提示
+            if (CurrentRecord.Cars[iCar].Path.Count == 0)
+            {
+                SystemSounds.Beep.Play();
+                MsgBox.Show("该车辆未使用！");
+                return;
+            }
+
             CarDetailDlg dlg = new CarDetailDlg();
             CarDetailDlgViewModel viewModel = new CarDetailDlgViewModel();
 
