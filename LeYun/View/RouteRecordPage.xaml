@@ -97,7 +97,7 @@
                     </Border.Visibility>
 
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf217;" FontSize="100" Foreground="#959595"/>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1da;" FontSize="100" Foreground="#959595"/>
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="没有历史记录" FontSize="25" Foreground="#8f8f8f" Margin="0 20 0 0"/>
                     </StackPanel>
                 </Border>
