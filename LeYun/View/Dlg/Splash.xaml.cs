@@ -22,6 +22,8 @@ namespace LeYun.View.Dlg
     /// </summary>
     public partial class Splash : Window
     {
+        MainWindow mainWindow = new MainWindow();
+
         public Splash()
         {
             InitializeComponent();
@@ -48,8 +50,7 @@ namespace LeYun.View.Dlg
 
         private void Splash_Closing(object sender, EventArgs e)
         {           
-            // 打开主窗口
-            MainWindow mainWindow = new MainWindow();
+            // 打开主窗口           
             mainWindow.Show();
         }
 
@@ -80,6 +81,26 @@ namespace LeYun.View.Dlg
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (double)value * 100;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class ActiveStateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (GlobalData.IsActive)
+            {
+                return "正式版";
+            }
+            else
+            {
+                return "测试版";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

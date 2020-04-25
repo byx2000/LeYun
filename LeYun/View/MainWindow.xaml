@@ -7,6 +7,7 @@
         xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" 
         xmlns:local="clr-namespace:LeYun.View" 
         xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
+        xmlns:model="clr-namespace:LeYun.Model"
         mc:Ignorable="d"
         Width="1304" Height="824" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" 

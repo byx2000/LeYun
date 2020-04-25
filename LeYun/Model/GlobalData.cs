@@ -1,6 +1,7 @@
 ﻿using LeYun.View.Dlg;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace LeYun.Model
 {
     static class GlobalData
     {
+        public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
+
         public const string MaxNodeXKey = "MaxNodeX";
         public const string MaxNodeYKey = "MaxNodeY";
         public const string RecordPathKey = "RecordPath";
@@ -20,7 +23,21 @@ namespace LeYun.Model
         public static double MaxNodeX = 30;
         public static double MaxNodeY = 20;
         public static string RecordPath = "./record/";
-        public static bool IsActive = false;
+        //public static bool IsActive = false;
+        private static bool isActive = false;
+        public static bool IsActive 
+        { 
+            get { return isActive; }
+            set
+            {
+                isActive = value;
+                if (StaticPropertyChanged != null)
+                {
+                    StaticPropertyChanged.Invoke(null, new PropertyChangedEventArgs("IsActive"));
+                }
+            }
+        }
+
         public static string ActivateKey = "XXX-XXX-XXX";
 
         static GlobalData()

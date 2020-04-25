@@ -7,6 +7,7 @@
       xmlns:local="clr-namespace:LeYun.View"
       mc:Ignorable="d" 
       x:Name="page"
+      xmlns:model="clr-namespace:LeYun.Model"
       xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
       xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
       d:DesignHeight="800" d:DesignWidth="1200">
@@ -43,7 +44,7 @@
                 <!--搜索框-->
                 <TextBox Grid.Row="0" x:Name="searchBox" Style="{StaticResource SearchTextBoxStyle}" Margin="10" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                         IsEnabled="{Binding Converter={StaticResource searchEnableConverter}}"/>
+                         IsEnabled="{Binding Path=(model:GlobalData.IsActive), UpdateSourceTrigger=PropertyChanged, Converter={StaticResource searchEnableConverter}}"/>
                 <!--全部记录列表-->
                 <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
                     SelectedIndex="{Binding CurrentRecordIndex}"

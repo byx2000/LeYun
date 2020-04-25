@@ -83,7 +83,7 @@ namespace LeYun.ViewModel
                 IsActive = true;
 
                 SystemSounds.Beep.Play();
-                MsgBox.Show("激活成功！\n请重启软件以启用新功能");
+                MsgBox.Show("激活成功！");
                 
             }
             else

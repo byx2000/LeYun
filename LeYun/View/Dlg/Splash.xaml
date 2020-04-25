@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
+        xmlns:model="clr-namespace:LeYun.Model"
         Height="250" Width="450" WindowStartupLocation="CenterScreen" Background="#387cdf" Style="{StaticResource ShadowWindowStyle}">
     <Window.Resources>
         <local:ProgressWidthConverter x:Key="progressWidthConverter"/>
         <local:ProgressValueConverter x:Key="progressValueConverter"/>
+        <local:ActiveStateConverter x:Key="activeStateConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -17,13 +19,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="pack://application:,,,/Img/logo.png" Width="100"/>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0">
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="乐运" FontSize="50" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="LeYun" FontSize="20" Foreground="White" Opacity="0.8"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="pack://application:,,,/Img/logo.png" Width="100"/>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="乐运" FontSize="50" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="LeYun" FontSize="20" Foreground="White" Opacity="0.8"/>
+                </StackPanel>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 20 0 0">
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="#d7e5f9" Text="版本：v2.0 "/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="#d7e5f9" 
+                       Text="{Binding Path=(model:GlobalData.IsActive), UpdateSourceTrigger=PropertyChanged, Converter={StaticResource activeStateConverter}}"/>
+            </StackPanel>
+            
         </StackPanel>
+        
 
         <Border x:Name="dummy">
             <Border.Style>
@@ -46,7 +57,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Border Grid.Row="1" x:Name="progress" Height="10" Background="Gray" VerticalAlignment="Center" CornerRadius="5"/>
+            <Border Grid.Row="1" x:Name="progress" Height="10" Background="#c0c0c0" VerticalAlignment="Center" CornerRadius="5"/>
             <Border Grid.Row="1" Height="10" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="5">
                 <Border.Width>
                     <MultiBinding Converter="{StaticResource progressWidthConverter}">
