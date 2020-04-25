@@ -12,13 +12,17 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="软件订购" HorizontalAlignment="Left" FontSize="20"/>
+            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf217;" FontSize="100" Foreground="#5fd288"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="软件订购" FontSize="20" Margin="0 10 0 0"/>
             <TextBlock Text="联系人：张小姐" Margin="0 10 0 0" Foreground="#85888b" FontSize="16"/>
             <TextBlock Text="邮箱：1178990733@qq.com" Margin="0 5 0 0" Foreground="#85888b" FontSize="16"/>
         </StackPanel>
 
+        <Border BorderBrush="#8b8e91" BorderThickness="0 0 1 0" Margin="0 20 0 20"/>
+
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="广告投放" HorizontalAlignment="Left" FontSize="20"/>
+            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1ea;" FontSize="100" Foreground="#ffbd39"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="广告投放" FontSize="20" Margin="0 10 0 0"/>
             <TextBlock Text="联系人：傅小姐" Margin="0 10 0 0" Foreground="#85888b" FontSize="16"/>
             <TextBlock Text="邮箱：1017958063@qq.com" Margin="0 5 0 0" Foreground="#85888b" FontSize="16"/>
         </StackPanel>
