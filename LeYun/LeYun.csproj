@@ -122,6 +122,7 @@
     <Compile Include="Model\ProblemRecord.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Util.cs" />
+    <Compile Include="ViewModel\AboutPageViewModel.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\DlgViewModelBase.cs" />
     <Compile Include="ViewModel\Dlg\AlgoParamSetDlgViewMode.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Dlg\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dlg\UpdateLogDlg.xaml.cs">
+      <DependentUpon>UpdateLogDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
@@ -190,6 +194,10 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Dlg\AdDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dlg\UpdateLogDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

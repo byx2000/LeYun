@@ -1,0 +1,52 @@
+﻿<wpfcustomcontrols:Dialog  
+        xmlns:wpfcustomcontrols="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" x:Class="LeYun.View.Dlg.UpdateLogDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg"
+        mc:Ignorable="d"
+        Title="历史更新记录" Height="400" Width="600" WindowStartupLocation="CenterScreen">
+
+    <ScrollViewer>
+        <ScrollViewer.Resources>
+            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
+        </ScrollViewer.Resources>
+        <Grid Margin="10">
+            <StackPanel>
+                <TextBlock Text="v0.8b 测试版"/>
+                <TextBlock Text="   1. 修改软件整体布局为页面选项卡布局"/>
+                <TextBlock Text="   2. 自定义控件外观"/>
+                <TextBlock Text="   3. 优化业务逻辑"/>
+                <TextBlock Text="   4. bug修复"/>
+                <TextBlock Text="v0.9b 测试版" Margin="0 10 0 0"/>
+                <TextBlock Text="   1. 完善路径规划功能"/>
+                <TextBlock Text="   2. 完善文件存取功能"/>
+                <TextBlock Text="   3. 进一步替换自定义控件"/>
+                <TextBlock Text="   4. bug修复"/>
+                <TextBlock Text="v1.0 正式版" Margin="0 10 0 0"/>
+                <TextBlock Text="   1. 重制历史记录页面"/>
+                <TextBlock Text="   2. 重制关于页面"/>
+                <TextBlock Text="   3. 添加弹出广告"/>
+                <TextBlock Text="   4. 添加软件激活模块"/>
+                <TextBlock Text="   5. 添加更多设置项"/>
+                <TextBlock Text="   6. 添加算法参数设置功能"/>
+                <TextBlock Text="   7. bug修复"/>
+                <TextBlock Text="v2.0 正式版" Margin="0 10 0 0"/>
+                <TextBlock Text="   1. 重制所有页面"/>
+                <TextBlock Text="   2. 重新设计设置项"/>
+                <TextBlock Text="   3. 弹出广告添加跳过和倒计时"/>
+                <TextBlock Text="   4. 完善软件激活模块"/>
+                <TextBlock Text="   5. 重新设计文件格式"/>
+                <TextBlock Text="   6. 添加删除节点、删除车辆功能"/>
+                <TextBlock Text="   7. 添加历史记录按名称搜索功能"/>
+                <TextBlock Text="   8. 添加运行参数设置功能"/>
+                <TextBlock Text="   9. 历史记录详情页面显示更多信息"/>
+                <TextBlock Text="   10. 车辆详情页面显示更多信息"/>
+                <TextBlock Text="   11. 添加启动页"/>
+                <TextBlock Text="   12. bug修复"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+    
+</wpfcustomcontrols:Dialog>

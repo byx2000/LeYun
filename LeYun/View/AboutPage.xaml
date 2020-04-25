@@ -3,10 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:LeYun.View"
+      xmlns:local="clr-namespace:LeYun.View" xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1120" Background="White">
 
+    <Page.DataContext>
+        <viewmodel:AboutPageViewModel />
+    </Page.DataContext>
+    
     <Grid Margin="50 30 50 50">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,13 +24,17 @@
             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="N" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
         </StackPanel>
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="开发团队" FontSize="24" Foreground="#696969"/>
+            <TextBlock Style="{StaticResource LinkTextStyle}" Text="开发团队" FontSize="24" Foreground="#696969" 
+                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewTeamCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="功能介绍" FontSize="24" Foreground="#696969"/>
+            <TextBlock Style="{StaticResource LinkTextStyle}" Text="使用帮助" FontSize="24" Foreground="#696969"
+                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="版本更新" FontSize="24" Foreground="#696969"/>
+            <TextBlock Style="{StaticResource LinkTextStyle}" Text="更新日志" FontSize="24" Foreground="#696969"
+                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewUpdateLogCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="商务合作" FontSize="24" Foreground="#696969"/>
+            <TextBlock Style="{StaticResource LinkTextStyle}" Text="商务合作" FontSize="24" Foreground="#696969"
+                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewBusinessCommand}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

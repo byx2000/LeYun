@@ -65,5 +65,33 @@ namespace LeYun.ViewModel
         {
             return (ICommand)element.GetValue(MouseLeftButtonDownCommandProperty);
         }
+
+        // 鼠标左键松开事件
+        public static readonly DependencyProperty MouseLeftButtonUpCommandProperty =
+            DependencyProperty.RegisterAttached("MouseLeftButtonUpCommand", typeof(ICommand), typeof(MouseBehaviour),
+                new FrameworkPropertyMetadata(new PropertyChangedCallback(MouseLeftButtonUpCommandChanged)));
+
+        private static void MouseLeftButtonUpCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)d;
+            element.MouseLeftButtonUp += element_MouseLeftButtonUp;
+        }
+
+        private static void element_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            ICommand command = GetMouseLeftButtonUpCommand(element);
+            command.Execute(e);
+        }
+
+        public static void SetMouseLeftButtonUpCommand(UIElement element, ICommand value)
+        {
+            element.SetValue(MouseLeftButtonUpCommandProperty, value);
+        }
+
+        public static ICommand GetMouseLeftButtonUpCommand(UIElement element)
+        {
+            return (ICommand)element.GetValue(MouseLeftButtonUpCommandProperty);
+        }
     }
 }
