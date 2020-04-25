@@ -99,7 +99,7 @@ namespace LeYun.View.Dlg
             }
             else
             {
-                return "测试版";
+                return "试用版";
             }
         }
 

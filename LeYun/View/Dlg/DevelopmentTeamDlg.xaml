@@ -1,0 +1,38 @@
+﻿<wpfcustomcontrols:Dialog  xmlns:wpfcustomcontrols="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" x:Class="LeYun.View.Dlg.DevelopmentTeamDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg"
+        mc:Ignorable="d"
+        Title="开发团队" Height="400" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="项目地址：" HorizontalAlignment="Left"/>
+            <TextBlock Text="https://github.com/byx2000/LeYun" Margin="20 10 0 0"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="联系方式：" HorizontalAlignment="Left" Margin="0 30 0 0"/>
+            <!--<TextBlock Text="电话: 18023699313" Margin="20 10 0 0"/>
+            <TextBlock Text="邮箱: 18023699313@163.com" Margin="20 10 0 0"/>
+            <TextBlock Text=" QQ:   416982860" Margin="20 10 0 0"/>-->
+            <Grid Margin="20 10 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="电话：" HorizontalAlignment="Right" Margin="0 5 0 0"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="邮箱：" HorizontalAlignment="Right" Margin="0 5 0 0"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="QQ：" HorizontalAlignment="Right" Margin="0 5 0 0"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="18023699313" Margin="0 5 0 0"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="18023699313@163.com" Margin="0 5 0 0"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="416982860" Margin="0 5 0 0"/>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
+</wpfcustomcontrols:Dialog>

@@ -38,13 +38,15 @@ namespace LeYun.ViewModel
         // 查看使用帮助
         private void ViewHelp(object obj)
         {
-            MsgBox.Show("使用帮助");
+            HelpDlg dlg = new HelpDlg();
+            dlg.ShowDialog();
         }
 
         // 查看开发团队
         private void ViewTeam(object obj)
         {
-            MsgBox.Show("开发团队");
+            DevelopmentTeamDlg dlg = new DevelopmentTeamDlg();
+            dlg.ShowDialog();
         }
     }
 }

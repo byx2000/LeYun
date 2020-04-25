@@ -301,8 +301,8 @@
             <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Margin="5 10 0 0"
                        Text="{Binding Path=Value, ElementName=wCarCntSlider}"/>
 
-            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0" Opacity="0.8">
-                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="13" VerticalAlignment="Top"/>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="14" VerticalAlignment="Top" Foreground="#387cdf" Margin="0 2 0 0"/>
                 <StackPanel VerticalAlignment="Top">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0" HorizontalAlignment="Left"
                            Text="增大进化代数可以获得更好的求解结果，"/>
