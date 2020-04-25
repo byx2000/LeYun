@@ -146,6 +146,7 @@ namespace LeYun.ViewModel
             }
 
             Record.Cars.Remove(iCar);
+            Segments.Clear();
         }
 
         // 删除节点
@@ -158,6 +159,7 @@ namespace LeYun.ViewModel
             }
 
             Record.Nodes.Remove(iNode);
+            Segments.Clear();
         }
 
         // 判断是否能保存节点数据

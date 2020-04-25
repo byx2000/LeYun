@@ -165,7 +165,7 @@
             <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 15">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas/>
+                        <Canvas ClipToBounds="True" Background="Transparent"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -176,24 +176,28 @@
                                 <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
                                     <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="X1"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeX)"/>
                                 </MultiBinding>
                             </Line.X1>
                             <Line.Y1>
                                 <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
                                     <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="Y1"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeY)"/>
                                 </MultiBinding>
                             </Line.Y1>
                             <Line.X2>
                                 <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
                                     <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="X2"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeX)"/>
                                 </MultiBinding>
                             </Line.X2>
                             <Line.Y2>
                                 <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
                                     <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="Y2"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeY)"/>
                                 </MultiBinding>
                             </Line.Y2>
                         </Line>
@@ -222,6 +226,7 @@
                                 <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
                                     <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="X"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeX)"/>
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>
@@ -230,6 +235,7 @@
                                 <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
                                     <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
                                     <Binding Path="Y"/>
+                                    <Binding Path="(model:GlobalData.MaxNodeY)"/>
                                 </MultiBinding>
                             </Setter.Value>
                         </Setter>

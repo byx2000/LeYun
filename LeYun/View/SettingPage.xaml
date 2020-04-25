@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:LeYun.View" xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1120"
+      xmlns:model="clr-namespace:LeYun.Model"
       x:Name="page">
 
     <Page.DataContext>
@@ -21,8 +22,33 @@
     
     <Grid Margin="20">
         <StackPanel>
+            <!--坐标范围-->
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围"/>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="该设置项会影响画布显示效果"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标最大值：" VerticalAlignment="Bottom"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center"
+                         Text="{Binding MaxNodeX, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
+                        IsEnabled="{Binding IsChangeXRangeButtonEnable}"
+                        Command="{Binding ChangeCoordRangeCommand}"
+                        CommandParameter="X"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标最大值：" VerticalAlignment="Bottom"/>
+                <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center"
+                         Text="{Binding MaxNodeY, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
+                        IsEnabled="{Binding IsChangeYRangeButtonEnable}"
+                        Command="{Binding ChangeCoordRangeCommand}"
+                        CommandParameter="Y"/>
+            </StackPanel>
+            
             <!--记录文件存储路径-->
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径" Margin="0 50 0 0"/>
             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                 <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
                          Text="{Binding CurrentRecordPath}"/>
