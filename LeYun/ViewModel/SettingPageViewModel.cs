@@ -210,7 +210,10 @@ namespace LeYun.ViewModel
                     FileInfo[] files = dir.GetFiles();
                     for (int i = 0; i < files.Length; ++i)
                     {
-                        files[i].MoveTo(dlg.SelectedPath + "/" + files[i].Name);
+                        if (files[i].Extension == ".rec")
+                        {
+                            files[i].MoveTo(dlg.SelectedPath + "/" + files[i].Name);
+                        }                        
                     }
 
                     // 更新配置文件
