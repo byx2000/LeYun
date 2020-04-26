@@ -352,7 +352,7 @@ namespace LeYun.ViewModel
         private void AddCar(object parameter)
         {
             CarInfoDlg dlg = new CarInfoDlg();
-            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "添加车辆" };
+            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "添加车辆" + Record.Cars.Count.ToString() };
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
 
@@ -372,7 +372,7 @@ namespace LeYun.ViewModel
             }
 
             CarInfoDlg dlg = new CarInfoDlg();
-            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "编辑车辆", WeightLimit = Record.Cars[index].WeightLimit, DisLimit = Record.Cars[index].DisLimit };
+            CarInfoDlgViewModel viewModel = new CarInfoDlgViewModel() { Title = "编辑车辆" + index.ToString(), WeightLimit = Record.Cars[index].WeightLimit, DisLimit = Record.Cars[index].DisLimit };
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
 
@@ -388,7 +388,7 @@ namespace LeYun.ViewModel
         private void AddNode(object parameter)
         {
             NodeInfoDlg dlg = new NodeInfoDlg();
-            NodeInfoDlgViewModel viewModel = new NodeInfoDlgViewModel() { Title = "添加节点" };
+            NodeInfoDlgViewModel viewModel = new NodeInfoDlgViewModel() { Title = "添加节点" + Record.Nodes.Count.ToString() };
 
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
@@ -409,7 +409,7 @@ namespace LeYun.ViewModel
             }
 
             NodeInfoDlg dlg = new NodeInfoDlg();
-            NodeInfoDlgViewModel viewModel = new NodeInfoDlgViewModel() { Title = "编辑节点", X = Record.Nodes[index].X, Y = Record.Nodes[index].Y, Demand = Record.Nodes[index].Demand };
+            NodeInfoDlgViewModel viewModel = new NodeInfoDlgViewModel() { Title = "编辑节点" + index.ToString(), X = Record.Nodes[index].X, Y = Record.Nodes[index].Y, Demand = Record.Nodes[index].Demand };
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
 
