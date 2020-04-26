@@ -42,7 +42,11 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="pack://application:,,,/Img/p1.png" VerticalAlignment="Top" Margin="0 20 0 0" Stretch="Fill"/>
+            <Image Grid.Column="0" Source="pack://application:,,,/Img/p1.png" VerticalAlignment="Top" Margin="0 20 0 0" Stretch="Fill">
+                <Image.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+                </Image.Effect>
+            </Image>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -55,7 +59,11 @@
                 <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="20 30 50 0" TextAlignment="Justify" FontSize="18" FontFamily="Monotype Corsiva"
                            Text="Founded in Jaunary 2020, zero ferry express company is a high-tech company based on cloud computing and big data to develop modern logistics and distribution route optimization. The company is committed to developing a visual VRP solver desktop program(LeYun), which allows users to set up relevant data and information, and ultimately, the solution is displayed to users in graphics, documents and other forms, with practicability, advanced nature and high reliability."/>
             </Grid>
-            <Image Grid.Column="2" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Bottom" Margin="0 20 0 0" Stretch="Fill"/>
+            <Image Grid.Column="2" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Bottom" Margin="0 20 0 0" Stretch="Fill">
+                <Image.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+                </Image.Effect>
+            </Image>
         </Grid>
     </Grid>
     
