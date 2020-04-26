@@ -7,6 +7,39 @@
     xmlns:barchart_conv="clr-namespace:BarChart.Converter"
     xmlns:horizontalbarchart_conv="clr-namespace:HorizontalBarChart.Converter">
 
+    <!--public style-->
+
+    <!--icon text block-->
+    <Style x:Key="IconTextBlock" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="../Font/#FontAwesome"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
+
+    <!--window title bar close button style-->
+    <Style x:Key="TitleBarCloseButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00d;" Foreground="White" FontSize="22" Margin="10 5 10 5"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#e81123" TargetName="border"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
     <!--ProgressPie-->
     <Style TargetType="{x:Type local:ProgressPie}">
         <Style.Resources>
@@ -397,14 +430,6 @@
 
     <!--Dialog-->
     <Style TargetType="{x:Type local:Dialog}">
-        <Style.Resources>
-            <Style x:Key="IconTextBlock" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="pack://application:,,,/Font/#FontAwesome"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="25"/>
-            </Style>
-        </Style.Resources>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="AllowsTransparency" Value="True"/>
@@ -429,34 +454,11 @@
                             </Grid.RowDefinitions>
                             <!--title bar-->
                             <Border Grid.Row="0" x:Name="PART_TitleBar" Background="#387cdf">
-                                <Grid Margin="10 0 10 0">
+                                <Grid Margin="10 0 0 0">
                                     <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left"
                                            Text="{TemplateBinding Title}" FontSize="16" Foreground="White" FontWeight="Bold"/>
                                     <!--close button-->
-                                    <Button x:Name="PART_CloseButton"
-                                            VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0"
-                                            Background="#387cdf" Foreground="White" 
-                                            FontSize="20" FontWeight="Bold">
-                                        <Button.Style>
-                                            <Style TargetType="{x:Type Button}">
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="{x:Type Button}">
-                                                            <Border x:Name="border">
-                                                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
-                                                            </Border>
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsMouseOver" Value="True">
-                                                                    <Setter Property="Background" Value="#1e5ab3" TargetName="border"/>
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </Button.Style>
-                                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00d;" Foreground="White"/>
-                                    </Button>
+                                    <Button x:Name="PART_CloseButton" Style="{StaticResource TitleBarCloseButtonStyle}"/>
                                 </Grid>
                             </Border>
                             <!--content area-->
