@@ -138,9 +138,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2}KM}"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}"  FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
+                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2}}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Margin="5 0 0 0" Foreground="#838383" VerticalAlignment="Bottom"
+                                               Text="km/h"/>
+                                </StackPanel>
+                                
                             </Grid>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -156,9 +161,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2}min}"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
+                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2}}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                               Text="min"/>
+                                </StackPanel>
+                                
                             </Grid>
                         </Grid>
                     </Grid>
@@ -187,9 +197,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2}min}"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
+                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2}}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                               Text="min"/>
+                                </StackPanel>
+                                
                             </Grid>
                         </Grid>
                         <Grid Grid.Column="1">
@@ -205,9 +220,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2}KM}"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
+                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2}}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                               Text="km"/>
+                                </StackPanel>
+                                
                             </Grid>
                         </Grid>
                         <Grid Grid.Column="2">
@@ -223,9 +243,14 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
                                            Text="{Binding CurrentRecord.UseCarCount}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                               Text="辆"/>
+                                </StackPanel>
+                                
                             </Grid>
                         </Grid>
                         <Grid Grid.Column="3">
@@ -241,9 +266,13 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" HorizontalAlignment="Left" Foreground="#8f8f8f"/>
-                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}}"/>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                               Text="%"/>
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -258,9 +287,9 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="车辆编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
                                                     Binding="{Binding ID}"/>
-                                <DataGridTextColumn Header="载重" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
+                                <DataGridTextColumn Header="实际载重" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
                                                     Binding="{Binding Path=Weight, StringFormat={}{0:F2}}"/>
-                                <DataGridTextColumn Header="里程" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                <DataGridTextColumn Header="实际里程" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding Dis, StringFormat={}{0:F2}}"/>
                                 <DataGridTemplateColumn Header="配送路径" Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
