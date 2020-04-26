@@ -246,9 +246,12 @@ namespace LeYun.ViewModel
                 List<ProblemRecord> records = new List<ProblemRecord>();
                 for (int i = 0; i < files.Length; ++i)
                 {
-                    records.Add(new ProblemRecord());
-                    records[i].ReadFromFile(files[i].FullName);
-                    records[i].Filename = files[i].FullName;
+                    if (files[i].Extension == ".rec")
+                    {
+                        records.Add(new ProblemRecord());
+                        records[i].ReadFromFile(files[i].FullName);
+                        records[i].Filename = files[i].FullName;
+                    }                    
                 }
 
                 // 按照时间先后排序
@@ -281,6 +284,7 @@ namespace LeYun.ViewModel
             }
             catch (Exception e)
             {
+                Records.Clear();
                 MsgBox.Show("读取记录出错！\n" + e.Message);
             }
 
