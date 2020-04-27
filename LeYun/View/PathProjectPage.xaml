@@ -352,7 +352,7 @@
                         </ListView.ContextMenu>
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                                <GridViewColumn Header="节点编号" Width="Auto" DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="编号" Width="Auto"  DisplayMemberBinding="{Binding ID}"/>
                                 <GridViewColumn Header="x坐标" Width="Auto" DisplayMemberBinding="{Binding X, StringFormat={}{0:F2}}" />
                                 <GridViewColumn Header="y坐标" Width="Auto" DisplayMemberBinding="{Binding Y, StringFormat={}{0:F2}}"/>
                                 <GridViewColumn Header="需求量" Width="Auto" DisplayMemberBinding="{Binding Demand, StringFormat={}{0:F2}}"/>
@@ -388,7 +388,7 @@
                         </ListView.ContextMenu>
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                                <GridViewColumn Header="车辆编号" Width="Auto"  DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="编号" Width="Auto"  DisplayMemberBinding="{Binding ID}"/>
                                 <GridViewColumn Header="最大载重" Width="Auto" DisplayMemberBinding="{Binding WeightLimit, StringFormat={}{0:F2}}" />
                                 <GridViewColumn Header="最大里程" Width="Auto" DisplayMemberBinding="{Binding DisLimit, StringFormat={}{0:F2}}"/>
                             </GridView>

@@ -139,12 +139,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}"  FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
-                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2}}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Margin="5 0 0 0" Foreground="#838383" VerticalAlignment="Bottom"
-                                               Text="km/h"/>
-                                </StackPanel>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}"  FontSize="22" FontWeight="Bold" HorizontalAlignment="Left"
+                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
                                 
                             </Grid>
                         </Grid>
@@ -162,12 +158,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
-                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2}}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
-                                               Text="min"/>
-                                </StackPanel>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
                         </Grid>
@@ -198,12 +190,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
-                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2}}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
-                                               Text="min"/>
-                                </StackPanel>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" 
+                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
                         </Grid>
@@ -221,12 +209,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
-                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2}}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
-                                               Text="km"/>
-                                </StackPanel>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2} km}"/>
                                 
                             </Grid>
                         </Grid>
@@ -244,12 +228,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" VerticalAlignment="Bottom"
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
                                            Text="{Binding CurrentRecord.UseCarCount}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
-                                               Text="辆"/>
-                                </StackPanel>
                                 
                             </Grid>
                         </Grid>
@@ -267,12 +247,8 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <TextBlock  Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}}"/>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="16" Foreground="#838383" VerticalAlignment="Bottom" Margin="5 0 0 0"
-                                               Text="%"/>
-                                </StackPanel>
+                                <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
                             </Grid>
                         </Grid>
                     </Grid>
