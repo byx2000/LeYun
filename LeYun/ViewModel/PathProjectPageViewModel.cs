@@ -46,6 +46,7 @@ namespace LeYun.ViewModel
         public DelegateCommand SaveResultCommand { get; }
         public DelegateCommand RemoveNodeCommand { get; }
         public DelegateCommand RemoveCarCommand { get; }
+        public DelegateCommand PlayDemoCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -110,30 +111,141 @@ namespace LeYun.ViewModel
                 RaisePropertyChanged("IsSavePopupVisible");
             }
         }
-        
+
+        // 是否在演示
+        private bool isPlayingDemo = false;
+        public bool IsPlayingDemo
+        {
+            get { return isPlayingDemo; }
+            set 
+            { 
+                isPlayingDemo = value;
+                RaisePropertyChanged("IsPlayingDemo");
+            }
+        }
+
+
         // 构造函数
         public PathProjectPageViewModel()
         {           
-            AddCarCommand = new DelegateCommand(AddCar);
-            EditCarCommand = new DelegateCommand(EditCar);
-            AddNodeCommand = new DelegateCommand(AddNode);
-            EditNodeCommand = new DelegateCommand(EditNode);
+            AddCarCommand = new DelegateCommand(AddCar, CantExecuteDuringDemo);
+            EditCarCommand = new DelegateCommand(EditCar, CantExecuteDuringDemo);
+            AddNodeCommand = new DelegateCommand(AddNode, CantExecuteDuringDemo);
+            EditNodeCommand = new DelegateCommand(EditNode, CantExecuteDuringDemo);
             ClearCommand = new DelegateCommand(Clear, CanClear);
             SolveCommand = new DelegateCommand(Solve, CanSolve);
-            ModeChangeCommand = new DelegateCommand(ModeChange);
+            ModeChangeCommand = new DelegateCommand(ModeChange, CantExecuteDuringDemo);
             SetAlgoParamCommand = new DelegateCommand(SetAlgoParam, CanSetAlgoParam);
             ImportNodesFromFileCommand = new DelegateCommand(ImportNodesFromFile);
             ImportCarsFromFileCommand = new DelegateCommand(ImportCarsFromFile);
-            ShowAddCarPopupCommand = new DelegateCommand(ShowAddCarPopup);
-            ShowAddNodePopupCommand = new DelegateCommand(ShowAddNodePopup);
-            SetRunParamCommand = new DelegateCommand(SetRunParam);
-            MouseAddNodeCommand = new DelegateCommand(MouseAddNode);
-            ShowSavePopupCommand = new DelegateCommand(ShowSavePopup);
+            ShowAddCarPopupCommand = new DelegateCommand(ShowAddCarPopup, CantExecuteDuringDemo);
+            ShowAddNodePopupCommand = new DelegateCommand(ShowAddNodePopup, CantExecuteDuringDemo);
+            SetRunParamCommand = new DelegateCommand(SetRunParam, CantExecuteDuringDemo);
+            MouseAddNodeCommand = new DelegateCommand(MouseAddNode, CantExecuteDuringDemo);
+            ShowSavePopupCommand = new DelegateCommand(ShowSavePopup, CantExecuteDuringDemo);
             SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
             SaveNodeCommand = new DelegateCommand(SaveNode, CanSaveNode);
             SaveResultCommand = new DelegateCommand(SaveResult, CanSaveResult);
-            RemoveNodeCommand = new DelegateCommand(RemoveNode);
-            RemoveCarCommand = new DelegateCommand(RemoveCar);
+            RemoveNodeCommand = new DelegateCommand(RemoveNode, CantExecuteDuringDemo);
+            RemoveCarCommand = new DelegateCommand(RemoveCar, CantExecuteDuringDemo);
+            PlayDemoCommand = new DelegateCommand(PlayDemo, CanPlayDemo);
+        }
+
+        private bool CantExecuteDuringDemo(object arg)
+        {
+            return !IsPlayingDemo;
+        }
+
+        // 判断是否能播放演示
+        private bool CanPlayDemo(object arg)
+        {
+            return Record.Nodes.Count > 0 && Record.Cars.Count > 0 && Record.Paths.Count > 0 && Segments.Count > 0 && !IsPlayingDemo;
+        }
+
+        // 播放演示
+        private void PlayDemo(object obj)
+        {
+            IsPlayingDemo = true;
+
+            Segments.Clear();
+
+            // 比率
+            double rate = 3;
+
+            // 获取配送时间最长的车辆编号
+            int index = -1;
+            double maxCarTime = -1;
+            for (int iCar = 0; iCar < Record.Paths.Count; ++iCar)
+            {
+                double time = Record.GetCarTime(iCar);
+                if (time > maxCarTime)
+                {
+                    maxCarTime = time;
+                    index = iCar;
+                }
+            }
+
+            // 存储动画开始的线条
+            List<int> startIndex = new List<int>();
+
+            // 设置动画
+            for (int iCar = 0; iCar < Record.Paths.Count; ++iCar)
+            {
+                // 跳过未参与配送车辆
+                if (Record.Paths[iCar].Count == 0)
+                {
+                    continue;
+                }
+
+                // 保存起始线条
+                int iStart = Segments.Count;
+                startIndex.Add(iStart);
+
+                // 提前添加所有线条
+                Brush brush = Util.RandomColorBrush();
+                for (int i = 0; i < Record.Paths[iCar].Count + 1; ++i)
+                {
+                    Segments.Add(new Segment { Stroke = brush });
+                }
+
+                // 遍历当前车辆的所有配送点
+                Node last = Record.Nodes[0];
+                for (int i = 0; i < Record.Paths[iCar].Count; ++i)
+                {
+                    int iNode = Record.Paths[iCar][i];
+
+                    // 设置动画
+                    Segments[iStart + i].SetAnimation(last.X, last.Y, Record.Nodes[iNode].X, Record.Nodes[iNode].Y, last.Distance(Record.Nodes[iNode]) / rate);
+                    int t = i;
+                    Segments[iStart + i].OnAnimationFinish = delegate
+                    {
+                        Thread.Sleep(100);
+                        Segments[iStart + t + 1].BeginAnimation();
+                    };
+
+                    last = Record.Nodes[iNode];
+                }
+
+                // 设置最后一段线条的动画
+                Segments[Segments.Count - 1].SetAnimation(last.X, last.Y, Record.Nodes[0].X, Record.Nodes[0].Y, last.Distance(Record.Nodes[0]) / rate);
+                int tt = iCar;
+                Segments[Segments.Count - 1].OnAnimationFinish = delegate
+                {
+                    if (tt == index)
+                    {
+                        Application.Current.Dispatcher.BeginInvoke(new Action(delegate
+                        {
+                            IsPlayingDemo = false;
+                            CommandManager.InvalidateRequerySuggested();
+                        }));
+                    }
+                };
+            }
+
+            for (int i = 0; i < startIndex.Count; ++i)
+            {
+                Segments[startIndex[i]].BeginAnimation();
+            }
         }
 
         // 删除车辆
@@ -165,7 +277,7 @@ namespace LeYun.ViewModel
         // 判断是否能保存节点数据
         private bool CanSaveNode(object arg)
         {
-            return Record.Nodes.Count > 0;
+            return Record.Nodes.Count > 0 && !IsPlayingDemo;
         }
 
         // 保存节点数据
@@ -190,7 +302,7 @@ namespace LeYun.ViewModel
         // 判断是否能保存车辆数据
         private bool CanSaveCar(object arg)
         {
-            return Record.Cars.Count > 0;
+            return Record.Cars.Count > 0 && !IsPlayingDemo;
         }
 
         // 保存车辆数据
@@ -312,19 +424,19 @@ namespace LeYun.ViewModel
         // 判断是否能执行求解操作
         private bool CanSolve(object arg)
         {
-            return Record.Nodes.Count > 0 && Record.Cars.Count > 0;
+            return Record.Nodes.Count > 0 && Record.Cars.Count > 0 && !IsPlayingDemo;
         }
 
         // 判断是否能执行清空操作
         private bool CanClear(object arg)
         {
-            return Record.Nodes.Count > 0 || Record.Cars.Count > 0;
+            return (Record.Nodes.Count > 0 || Record.Cars.Count > 0) && !IsPlayingDemo;
         }
 
         // 判断是否能保存结果
         private bool CanSaveResult(object arg)
         {
-            return Record.Cars.Count > 0 && Record.Nodes.Count > 0 && Segments.Count > 0;
+            return Record.Cars.Count > 0 && Record.Nodes.Count > 0 && Segments.Count > 0 && !IsPlayingDemo;
         }
 
         // 保存结果
@@ -588,10 +700,7 @@ namespace LeYun.ViewModel
             {
                 return true;
             }
-            else
-            {
-                return (int)obj == 2;
-            }
+            return (int)obj == 2 && !IsPlayingDemo;
         }
     }
 
@@ -679,6 +788,39 @@ namespace LeYun.ViewModel
             else
             {
                 return new SolidColorBrush(Color.FromRgb(0x38, 0x7c, 0xdf));
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class NotConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return !(bool)value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class IsVisibleConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((bool)value)
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
             }
         }
 

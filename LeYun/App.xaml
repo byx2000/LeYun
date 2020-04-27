@@ -22,6 +22,8 @@
                     <viewmodel:CreateTimeConverter x:Key="createTimeConverter"/>
                     <viewmodel:PathConverter x:Key="PathConverter"/>
                     <viewmodel:SearchResultVisibilityConverter x:Key="searchResultVisibilityConverter"/>
+                    <viewmodel:NotConverter x:Key="notConverter"/>
+                    <viewmodel:IsVisibleConverter x:Key="isVisibleConverter"/>
                     <dlg:XRangeConverter x:Key="xRangeConverter"/>
                     <dlg:YRangeConverter x:Key="yRangeConverter"/>
 
@@ -510,20 +512,24 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                    <Border UseLayoutRounding="True" BorderBrush="#226ad1" BorderThickness="1">
+                                    <Border x:Name="border" UseLayoutRounding="True" BorderBrush="#226ad1" BorderThickness="1">
                                         <Grid UseLayoutRounding="True">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Border UseLayoutRounding="True" Grid.Column="0" Background="White"/>
-                                            <Border UseLayoutRounding="True" Grid.Column="1" Background="#226ad1"/>
+                                            <Border x:Name="drop" UseLayoutRounding="True" Grid.Column="1" Background="#226ad1"/>
                                             <TextBlock Grid.Column="1" Style="{StaticResource IconTextBlock}" FontSize="{TemplateBinding FontSize}" Text="&#xf078;" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0 5 0"/>
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="true">
                                             <Setter Property="Opacity" Value="0.8"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter TargetName="drop" Property="Background" Value="Gray"/>
+                                            <Setter TargetName="border" Property="BorderBrush" Value="Gray"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>

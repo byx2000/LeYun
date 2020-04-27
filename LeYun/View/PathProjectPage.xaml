@@ -70,12 +70,15 @@
                 <Button x:Name="setAlgoParam" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Content="算法参数设置" Margin="10 0 0 0" 
                     CommandParameter="{Binding ElementName=ModeChoose, Path=SelectedIndex}"
                     Command="{Binding SetAlgoParamCommand}"/>
+                <Button Style="{StaticResource ButtonStyle}" Content="演示" Margin="10 0 0 0"
+                        Command="{Binding PlayDemoCommand}"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 15 15 15">
 
                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="模式选择：" Foreground="Black"/>
                 <ComboBox x:Name="ModeChoose" Style="{StaticResource ComboBoxStyle}" Width="120" Margin="0" 
-                     FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0">
+                     FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0"
+                          IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction 
@@ -171,7 +174,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!--<Line X1="{Binding X1}" Y1="{Binding Y1}" X2="{Binding X2}" Y2="{Binding Y2}" Stroke="Black" StrokeThickness="2.5"/>-->
-                        <Line Stroke="{Binding Stroke}" StrokeThickness="2">
+                        <Line Stroke="{Binding Stroke}" StrokeThickness="2.5">
                             <Line.X1>
                                 <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
                                     <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
@@ -330,6 +333,11 @@
 
                 </Grid>
             </Grid>
+
+            <!--用于禁用整个绘图面板-->
+            <Grid Grid.ColumnSpan="2" Background="Transparent"
+                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
+
         </Grid>
     </Grid>
 </Page>

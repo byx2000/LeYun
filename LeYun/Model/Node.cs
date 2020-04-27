@@ -47,7 +47,6 @@ namespace LeYun.Model
 
         // 需求量
         private double demand;
-
         public double Demand
         {
             get { return demand; }
@@ -56,6 +55,12 @@ namespace LeYun.Model
                 demand = value;
                 RaisePropertyChanged("Demand");
             }
+        }
+
+        // 距离
+        public double Distance(Node n)
+        {
+            return Math.Sqrt((X - n.X) * (X - n.X) + (Y - n.Y) * (Y - n.Y));
         }
     }
 }

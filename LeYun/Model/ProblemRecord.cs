@@ -269,5 +269,20 @@ namespace LeYun.Model
                 }
             }
         }
+
+        // 获取车辆运行时间
+        public double GetCarTime(int iCar)
+        {
+            Node last = Nodes[0];
+            double dis = 0;
+            for (int i = 0; i < Paths[iCar].Count; ++i)
+            {
+                int iNode = Paths[iCar][i];
+                dis += last.Distance(Nodes[iNode]);
+                last = Nodes[iNode];
+            }
+            dis += last.Distance(Nodes[0]);
+            return dis / CarSpeed * 60 + Paths[iCar].Count * NodeStayTime;
+        }
     }
 }
