@@ -302,6 +302,7 @@
                                         </Trigger>
                                         <Trigger Property="IsEnabled" Value="False">
                                             <Setter Property="Background" Value="Gray"/>
+                                            <!--<Setter Property="Background" Value="#2b549b"/>-->
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -598,10 +599,10 @@
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Bd" Property="Background" Value="#f0f0f0" />
+                                            <Setter TargetName="Bd" Property="Background" Value="#f5f5f5" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Bd" Property="Background" Value="#e0e0e0" />
+                                            <Setter TargetName="Bd" Property="Background" Value="#e6e6e6" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -875,10 +876,10 @@
                                     <Setter Property="BorderBrush" Value="#f7f7f7"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#f0f0f0"/>
+                                            <Setter Property="Background" Value="#f5f5f5"/>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Background" Value="#e6e6e6"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>

@@ -10,7 +10,7 @@
         xmlns:local="clr-namespace:LeYun.View"
         mc:Ignorable="d"
         x:Name="page"
-        d:DesignHeight="800" d:DesignWidth="1120">
+        d:DesignHeight="800" d:DesignWidth="1500">
 
     <Page.Resources>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
@@ -59,23 +59,58 @@
                         </Grid>
                     </Border>
                 </Popup>
-                <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Content="保存" Command="{Binding ShowSavePopupCommand}">
+                <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding ShowSavePopupCommand}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding ShowSavePopupCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0c7;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="保存" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
                 </Button>
-                <Button Style="{StaticResource ButtonStyle}" Width="100" Height="30" Content="运行参数设置" Command="{Binding SetRunParamCommand}" Margin="10 0 0 0"/>
-                <Button x:Name="setAlgoParam" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Content="算法参数设置" Margin="10 0 0 0" 
+                <Button Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding SetRunParamCommand}" Margin="10 0 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="运行参数" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="setAlgoParam" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
                     CommandParameter="{Binding ElementName=ModeChoose, Path=SelectedIndex}"
-                    Command="{Binding SetAlgoParamCommand}"/>
-                <Button Style="{StaticResource ButtonStyle}" Content="演示" Margin="10 0 0 0"
-                        Command="{Binding PlayDemoCommand}"/>
+                    Command="{Binding SetAlgoParamCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="算法参数" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Margin="10 0 0 0"
+                        Command="{Binding PlayDemoCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf108;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="动画演示" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
+                </Button>
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 15 15 15">
 
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="模式选择：" Foreground="Black"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" Foreground="Black"/>
                 <ComboBox x:Name="ModeChoose" Style="{StaticResource ComboBoxStyle}" Width="120" Margin="0" 
                      FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0"
                           IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}">
@@ -90,12 +125,20 @@
                     <TextBlock  Text="车辆数优先"/>
                     <TextBlock  Text="自定义"/>
                 </ComboBox>
-                <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Content="添加车辆" Width="80" Height="30" Margin="10 0 0 0" Command="{Binding ShowAddCarPopupCommand}">
+                <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" Command="{Binding ShowAddCarPopupCommand}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding ShowAddCarPopupCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0d1;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加车辆" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
                 </Button>
                 <Popup  AllowsTransparency="True" FlowDirection="LeftToRight" PopupAnimation="Fade" Placement="Bottom" StaysOpen="False"
                     PlacementTarget="{Binding ElementName=AddVehicleButton}"
@@ -115,12 +158,20 @@
                         </Grid>
                     </Border>
                 </Popup>
-                <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Content="添加结点" Width="80" Height="30" Margin="10 0 10 0" Command="{Binding ShowAddNodePopupCommand}">
+                <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0" Command="{Binding ShowAddNodePopupCommand}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseEnter">
                             <i:InvokeCommandAction Command="{Binding ShowAddNodePopupCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf041;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加节点" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
                 </Button>
                 <Popup  AllowsTransparency="True" FlowDirection="LeftToRight" PopupAnimation="Fade" Placement="Bottom" StaysOpen="False"
                     PlacementTarget="{Binding ElementName=AddPointButton}"
@@ -139,15 +190,26 @@
                         </Grid>
                     </Border>
                 </Popup>
-                <Button x:Name="ClearButton" Style="{StaticResource ButtonStyle}" Content="清空" Width="80" Height="30" Margin="0 0 10 0" Command="{Binding ClearCommand}">
-                    <Button.ContextMenu>
-                        <ContextMenu x:Name="ClearMenu">
-                            <MenuItem x:Name="ClearVehicleItem" Header="清空车辆"/>
-                            <MenuItem x:Name="ClearNodesItem" Header="清空结点"/>
-                        </ContextMenu>
-                    </Button.ContextMenu>
+                <Button x:Name="ClearButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="0 0 10 0" Command="{Binding ClearCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1f8;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="清空" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
                 </Button>
-                <Button x:Name="StartButton" Style="{StaticResource ButtonStyle}" Content="开始计算" Width="80" Height="30" Command="{Binding SolveCommand}"/>
+                <Button x:Name="StartButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding SolveCommand}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf04b;"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="开始计算" FontSize="12" Margin="10 0 0 0"/>
+                    </Grid>
+                </Button>
             </StackPanel>
         </Grid>
         
