@@ -121,7 +121,7 @@ namespace LeYun.ViewModel
         {
             RenameDlg dlg = new RenameDlg();
             RenameDlgViewModel viewModel = new RenameDlgViewModel();
-            viewModel.Title = "重命名记录";
+            viewModel.Title = "重命名";
             viewModel.NewName = CurrentRecord.Name;
 
             dlg.DataContext = viewModel;
