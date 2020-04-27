@@ -173,17 +173,7 @@ namespace LeYun.ViewModel
             double rate = 3;
 
             // 获取配送时间最长的车辆编号
-            int index = -1;
-            double maxCarTime = -1;
-            for (int iCar = 0; iCar < Record.Paths.Count; ++iCar)
-            {
-                double time = Record.GetCarTime(iCar);
-                if (time > maxCarTime)
-                {
-                    maxCarTime = time;
-                    index = iCar;
-                }
-            }
+            int index = Record.GetSlowestCarIndex();
 
             // 存储动画开始的线条
             List<int> startIndex = new List<int>();

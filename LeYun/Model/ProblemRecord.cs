@@ -270,8 +270,60 @@ namespace LeYun.Model
             }
         }
 
-        // 获取车辆运行时间
-        public double GetCarTime(int iCar)
+        // 获取使用车辆数
+        public int GetUseCarCount()
+        {
+            int cnt = 0;
+            for (int i = 0; i < Paths.Count; ++i)
+            {
+                if (Paths[i].Count > 0)
+                {
+                    cnt++;
+                }
+            }
+            return cnt;
+        }
+
+        // 获取车辆载重
+        public double GetCarWeight(int iCar)
+        {
+            double w = 0;
+            for (int i = 0; i < Paths[iCar].Count; ++i)
+            {
+                int iNode = Paths[iCar][i];
+                w += Nodes[iNode].Demand;
+            }
+            return w;
+        }
+
+        // 获取车辆满载率
+        public double GetCarLoadRate(int iCar)
+        {
+            if (Cars[iCar].WeightLimit == 0)
+            {
+                return 0;
+            }
+            return GetCarWeight(iCar) / Cars[iCar].WeightLimit;
+        }
+
+        // 获取总满载率
+        public double GetTotalLoadRate()
+        {
+            double r = 0;
+            int cnt = 0;
+            for (int i = 0; i < Paths.Count; ++i)
+            {
+                if (Paths[i].Count > 0)
+                {
+                    cnt++;
+                    r += GetCarLoadRate(i);
+                }
+            }
+            return r / cnt;
+        }
+
+        // 获取车辆行驶里程
+        public double GetCarDistance(int iCar)
         {
             Node last = Nodes[0];
             double dis = 0;
@@ -282,7 +334,64 @@ namespace LeYun.Model
                 last = Nodes[iNode];
             }
             dis += last.Distance(Nodes[0]);
-            return dis / CarSpeed * 60 + Paths[iCar].Count * NodeStayTime;
+            return dis;
+        }
+
+        // 获取车辆运行时间
+        public double GetCarTime(int iCar)
+        {
+            return GetCarDistance(iCar) / CarSpeed * 60 + Paths[iCar].Count * NodeStayTime;
+        }
+
+        // 获取车辆配送路径
+        public List<Node> GetCarPath(int iCar)
+        {
+            List<Node> nodes = new List<Node>();
+            for (int i = 0; i < Paths[iCar].Count; ++i)
+            {
+                int iNode = Paths[iCar][i];
+                nodes.Add(new Node { ID = Nodes[iNode].ID, X = Nodes[iNode].X, Y = Nodes[iNode].Y, Demand = Nodes[iNode].Demand });
+            }
+            return nodes;
+        }
+
+        // 获取总运行里程
+        public double GetTotalDistance()
+        {
+            double dis = 0;
+            for (int i = 0; i < Cars.Count; ++i)
+            {
+                dis += GetCarDistance(i);
+            }
+            return dis;
+        }
+
+        // 获取配送总时间
+        public double GetTotalTime()
+        {
+            double time = 0;
+            for (int i = 0; i < Cars.Count; ++i)
+            {
+                time = Math.Max(time, GetCarTime(i));
+            }
+            return time;
+        }
+
+        // 获取用时最多的车辆编号
+        public int GetSlowestCarIndex()
+        {
+            double maxTime = -1;
+            int index = -1;
+            for (int i = 0; i < Paths.Count; ++i)
+            {
+                double t = GetCarTime(i);
+                if (t > maxTime)
+                {
+                    maxTime = t;
+                    index = i;
+                }
+            }
+            return index;
         }
     }
 }
