@@ -102,7 +102,7 @@ namespace LeYun.Model
                 {
                     X2 += xDelta / count;
                     Y2 += yDelta / count;
-                    Thread.Sleep(16);
+                    Thread.Sleep((int)(1000 / frame));
                 }
                 if (OnAnimationFinish != null)
                 {

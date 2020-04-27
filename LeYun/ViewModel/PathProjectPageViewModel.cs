@@ -170,7 +170,13 @@ namespace LeYun.ViewModel
             Segments.Clear();
 
             // 比率
-            double rate = 3;
+            double time = 10;
+
+            // 获取配送总时间
+            double totalTime = Record.GetTotalTime();
+
+            // 计算时间缩放比例
+            double rate = time / 60 / totalTime;
 
             // 获取配送时间最长的车辆编号
             int index = Record.GetSlowestCarIndex();
@@ -205,11 +211,11 @@ namespace LeYun.ViewModel
                     int iNode = Record.Paths[iCar][i];
 
                     // 设置动画
-                    Segments[iStart + i].SetAnimation(last.X, last.Y, Record.Nodes[iNode].X, Record.Nodes[iNode].Y, last.Distance(Record.Nodes[iNode]) / rate);
+                    Segments[iStart + i].SetAnimation(last.X, last.Y, Record.Nodes[iNode].X, Record.Nodes[iNode].Y, last.Distance(Record.Nodes[iNode]) / Record.CarSpeed * rate * 3600);
                     int t = i;
                     Segments[iStart + i].OnAnimationFinish = delegate
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep((int)(Record.NodeStayTime * rate * 60 * 1000));
                         Segments[iStart + t + 1].BeginAnimation();
                     };
 
@@ -217,7 +223,7 @@ namespace LeYun.ViewModel
                 }
 
                 // 设置最后一段线条的动画
-                Segments[Segments.Count - 1].SetAnimation(last.X, last.Y, Record.Nodes[0].X, Record.Nodes[0].Y, last.Distance(Record.Nodes[0]) / rate);
+                Segments[Segments.Count - 1].SetAnimation(last.X, last.Y, Record.Nodes[0].X, Record.Nodes[0].Y, last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600);
                 int tt = iCar;
                 Segments[Segments.Count - 1].OnAnimationFinish = delegate
                 {
