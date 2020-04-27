@@ -19,6 +19,8 @@ namespace LeYun.Model
         public const string RecordPathKey = "RecordPath";
         public const string ActiveStateKey = "IsActive";
         public const string ActivateKeyKey = "ActivateKey";
+        public const string LineThicknessKey = "LineThickness";
+        public const string NodeButtonWidthKey = "NodeButtonWidth";
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
@@ -62,6 +64,31 @@ namespace LeYun.Model
         // 激活密钥
         public static string ActivateKey = "XXX-XXX-XXX";
 
+        // 路径线条粗细
+        private static double lineThickness = 2.5;
+        public static double LineThickness
+        {
+            get { return lineThickness; }
+            set 
+            {
+                lineThickness = value;
+                RaisePropertyChanged("LineThickness");
+            }
+        }
+
+        // 节点按钮直径
+        private static double nodeButtonWidth;
+        public static double NodeButtonWidth
+        {
+            get { return nodeButtonWidth; }
+            set 
+            { 
+                nodeButtonWidth = value;
+                RaisePropertyChanged("NodeButtonWidth");
+            }
+        }
+
+
         // 静态构造函数
         static GlobalData()
         {
@@ -72,6 +99,8 @@ namespace LeYun.Model
                 RecordPath = ReadConfiguration(RecordPathKey);
                 IsActive = bool.Parse(ReadConfiguration(ActiveStateKey));
                 ActivateKey = ReadConfiguration(ActivateKeyKey);
+                LineThickness = double.Parse(ReadConfiguration(LineThicknessKey));
+                NodeButtonWidth = double.Parse(ReadConfiguration(NodeButtonWidthKey));
             }
             catch (Exception)
             {
@@ -80,6 +109,8 @@ namespace LeYun.Model
                 RecordPath = "./record";
                 IsActive = false;
                 ActivateKey = "XXX-XXX-XXX";
+                LineThickness = 2.5;
+                NodeButtonWidth = 15;
             }
         }
 

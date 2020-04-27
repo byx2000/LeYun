@@ -22,8 +22,27 @@
     
     <Grid Margin="20">
         <StackPanel>
+            <!--外观-->
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="外观"/>
+            <StackPanel Margin="0 20 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
+                    <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
+                            Value="{Binding Path=(model:GlobalData.LineThickness)}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
+                               Text="{Binding ElementName=lineThickness, Path=Value, StringFormat={}{0:F2}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
+                    <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
+                            Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
+                               Text="{Binding ElementName=buttonWidth, Path=Value, StringFormat={}{0:F2}}"/>
+                </StackPanel>
+            </StackPanel>
+
             <!--坐标范围-->
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" Margin="0 50 0 0"/>
             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="该设置项会影响画布显示效果"/>

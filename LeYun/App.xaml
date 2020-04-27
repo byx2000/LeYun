@@ -909,7 +909,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="border" Background="{TemplateBinding Background}" Width="15" Height="15" CornerRadius="15">
+                                    <Border x:Name="border" Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" CornerRadius="{Binding Width, RelativeSource={RelativeSource Mode=Self}}">
                                         <Border.Effect>
                                             <DropShadowEffect ShadowDepth="-4" BlurRadius="5" Color="LightGray"/>
                                         </Border.Effect>

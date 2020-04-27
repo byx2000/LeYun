@@ -25,6 +25,9 @@
                 Command="{Binding FullScreenCommand}" 
                 CommandParameter="{Binding ElementName=mainWindow}"/>
         </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding SaveConfigurationCommand}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
     
     <!--窗格设计-->

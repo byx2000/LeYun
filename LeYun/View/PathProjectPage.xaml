@@ -236,7 +236,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!--<Line X1="{Binding X1}" Y1="{Binding Y1}" X2="{Binding X2}" Y2="{Binding Y2}" Stroke="Black" StrokeThickness="2.5"/>-->
-                        <Line Stroke="{Binding Stroke}" StrokeThickness="2.5">
+                        <Line Stroke="{Binding Stroke}" StrokeThickness="{Binding Path=(model:GlobalData.LineThickness), UpdateSourceTrigger=PropertyChanged}">
                             <Line.X1>
                                 <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
                                     <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
@@ -311,6 +311,8 @@
                     <DataTemplate>
                         <Button x:Name="btn" Style="{StaticResource NodeButtonStyle}" 
                                 Background="{Binding ID, Converter={StaticResource nodeButtonColorConverter}}"
+                                Width="{Binding Path=(model:GlobalData.NodeButtonWidth), UpdateSourceTrigger=PropertyChanged}"
+                                Height="{Binding Path=(model:GlobalData.NodeButtonWidth), UpdateSourceTrigger=PropertyChanged}"
                                 Command="{Binding ElementName=page, Path=DataContext.EditNodeCommand}" 
                                 CommandParameter="{Binding ID}">
                             <Button.Margin>

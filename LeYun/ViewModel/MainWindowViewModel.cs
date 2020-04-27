@@ -1,4 +1,5 @@
-﻿using LeYun.View;
+﻿using LeYun.Model;
+using LeYun.View;
 using LeYun.View.Dlg;
 using Microsoft.Win32;
 using System;
@@ -19,6 +20,7 @@ namespace LeYun.ViewModel
         public DelegateCommand MinimizeCommand { get; }
         public DelegateCommand FullScreenCommand { get; }
         public DelegateCommand SwitchPageCommand { get; }
+        public DelegateCommand SaveConfigurationCommand { get; }
 
         // 各个子页面
         public PathProjectPage pathProjectPage = new PathProjectPage();
@@ -70,9 +72,17 @@ namespace LeYun.ViewModel
             MinimizeCommand = new DelegateCommand(Minimize);
             FullScreenCommand = new DelegateCommand(FullScreen);
             SwitchPageCommand = new DelegateCommand(SwitchPage);
+            SaveConfigurationCommand = new DelegateCommand(SaveConfiguration);
 
             IsPathProjectPageCheck = true;
             CurrentPage = pathProjectPage;
+        }
+
+        // 保存设置
+        private void SaveConfiguration(object obj)
+        {
+            GlobalData.WriteConfiguration(GlobalData.LineThicknessKey, GlobalData.LineThickness.ToString());
+            GlobalData.WriteConfiguration(GlobalData.NodeButtonWidthKey, GlobalData.NodeButtonWidth.ToString());
         }
 
         private void Close(object parameter)
