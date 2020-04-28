@@ -18,9 +18,9 @@ namespace LeYun.Model
         public const string MaxNodeYKey = "MaxNodeY";
         public const string RecordPathKey = "RecordPath";
         public const string ActiveStateKey = "IsActive";
-        public const string ActivateKeyKey = "ActivateKey";
         public const string LineThicknessKey = "LineThickness";
         public const string NodeButtonWidthKey = "NodeButtonWidth";
+        public const string DemoDurationKey = "DemoDuration";
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
@@ -61,9 +61,6 @@ namespace LeYun.Model
             }
         }
 
-        // 激活密钥
-        public static string ActivateKey = "XXX-XXX-XXX";
-
         // 路径线条粗细
         private static double lineThickness = 2.5;
         public static double LineThickness
@@ -77,7 +74,7 @@ namespace LeYun.Model
         }
 
         // 节点按钮直径
-        private static double nodeButtonWidth;
+        private static double nodeButtonWidth = 15;
         public static double NodeButtonWidth
         {
             get { return nodeButtonWidth; }
@@ -88,6 +85,17 @@ namespace LeYun.Model
             }
         }
 
+        // 演示时长
+        private static double demoDuration = 20;
+        public static double DemoDuration
+        {
+            get { return demoDuration; }
+            set
+            {
+                demoDuration = value;
+                RaisePropertyChanged("DemoDuration");
+            }
+        }
 
         // 静态构造函数
         static GlobalData()
@@ -98,9 +106,9 @@ namespace LeYun.Model
                 MaxNodeY = int.Parse(ReadConfiguration(MaxNodeYKey));
                 RecordPath = ReadConfiguration(RecordPathKey);
                 IsActive = bool.Parse(ReadConfiguration(ActiveStateKey));
-                ActivateKey = ReadConfiguration(ActivateKeyKey);
                 LineThickness = double.Parse(ReadConfiguration(LineThicknessKey));
                 NodeButtonWidth = double.Parse(ReadConfiguration(NodeButtonWidthKey));
+                DemoDuration = double.Parse(ReadConfiguration(DemoDurationKey));
             }
             catch (Exception)
             {
@@ -108,9 +116,9 @@ namespace LeYun.Model
                 MaxNodeY = 20;
                 RecordPath = "./record";
                 IsActive = false;
-                ActivateKey = "XXX-XXX-XXX";
                 LineThickness = 2.5;
                 NodeButtonWidth = 15;
+                DemoDuration = 20;
             }
         }
 

@@ -20,7 +20,6 @@ namespace LeYun.ViewModel
         // 命令
         public DelegateCommand ChangeRecordLocationCommand { get; }
         public DelegateCommand ActivateCommand { get; }
-        public DelegateCommand ChangeCoordRangeCommand { get; }
 
         // 当前记录保存路径
         private string currentRecordPath = GlobalData.RecordPath;
@@ -46,115 +45,11 @@ namespace LeYun.ViewModel
             }
         }
 
-        // 当前密钥
-        public string ActivateKey { get; set; } = GlobalData.ActivateKey;
-
-        // X坐标最大值
-        private string maxNodeX = GlobalData.MaxNodeX.ToString();
-        public string MaxNodeX 
-        { 
-            get { return maxNodeX; }
-            set
-            {
-                maxNodeX = value;
-                RaisePropertyChanged("MaxNodeX");
-                IsChangeXRangeButtonEnable = true;
-            }
-        }
-
-        // Y坐标最大值
-        private string maxNodeY = GlobalData.MaxNodeY.ToString();
-        public string MaxNodeY
-        {
-            get { return maxNodeY; }
-            set
-            {
-                maxNodeY = value;
-                RaisePropertyChanged("MaxNodeY");
-                IsChangeYRangeButtonEnable = true;
-            }
-        }
-
-        // 改变X范围按钮状态
-        private bool isChangeXRangeButtonEnable = false;
-        public bool IsChangeXRangeButtonEnable
-        {
-            get { return isChangeXRangeButtonEnable; }
-            set 
-            { 
-                isChangeXRangeButtonEnable = value;
-                RaisePropertyChanged("IsChangeXRangeButtonEnable");
-            }
-        }
-
-        // 改变Y范围按钮状态
-        private bool isChangeYRangeButtonEnable = false;
-        public bool IsChangeYRangeButtonEnable
-        {
-            get { return isChangeYRangeButtonEnable; }
-            set
-            {
-                isChangeYRangeButtonEnable = value;
-                RaisePropertyChanged("IsChangeYRangeButtonEnable");
-            }
-        }
-
         // 构造函数
         public SettingPageViewModel()
         {
             ChangeRecordLocationCommand = new DelegateCommand(ChangeRecordLocation);
             ActivateCommand = new DelegateCommand(Activate, CanActivate);
-            ChangeCoordRangeCommand = new DelegateCommand(ChangeCoordRange);
-        }
-
-        // 更改坐标范围
-        private void ChangeCoordRange(object obj)
-        {
-            try
-            {         
-                // 修改X范围
-                if ((string)obj == "X")
-                {
-                    // 验证输入
-                    double val = double.Parse(MaxNodeX);
-                    if (val <= 0)
-                    {
-                        throw new Exception("X坐标最大值不能小于等于0");
-                    }
-                    // 写入配置文件
-                    GlobalData.WriteConfiguration(GlobalData.MaxNodeXKey, val.ToString());
-                    // 更新全局数据
-                    GlobalData.MaxNodeX = val;
-                    // 禁用修改按钮
-                    IsChangeXRangeButtonEnable = false;
-                }
-                // 修改Y范围
-                else if ((string)obj == "Y")
-                {
-                    // 验证输入
-                    double val = double.Parse(MaxNodeY);
-                    if (val <= 0)
-                    {
-                        throw new Exception("Y坐标最大值不能小于等于0");
-                    }
-                    // 写入配置文件
-                    GlobalData.WriteConfiguration(GlobalData.MaxNodeYKey, val.ToString());
-                    // 更新全局数据
-                    GlobalData.MaxNodeY = val;
-                    // 禁用修改按钮
-                    IsChangeYRangeButtonEnable = false;
-                }
-            }
-            catch (Exception e)
-            {
-                SystemSounds.Beep.Play();
-                MsgBox.Show("修改失败！\n" + e.Message);
-                return;
-            }
-            
-            // 修改成功
-            SystemSounds.Beep.Play();
-            MsgBox.Show("修改成功！");
         }
 
         // 判断是否能激活
@@ -168,23 +63,7 @@ namespace LeYun.ViewModel
         {
             if ((string)obj == "123-456-789")
             {
-                // 更新配置文件
-                try
-                {
-                    GlobalData.IsActive = true;
-                    GlobalData.WriteConfiguration(GlobalData.ActiveStateKey, "true");
-                    GlobalData.ActivateKey = ActivateKey;
-                    GlobalData.WriteConfiguration(GlobalData.ActivateKeyKey, ActivateKey);
-                }
-                catch (Exception e)
-                {
-                    SystemSounds.Beep.Play();
-                    MsgBox.Show("激活失败！\n" + e.Message);
-                    return;
-                }
-
-                IsActive = true;
-
+                GlobalData.IsActive = true;
                 SystemSounds.Beep.Play();
                 MsgBox.Show("激活成功！");
                 
@@ -253,59 +132,6 @@ namespace LeYun.ViewModel
         }
     }
 
-    class KeyTextReadOnlyConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (bool)value;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class VersionTextConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((bool)value)
-            {
-                return "正式版";
-            }
-            else
-            {
-                return "试用版";
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class ActivateButtonTextConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if ((bool)value)
-            {
-                return "已激活";
-            }
-            else
-            {
-                return "激活";
-            }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     class LineWidthConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -316,6 +142,66 @@ namespace LeYun.ViewModel
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    class DemoDurationValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                double val = double.Parse((string)value);
+                if (val <= 0)
+                {
+                    return new ValidationResult(false, "演示时长必须大于0");
+                }
+                return new ValidationResult(true, null);
+            }
+            catch (Exception)
+            {
+                return new ValidationResult(false, "请输入浮点数");
+            }
+        }
+    }
+
+    class NodeMaxXValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                double val = double.Parse((string)value);
+                if (val <= 0)
+                {
+                    return new ValidationResult(false, "X坐标最大值必须大于0");
+                }
+                return new ValidationResult(true, null);
+            }
+            catch (Exception)
+            {
+                return new ValidationResult(false, "请输入浮点数");
+            }
+        }
+    }
+
+    class NodeMaxYValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            try
+            {
+                double val = double.Parse((string)value);
+                if (val <= 0)
+                {
+                    return new ValidationResult(false, "Y坐标最大值必须大于0");
+                }
+                return new ValidationResult(true, null);
+            }
+            catch (Exception)
+            {
+                return new ValidationResult(false, "请输入浮点数");
+            }
         }
     }
 }

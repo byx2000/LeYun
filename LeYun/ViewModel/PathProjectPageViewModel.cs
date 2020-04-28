@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -165,18 +166,25 @@ namespace LeYun.ViewModel
         // 播放演示
         private void PlayDemo(object obj)
         {
+            if (!GlobalData.IsActive)
+            {
+                SystemSounds.Beep.Play();
+                MsgBox.Show("只有正式版软件才能使用此功能\n请前往“设置”页面激活软件");
+                return;
+            }
+
             IsPlayingDemo = true;
 
             Segments.Clear();
 
-            // 比率
-            double time = 10;
+            // 演示时长
+            double duration = GlobalData.DemoDuration;
 
             // 获取配送总时间
             double totalTime = Record.GetTotalTime();
 
             // 计算时间缩放比例
-            double rate = time / 60 / totalTime;
+            double rate = duration / 60 / totalTime;
 
             // 获取配送时间最长的车辆编号
             int index = Record.GetSlowestCarIndex();

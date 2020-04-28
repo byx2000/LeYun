@@ -80,9 +80,13 @@ namespace LeYun.ViewModel
 
         // 保存设置
         private void SaveConfiguration(object obj)
-        {
+        {           
             GlobalData.WriteConfiguration(GlobalData.LineThicknessKey, GlobalData.LineThickness.ToString());
             GlobalData.WriteConfiguration(GlobalData.NodeButtonWidthKey, GlobalData.NodeButtonWidth.ToString());
+            GlobalData.WriteConfiguration(GlobalData.MaxNodeXKey, GlobalData.MaxNodeX.ToString());
+            GlobalData.WriteConfiguration(GlobalData.MaxNodeYKey, GlobalData.MaxNodeY.ToString());
+            GlobalData.WriteConfiguration(GlobalData.DemoDurationKey, GlobalData.DemoDuration.ToString());
+            GlobalData.WriteConfiguration(GlobalData.ActiveStateKey, GlobalData.IsActive.ToString());
         }
 
         private void Close(object parameter)

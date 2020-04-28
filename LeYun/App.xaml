@@ -370,10 +370,10 @@
 
                     <!--编辑框样式-->
                     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-                        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                        <!--<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>-->
                         <Setter Property="BorderBrush" Value="#FFABAdB3"/>
-                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-                        <Setter Property="BorderThickness" Value="1"/>
+                        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+                        <!--<Setter Property="BorderThickness" Value="0"/>-->
                         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
                         <Setter Property="HorizontalContentAlignment" Value="Left"/>
                         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
