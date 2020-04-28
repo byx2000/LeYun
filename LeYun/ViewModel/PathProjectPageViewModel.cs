@@ -125,6 +125,17 @@ namespace LeYun.ViewModel
             }
         }
 
+        // 车辆线条信息（仅用于演示）
+        private CarRuntimeInfoCollection carRuntimeInfos = new CarRuntimeInfoCollection();
+        public CarRuntimeInfoCollection CarRuntimeInfos 
+        { 
+            get { return carRuntimeInfos; }
+            set
+            {
+                carRuntimeInfos = value;
+                RaisePropertyChanged("CarRuntimeInfos");
+            }
+        }
 
         // 构造函数
         public PathProjectPageViewModel()
@@ -175,7 +186,11 @@ namespace LeYun.ViewModel
 
             IsPlayingDemo = true;
 
+            // 清空所有线条
             Segments.Clear();
+
+            // 清空车辆运行时信息
+            CarRuntimeInfos.Clear();
 
             // 演示时长
             double duration = GlobalData.DemoDuration;
@@ -212,6 +227,9 @@ namespace LeYun.ViewModel
                     Segments.Add(new Segment { Stroke = brush });
                 }
 
+                // 初始化车辆运行时信息
+                CarRuntimeInfos.Add(new CarRuntimeInfo { ID = iCar, LineBrush = brush, IsFinished = false });
+
                 // 遍历当前车辆的所有配送点
                 Node last = Record.Nodes[0];
                 for (int i = 0; i < Record.Paths[iCar].Count; ++i)
@@ -238,10 +256,15 @@ namespace LeYun.ViewModel
                 int tt = iCar;
                 Segments[Segments.Count - 1].OnAnimationFinish = delegate
                 {
+                    // 更新车辆运行时信息
+                    CarRuntimeInfos.SetFinishedState(tt, true);
+
+                    // 如果是最后一辆车，则演示结束
                     if (tt == index)
                     {
                         Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                         {
+                            MsgBox.Show("演示结束！");
                             IsPlayingDemo = false;
                             CommandManager.InvalidateRequerySuggested();
                         }));

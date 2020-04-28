@@ -218,8 +218,8 @@
         <!--计算显示区域-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="275"/>
             </Grid.ColumnDefinitions>
 
             <custom:FloatingCard Margin="15 15 0 15"/>
@@ -398,9 +398,146 @@
                 </Grid>
             </Grid>
 
-            <!--用于禁用整个绘图面板-->
-            <Grid Grid.ColumnSpan="2" Background="Transparent"
+            <!--用于在演示时禁用绘图面板-->
+            <Grid Grid.Column="0" Background="Transparent"
                   Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
+            
+            <!--用于在演示时显示车辆运行时信息-->
+            <Grid Grid.Column="1" Background="White" Margin="15"
+                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="车辆实时信息" Margin="0 10 0 10"/>
+
+                <DataGrid Grid.Row="1" Style="{StaticResource DataGridStyle}" Margin="10" ItemsSource="{Binding CarRuntimeInfos}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="颜色" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Width="15" Height="15" CornerRadius="15" Background="{Binding LineBrush}" Margin="20 0 20 0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="编号" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ID}" Margin="20 0 20 0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="状态" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <StackPanel x:Name="running" Orientation="Horizontal" Margin="10 0 0 0">
+                                            <TextBlock Text="&#xf110;">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource IconTextBlock}">
+                                                        <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
+                                                        <Setter Property="RenderTransform">
+                                                            <Setter.Value>
+                                                                <TransformGroup>
+                                                                    <RotateTransform  Angle="0"/>
+                                                                </TransformGroup>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <EventTrigger RoutedEvent="Loaded">
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation From="0" To="360" RepeatBehavior="Forever" Duration="0:0:2" Storyboard.TargetProperty="(RenderTransform).(TransformGroup.Children)[0].(Angle)"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </EventTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中" Margin="5 0 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel x:Name="finished" Orientation="Horizontal" Margin="10 0 0 0">
+                                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" />
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding IsFinished}" Value="True">
+                                            <Setter TargetName="running" Property="Visibility" Value="Collapsed"/>
+                                            <Setter TargetName="finished" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsFinished}" Value="False">
+                                            <Setter TargetName="running" Property="Visibility" Value="Visible"/>
+                                            <Setter TargetName="finished" Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--<ItemsControl ItemsSource="{Binding CarRuntimeInfos}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="10 15 10 0">
+                                <Border Width="30" BorderBrush="{Binding LineBrush}" BorderThickness="0 0 0 2" VerticalAlignment="Center"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆" Margin="10 0 0 0"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ID}" Margin="10 0 0 0"/>
+                                --><!--<TextBlock x:Name="running" Style="{StaticResource CenterAlignTextBlock}" Text="配送中..." Margin="10 0 0 0"/>--><!--
+                                <StackPanel x:Name="running" Orientation="Horizontal" Margin="10 0 0 0">
+                                    <TextBlock Text="&#xf110;">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource IconTextBlock}">
+                                                <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
+                                                <Setter Property="RenderTransform">
+                                                    <Setter.Value>
+                                                        <TransformGroup>
+                                                            <RotateTransform  Angle="0"/>
+                                                        </TransformGroup>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <EventTrigger RoutedEvent="Loaded">
+                                                        <BeginStoryboard>
+                                                            <Storyboard>
+                                                                <DoubleAnimation From="0" To="360" RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="(RenderTransform).(TransformGroup.Children)[0].(Angle)"/>
+                                                            </Storyboard>
+                                                        </BeginStoryboard>
+                                                    </EventTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中" Margin="5 0 0 0"/>
+                                </StackPanel>
+                                <StackPanel x:Name="finished" Orientation="Horizontal" Margin="10 0 0 0">
+                                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" />
+                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsFinished}" Value="True">
+                                    <Setter TargetName="running" Property="Visibility" Value="Collapsed"/>
+                                    <Setter TargetName="finished" Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsFinished}" Value="False">
+                                    <Setter TargetName="running" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="finished" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+            </Grid>
 
         </Grid>
     </Grid>
