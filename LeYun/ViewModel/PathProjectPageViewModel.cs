@@ -223,7 +223,10 @@ namespace LeYun.ViewModel
                     int t = i;
                     Segments[iStart + i].OnAnimationFinish = delegate
                     {
-                        Thread.Sleep((int)(Record.NodeStayTime * rate * 60 * 1000));
+                        if (Record.NodeStayTime > 0)
+                        {
+                            Thread.Sleep((int)(Record.NodeStayTime * rate * 60 * 1000));
+                        }
                         Segments[iStart + t + 1].BeginAnimation();
                     };
 

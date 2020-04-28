@@ -38,13 +38,14 @@
                 <TextBlock Text="   3. 弹出广告添加跳过和倒计时"/>
                 <TextBlock Text="   4. 完善软件激活模块"/>
                 <TextBlock Text="   5. 重新设计文件格式"/>
-                <TextBlock Text="   6. 添加删除节点、删除车辆功能"/>
-                <TextBlock Text="   7. 添加历史记录按名称搜索功能"/>
-                <TextBlock Text="   8. 添加运行参数设置功能"/>
-                <TextBlock Text="   9. 历史记录详情页面显示更多信息"/>
-                <TextBlock Text="   10. 车辆详情页面显示更多信息"/>
-                <TextBlock Text="   11. 添加启动页"/>
-                <TextBlock Text="   12. bug修复"/>
+                <TextBlock Text="   6. 添加动画演示功能"/>
+                <TextBlock Text="   7. 添加删除节点、删除车辆功能"/>
+                <TextBlock Text="   8. 添加历史记录按名称搜索功能"/>
+                <TextBlock Text="   9. 添加运行参数设置功能"/>
+                <TextBlock Text="   10. 历史记录详情页面显示更多信息"/>
+                <TextBlock Text="   11. 车辆详情页面显示更多信息"/>
+                <TextBlock Text="   12. 添加启动页"/>
+                <TextBlock Text="   13. bug修复"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

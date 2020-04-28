@@ -11,7 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <!--<RowDefinition Height="Auto"/>-->
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -20,16 +20,16 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource IconTextBlock}" Text="&#xf09b;" FontSize="30"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource IconTextBlock}" Text="&#xf0e0;" FontSize="30" Foreground="#01a04c" Margin="0 10 0 0"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource IconTextBlock}" Text="&#xf1d6;" FontSize="30" Foreground="#269ce0" Margin="0 10 0 0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource IconTextBlock}" Text="&#xf0e0;" FontSize="30" Foreground="#269ce0" Margin="0 10 0 0"/>
+            <!--<TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource IconTextBlock}" Text="&#xf1d6;" FontSize="30" Foreground="#269ce0" Margin="0 10 0 0"/>-->
 
             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Text="项目地址：" FontSize="18" FontWeight="Bold" Margin="10 0 0 0"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Text="电子邮箱：" FontSize="18" FontWeight="Bold" Margin="10 10 0 0"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Text="QQ：" FontSize="18" FontWeight="Bold" Margin="10 10 0 0"/>
+            <!--<TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Right" Text="QQ：" FontSize="18" FontWeight="Bold" Margin="10 10 0 0"/>-->
 
-            <TextBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="https://github.com/byx2000/LeYun" FontSize="18" Margin="0 0 0 0"/>
-            <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="18023699313@163.com" FontSize="18" Margin="0 10 0 0"/>
-            <TextBox Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="416982860" FontSize="18" Margin="0 10 0 0"/>
+            <TextBox Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="https://github.com/byx2000/LeYun" FontSize="18" Foreground="#85888b" Margin="0 0 0 0"/>
+            <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="18023699313@163.com" FontSize="18" Foreground="#85888b" Margin="0 10 0 0"/>
+            <!--<TextBox Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderThickness="0" Text="416982860" FontSize="18" Margin="0 10 0 0"/>-->
         </Grid>
     </Grid>
 </wpfcustomcontrols:Dialog>
