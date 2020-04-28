@@ -305,4 +305,17 @@ namespace LeYun.ViewModel
             throw new NotImplementedException();
         }
     }
+
+    class LineWidthConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return new Thickness(0, 0, 0, (double)value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -18,6 +18,7 @@
         <viewmodel:KeyTextReadOnlyConverter x:Key="keyTextReadOnlyConverter"/>
         <viewmodel:VersionTextConverter x:Key="versionTextConverter"/>
         <viewmodel:ActivateButtonTextConverter x:Key="activateButtonTextConverter"/>
+        <viewmodel:LineWidthConverter x:Key="lineWidthConverter"/>
     </Page.Resources>
     
     <Grid Margin="20">
@@ -29,15 +30,20 @@
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
                     <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
                             Value="{Binding Path=(model:GlobalData.LineThickness)}"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
-                               Text="{Binding ElementName=lineThickness, Path=Value, StringFormat={}{0:F2}}"/>
+                    <!--<TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
+                               Text="{Binding ElementName=lineThickness, Path=Value, StringFormat={}{0:F2}}"/>-->
+                    <Border Width="50" BorderBrush="Black" VerticalAlignment="Center" Margin="10 0 0 0"
+                            BorderThickness="{Binding ElementName=lineThickness, Path=Value, Converter={StaticResource lineWidthConverter}}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
                     <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
                             Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
-                               Text="{Binding ElementName=buttonWidth, Path=Value, StringFormat={}{0:F2}}"/>
+                    <!--<TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
+                               Text="{Binding ElementName=buttonWidth, Path=Value, StringFormat={}{0:F2}}"/>-->
+                    <Button Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
+                            Width="{Binding ElementName=buttonWidth, Path=Value}"
+                            Height="{Binding ElementName=buttonWidth, Path=Value}"/>
                 </StackPanel>
             </StackPanel>
 
