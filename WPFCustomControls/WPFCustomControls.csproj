@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoScrollListView.cs" />
     <Compile Include="BarChart.cs" />
     <Compile Include="CoordTransform.cs" />
     <Page Include="Themes\Generic.xaml">

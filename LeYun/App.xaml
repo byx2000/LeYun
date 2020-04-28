@@ -909,18 +909,21 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="border" Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" CornerRadius="{Binding Width, RelativeSource={RelativeSource Mode=Self}}">
-                                        <Border.Effect>
-                                            <DropShadowEffect ShadowDepth="-4" BlurRadius="5" Color="LightGray"/>
-                                        </Border.Effect>
-                                    </Border>
+                                    <Grid>
+                                        <Border x:Name="border" 
+                                                Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" CornerRadius="{Binding Width, RelativeSource={RelativeSource Mode=Self}}">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="-4" BlurRadius="5" Color="LightGray"/>
+                                            </Border.Effect>
+                                        </Border>
+                                        <Border x:Name="dark" Background="Black" Opacity="0"
+                                                Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" CornerRadius="{Binding Width, RelativeSource={RelativeSource Mode=Self}}"/>
+                                    </Grid>
+                                    
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#1e5ab3" TargetName="border"/>
+                                            <Setter TargetName="dark" Property="Opacity" Value="0.2"/>
                                         </Trigger>
-                                        <DataTrigger Binding="{Binding Path=Tag}" Value="0">
-                                            <Setter Property="Background" Value="#e81123" TargetName="border"/>
-                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>

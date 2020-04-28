@@ -220,6 +220,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="275"/>
+                <!--275-->
             </Grid.ColumnDefinitions>
 
             <custom:FloatingCard Margin="15 15 0 15"/>
@@ -337,8 +338,8 @@
                 <!--配送点数据栏-->
                 <custom:FloatingCard Grid.Row="0" Margin="15"/>
                 <Grid Grid.Row="0" Margin="15">
-                    <ListView x:Name="NodesList" Grid.Row="0" ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="False" BorderThickness="0" Margin="10"
-                          ItemsSource="{Binding Record.Nodes}" SelectionMode="Single">
+                    <custom:AutoScrollListView x:Name="NodesList" Grid.Row="0" ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="False" BorderThickness="0" Margin="10"
+                          ItemsSource="{Binding Record.Nodes}" SelectionMode="Single" SelectedIndex="{Binding CurrentNodeIndex}">
                         <ListView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="AddNode" Header="添加" Command="{Binding AddNodeCommand}"/>
@@ -358,22 +359,13 @@
                                 <GridViewColumn Header="需求量" Width="Auto" DisplayMemberBinding="{Binding Demand, StringFormat={}{0:F2}}"/>
                             </GridView>
                         </ListView.View>
-                    </ListView>
+                    </custom:AutoScrollListView>
 
                 </Grid>
-                <!--<DataGrid x:Name="NodesList" Grid.Row="0" Margin="10" Style="{StaticResource DataGridStyle}"
-                          ItemsSource="{Binding Nodes}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="节点编号" Width="*" Binding="{Binding ID}"/>
-                        <DataGridTextColumn Header="X" Width="*" Binding="{Binding X}"/>
-                        <DataGridTextColumn Header="Y" Width="*" Binding="{Binding Y}"/>
-                        <DataGridTextColumn Header="需求量" Width="*" Binding="{Binding Demand}"/>
-                    </DataGrid.Columns>
-                </DataGrid>-->
                 <!--车辆列表-->
                 <custom:FloatingCard Grid.Row="1" Margin="15 0 15 15"/>
                 <Grid Grid.Row="1" Margin="15 0 15 15">
-                    <ListView x:Name="VehicleList" ItemContainerStyle="{StaticResource ListViewItemStyle}" Grid.Column="5" Grid.Row="2" ScrollViewer.CanContentScroll="False" BorderThickness="0" Margin="10"
+                    <custom:AutoScrollListView x:Name="VehicleList" ItemContainerStyle="{StaticResource ListViewItemStyle}" Grid.Column="5" Grid.Row="2" ScrollViewer.CanContentScroll="False" BorderThickness="0" Margin="10"
                           ItemsSource="{Binding Record.Cars}" SelectionMode="Single">
                         <ListView.ContextMenu>
                             <ContextMenu>
@@ -393,7 +385,7 @@
                                 <GridViewColumn Header="最大里程" Width="Auto" DisplayMemberBinding="{Binding DisLimit, StringFormat={}{0:F2}}"/>
                             </GridView>
                         </ListView.View>
-                    </ListView>
+                    </custom:AutoScrollListView>
 
                 </Grid>
             </Grid>

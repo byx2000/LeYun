@@ -137,6 +137,19 @@ namespace LeYun.ViewModel
             }
         }
 
+        // 当前选中节点下标
+        private int currentNodeIndex;
+        public int CurrentNodeIndex
+        {
+            get { return currentNodeIndex; }
+            set 
+            { 
+                currentNodeIndex = value;
+                RaisePropertyChanged("CurrentNodeIndex");
+            }
+        }
+
+
         // 构造函数
         public PathProjectPageViewModel()
         {           
@@ -549,6 +562,11 @@ namespace LeYun.ViewModel
             if (index < 0)
             {
                 return;
+            }
+
+            if (CurrentNodeIndex != index)
+            {
+                CurrentNodeIndex = index;
             }
 
             NodeInfoDlg dlg = new NodeInfoDlg();
