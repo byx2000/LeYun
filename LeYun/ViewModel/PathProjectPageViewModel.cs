@@ -367,6 +367,7 @@ namespace LeYun.ViewModel
 
             if (!viewModel.IsCancel)
             {
+                Segments.Clear();
                 Record.CarSpeed = viewModel.CarSpeed;
                 Record.NodeStayTime = viewModel.NodeStayTime;
             }
@@ -667,6 +668,7 @@ namespace LeYun.ViewModel
 
                     if (!viewMode.IsCancel)
                     {
+                        Segments.Clear();
                         GenerationCount = viewMode.GenerationCount;
                         WTime = viewMode.WTime;
                         WDis = viewMode.WDis;
@@ -693,6 +695,7 @@ namespace LeYun.ViewModel
 
             if (!viewMode.IsCancel)
             {
+                Segments.Clear();
                 GenerationCount = viewMode.GenerationCount;
                 WTime = viewMode.WTime;
                 WDis = viewMode.WDis;
