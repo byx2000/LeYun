@@ -312,13 +312,18 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <!--Background="{Binding ID, Converter={StaticResource nodeButtonColorConverter}}"-->
-                            <Button x:Name="btn" Style="{StaticResource NodeButtonStyle}" 
-                                
+                            <Button x:Name="btn" Style="{StaticResource NodeButtonStyle}" Tag="{Binding ElementName=page}"
                                 Width="{Binding Path=(model:GlobalData.NodeButtonWidth), UpdateSourceTrigger=PropertyChanged}"
                                 Height="{Binding Path=(model:GlobalData.NodeButtonWidth), UpdateSourceTrigger=PropertyChanged}"
                                 Command="{Binding ElementName=page, Path=DataContext.EditNodeCommand}" 
                                 CommandParameter="{Binding ID}">
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="删除"
+                                                  Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.Tag.DataContext.RemoveNodeCommand}"
+                                                  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}, Path=PlacementTarget.DataContext.ID}"/>
+                                    </ContextMenu>
+                                </Button.ContextMenu>
                                 <Button.Margin>
                                     <MultiBinding Converter="{StaticResource nodeButtonMarginConverter}">
                                         <Binding ElementName="btn" Path="ActualWidth"/>
