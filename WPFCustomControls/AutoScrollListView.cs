@@ -37,6 +37,11 @@ namespace WPFCustomControls
         // 列表项被选中时，自动滚动到该项
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
+            if (e.AddedItems == null || e.AddedItems.Count <= 0)
+            {
+                return;
+            }
+
             this.ScrollIntoView(e.AddedItems[0]);
 
             base.OnSelectionChanged(e);

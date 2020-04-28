@@ -198,6 +198,7 @@ namespace LeYun.ViewModel
             }
 
             IsPlayingDemo = true;
+            CurrentNodeIndex = -1;
 
             // 清空所有线条
             Segments.Clear();
@@ -827,22 +828,48 @@ namespace LeYun.ViewModel
         }
     }
 
-    class NodeButtonColorConverter : IValueConverter
+    //class NodeButtonColorConverter : IValueConverter
+    //{
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        int index = (int)value;
+    //        if (index == 0)
+    //        {
+    //            return Brushes.Red;
+    //        }
+    //        else
+    //        {
+    //            return new SolidColorBrush(Color.FromRgb(0x38, 0x7c, 0xdf));
+    //        }
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
+    class NodeButtonColorConverter : IMultiValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            int index = (int)value;
-            if (index == 0)
+            int curIndex = (int)values[0];
+            int selectedIndex = (int)values[1];
+            if (curIndex == 0)
             {
-                return Brushes.Red;
+                return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dc4e41"));
+            }
+            else if (curIndex == selectedIndex)
+            {
+                return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffbd39"));
             }
             else
             {
-                return new SolidColorBrush(Color.FromRgb(0x38, 0x7c, 0xdf));
+                return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#387cdf"));
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
