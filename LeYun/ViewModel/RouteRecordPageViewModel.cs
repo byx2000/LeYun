@@ -323,21 +323,32 @@ namespace LeYun.ViewModel
                 Records[iRecord].TotalLoadRate /= Records[iRecord].UseCarCount;
             }*/
 
-            for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
-            {
-                Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
-                Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
-                Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
-                Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
-
-                for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
+            // 计算相关数据
+            new Thread(delegate ()
+            {                
+                for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
                 {
-                    Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
-                    Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
-                    Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
-                    Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
+                    Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
+                    Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
+                    Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
+                    Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
+
+                    for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
+                    {
+                        Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
+                        Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
+                        Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
+                        Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
+                    }
+
+                    for (int iNode = 1; iNode < Records[iRecord].Nodes.Count; ++iNode)
+                    {
+                        Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
+                    }
                 }
-            }
+            }).Start();
+
+            
         }
     }
 

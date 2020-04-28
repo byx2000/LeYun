@@ -263,9 +263,9 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="车辆编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
                                                     Binding="{Binding ID}"/>
-                                <DataGridTextColumn Header="实际载重" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
+                                <DataGridTextColumn Header="实际载重(t)" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
                                                     Binding="{Binding Path=Weight, StringFormat={}{0:F2}}"/>
-                                <DataGridTextColumn Header="实际里程" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                <DataGridTextColumn Header="实际里程(km)" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding Dis, StringFormat={}{0:F2}}"/>
                                 <DataGridTemplateColumn Header="配送路径" Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -305,9 +305,11 @@
                                                     Binding="{Binding X, StringFormat={}{0:F2}}"/>
                                 <DataGridTextColumn Header="Y坐标" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding Y, StringFormat={}{0:F2}}"/>
-                                <DataGridTextColumn Header="需求量" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                <DataGridTextColumn Header="需求量(t)" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding Demand, StringFormat={}{0:F2}}"/>
-                                <DataGridTemplateColumn Header="操作" Width="*">
+                                <DataGridTextColumn Header="服务时间(min)" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
+                                                    Binding="{Binding ServedTime, StringFormat={}{0:F2}}"/>
+                                <!--<DataGridTemplateColumn Header="操作" Width="*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="详情" Margin="10 0 0 0"
@@ -315,7 +317,7 @@
                                                     CommandParameter="{Binding ElementName=nodeList, Path=SelectedIndex}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                </DataGridTemplateColumn>-->
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

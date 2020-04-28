@@ -57,6 +57,19 @@ namespace LeYun.Model
             }
         }
 
+        // 服务时间
+        private double servedTime;
+        public double ServedTime
+        {
+            get { return servedTime; }
+            set 
+            { 
+                servedTime = value;
+                RaisePropertyChanged("ServedTime");
+            }
+        }
+
+
         // 距离
         public double Distance(Node n)
         {

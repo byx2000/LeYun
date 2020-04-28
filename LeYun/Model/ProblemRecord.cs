@@ -393,5 +393,44 @@ namespace LeYun.Model
             }
             return index;
         }
+
+        // 获取节点服务时间（分钟）
+        public double GetNodeServedTime(int iNode)
+        {
+            for (int iCar = 0; iCar < Paths.Count; ++iCar)
+            {
+                bool found = false;
+                for (int i = 0; i < Paths[iCar].Count; ++i)
+                {
+                    if (Paths[iCar][i] == iNode)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    double time = 0;
+                    Node last = Nodes[0];
+                    for (int i = 0; i < Paths[iCar].Count; ++i)
+                    {
+                        int index = Paths[iCar][i];
+                        time += last.Distance(Nodes[index]) / CarSpeed * 60;
+                        if (index == iNode)
+                        {
+                            return time;
+                        }
+                        else
+                        {
+                            time += NodeStayTime;
+                        }
+                        last = Nodes[index];
+                    }
+                }
+            }
+
+            return 0;
+        }
     }
 }

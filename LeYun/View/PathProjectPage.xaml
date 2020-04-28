@@ -434,7 +434,7 @@
                                 <DataTemplate>
                                     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <StackPanel x:Name="running" Orientation="Horizontal" Margin="10 0 0 0">
-                                            <TextBlock Text="&#xf110;">
+                                            <TextBlock Text="&#xf110;" FontSize="14">
                                                 <TextBlock.Style>
                                                     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource IconTextBlock}">
                                                         <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
@@ -457,11 +457,11 @@
                                                     </Style>
                                                 </TextBlock.Style>
                                             </TextBlock>
-                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中" Margin="5 0 0 0"/>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中" FontSize="14" Margin="5 0 0 0"/>
                                         </StackPanel>
                                         <StackPanel x:Name="finished" Orientation="Horizontal" Margin="10 0 0 0">
-                                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" />
-                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0"/>
+                                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" FontSize="14"/>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0" FontSize="14"/>
                                         </StackPanel>
                                     </Grid>
                                     <DataTemplate.Triggers>
