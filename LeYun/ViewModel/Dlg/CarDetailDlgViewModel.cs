@@ -12,6 +12,7 @@ namespace LeYun.ViewModel.Dlg
 {
     class CarDetailDlgViewModel : ViewModelBase
     {
+        public int CurrentNodeIndex { get; set; } = -1;
         public int ID { get; set; }
         public double WeightLimit { get; set; }
         public double Weight { get; set; }

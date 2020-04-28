@@ -15,11 +15,7 @@
     <Page.Resources>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
         <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource ContextMenuStyle}"/>
-        <!--<viewmodel:NodeButtonMarginConverter x:Key="nodeButtonMarginConverter"/>
-        <viewmodel:NodeButtonXConverter x:Key="nodeButtonXConverter"/>
-        <viewmodel:NodeButtonYConverter x:Key="nodeButtonYConverter"/>
-        <viewmodel:LineColorConverter x:Key="lineColorConverter"/>
-        <viewmodel:NodeButtonColorConverter x:Key="nodeButtonColorConverter"/>-->
+        <viewmodel:RulerWidthConverter x:Key="rulerWidthConverter"/>
     </Page.Resources>
 
     <!--<Page.DataContext>
@@ -224,6 +220,11 @@
             </Grid.ColumnDefinitions>
 
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
                 <custom:FloatingCard Margin="15 15 0 15"/>
                 <!--背景图片-->
                 <Image Grid.Column="0" Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 15"/>
@@ -334,6 +335,37 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                
+                <!--节点颜色说明-->
+                <custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>
+                <Grid Grid.Row="1" Margin="15 0 0 15">
+                    <StackPanel Orientation="Horizontal" Margin="20 10 0 10">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="14"/>
+                        <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
+                            <Border Background="#dd5145" Width="15" Height="15" CornerRadius="20"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中心" FontSize="14" Margin="5 0 0 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
+                            <Border Background="#387cdf" Width="15" Height="15" CornerRadius="20"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="普通节点" FontSize="14" Margin="5 0 0 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
+                            <Border Background="#ffbd39" Width="15" Height="15" CornerRadius="20"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="当前选中节点" FontSize="14" Margin="5 0 0 0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
+                            <Border Height="5" BorderBrush="Black" BorderThickness="1 0 1 1" Margin="0 5 0 0">
+                                <Border.Width>
+                                    <MultiBinding Converter="{StaticResource rulerWidthConverter}">
+                                        <Binding ElementName="canvas" Path="ActualWidth"/>
+                                        <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                    </MultiBinding>
+                                </Border.Width>
+                            </Border>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="1km" FontSize="14" Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
             <!--车辆和配送点列表-->

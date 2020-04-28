@@ -9,6 +9,7 @@
         xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
         xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
     mc:Ignorable="d"
+    x:Name="dlg"
         Title="车辆详情" Height="600" Width="700" WindowStartupLocation="CenterScreen" Background="#f1f1f1">
 
     <custom:Dialog.Resources>
@@ -320,7 +321,6 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button x:Name="btn" Style="{StaticResource NodeButtonStyle}" 
-                                Background="{Binding ID, Converter={StaticResource nodeButtonColorConverter}}"
                                 Command="{Binding ElementName=page, Path=DataContext.EditNodeCommand}" 
                                 CommandParameter="{Binding ID}">
                                     <Button.Margin>
@@ -329,6 +329,12 @@
                                             <Binding ElementName="btn" Path="ActualHeight"/>
                                         </MultiBinding>
                                     </Button.Margin>
+                                    <Button.Background>
+                                        <MultiBinding Converter="{StaticResource nodeButtonColorConverter}">
+                                            <Binding Path="ID"/>
+                                            <Binding ElementName="dlg" Path="DataContext.CurrentNodeIndex"/>
+                                        </MultiBinding>
+                                    </Button.Background>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

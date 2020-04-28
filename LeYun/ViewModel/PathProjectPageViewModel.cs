@@ -595,6 +595,8 @@ namespace LeYun.ViewModel
         // 求解
         private void Solve(object parameter)
         {
+            CurrentNodeIndex = -1;
+
             double[] x = new double[Record.Nodes.Count];
             double[] y = new double[Record.Nodes.Count];
             double[] d = new double[Record.Nodes.Count];
@@ -903,6 +905,21 @@ namespace LeYun.ViewModel
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class RulerWidthConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            double canvasWidth = (double)values[0];
+            double actualWidth = (double)values[1];
+            return canvasWidth / actualWidth;
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
