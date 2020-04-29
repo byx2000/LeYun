@@ -24,102 +24,111 @@
         <Grid Margin="20">
             <StackPanel>
                 <!--外观-->
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="外观"/>
-                <StackPanel Margin="0 20 0 0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
-                        <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
+                <StackPanel>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="外观"/>
+                    <StackPanel Margin="0 20 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
+                            <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
                             Value="{Binding Path=(model:GlobalData.LineThickness)}"/>
-                        <!--<TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
-                               Text="{Binding ElementName=lineThickness, Path=Value, StringFormat={}{0:F2}}"/>-->
-                        <Border Width="50" BorderBrush="Black" VerticalAlignment="Center" Margin="10 0 0 0"
+                            <Border Width="50" BorderBrush="Black" VerticalAlignment="Center" Margin="10 0 0 0"
                             BorderThickness="{Binding ElementName=lineThickness, Path=Value, Converter={StaticResource lineWidthConverter}}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
-                        <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
+                            <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
                             Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
-                        <!--<TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
-                               Text="{Binding ElementName=buttonWidth, Path=Value, StringFormat={}{0:F2}}"/>-->
-                        <Button Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
+                            <Button Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
                             Width="{Binding ElementName=buttonWidth, Path=Value}"
                             Height="{Binding ElementName=buttonWidth, Path=Value}"/>
-                    </StackPanel>
-                </StackPanel>
-
-                <!--坐标范围-->
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" Margin="0 50 0 0"/>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="超出坐标范围的节点不会显示在画布上"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
-                    <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
-                        <TextBox.Text>
-                            <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
-                                <Binding.ValidationRules>
-                                    <viewmodel:NodeMaxXValidationRule />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
-                                Visibility="{Binding ElementName=xRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=xRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
-                    <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
-                        <TextBox.Text>
-                            <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
-                                <Binding.ValidationRules>
-                                    <viewmodel:NodeMaxYValidationRule />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
-                                Visibility="{Binding ElementName=yRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=yRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
-                    </StackPanel>
-                </StackPanel>
-
-                <!--动画演示-->
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="动画演示" Margin="0 50 0 0"/>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="实际演示时长取决于电脑配置"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
-                    <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
-                        <TextBox.Text>
-                            <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
-                                <Binding.ValidationRules>
-                                    <viewmodel:DemoDurationValidationRule />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="s" Margin="5 0 0 0"/>
-                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
-                                Visibility="{Binding ElementName=duration, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=duration, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
                 
+
+                <!--坐标范围-->
+                <StackPanel Margin="0 50 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" />
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="超出坐标范围的节点不会显示在画布上"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
+                        <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:NodeMaxXValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=xRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=xRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
+                        <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:NodeMaxYValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=yRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=yRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                
+
+                <!--动画演示-->
+                <StackPanel Margin="0 50 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="动画演示"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="实际演示时长取决于电脑配置"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
+                        <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:DemoDurationValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="s" Margin="5 0 0 0"/>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=duration, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=duration, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <ToggleButton Margin="0 20 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示结束后弹出提示"
+                              IsChecked="{Binding Path=(model:GlobalData.PopupAfterDemo)}"/>
+                </StackPanel>
+                
+
                 <!--记录文件存储路径-->
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径" Margin="0 50 0 0"/>
-                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                    <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
+                <StackPanel Margin="0 50 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径" />
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
                          Text="{Binding CurrentRecordPath}"/>
-                    <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
+                        <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
                         Command="{Binding ChangeRecordLocationCommand}"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <!--软件激活-->

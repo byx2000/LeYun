@@ -87,6 +87,7 @@ namespace LeYun.ViewModel
             GlobalData.WriteConfiguration(GlobalData.MaxNodeYKey, GlobalData.MaxNodeY.ToString());
             GlobalData.WriteConfiguration(GlobalData.DemoDurationKey, GlobalData.DemoDuration.ToString());
             GlobalData.WriteConfiguration(GlobalData.ActiveStateKey, GlobalData.IsActive.ToString());
+            GlobalData.WriteConfiguration(GlobalData.PopupAfterDemoKey, GlobalData.PopupAfterDemo.ToString());
         }
 
         private void Close(object parameter)

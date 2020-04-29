@@ -21,6 +21,7 @@ namespace LeYun.Model
         public const string LineThicknessKey = "LineThickness";
         public const string NodeButtonWidthKey = "NodeButtonWidth";
         public const string DemoDurationKey = "DemoDuration";
+        public const string PopupAfterDemoKey = "PopupAfterDemo";
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
@@ -97,6 +98,19 @@ namespace LeYun.Model
             }
         }
 
+        // 演示后是否弹出提示
+        private static bool popupAfterDemo = true;
+        public static bool PopupAfterDemo
+        {
+            get { return popupAfterDemo; }
+            set 
+            { 
+                popupAfterDemo = value;
+                RaisePropertyChanged("PopupAfterDemo");
+            }
+        }
+
+
         // 静态构造函数
         static GlobalData()
         {
@@ -109,6 +123,7 @@ namespace LeYun.Model
                 LineThickness = double.Parse(ReadConfiguration(LineThicknessKey));
                 NodeButtonWidth = double.Parse(ReadConfiguration(NodeButtonWidthKey));
                 DemoDuration = double.Parse(ReadConfiguration(DemoDurationKey));
+                PopupAfterDemo = bool.Parse(ReadConfiguration(PopupAfterDemoKey));
             }
             catch (Exception)
             {
@@ -119,6 +134,7 @@ namespace LeYun.Model
                 LineThickness = 2.5;
                 NodeButtonWidth = 15;
                 DemoDuration = 20;
+                PopupAfterDemo = true;
             }
         }
 

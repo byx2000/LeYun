@@ -283,7 +283,10 @@ namespace LeYun.ViewModel
                     {
                         Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                         {
-                            MsgBox.Show("演示结束！");
+                            if (GlobalData.PopupAfterDemo)
+                            {
+                                MsgBox.Show("演示结束！");
+                            }
                             IsPlayingDemo = false;
                             CommandManager.InvalidateRequerySuggested();
                         }));
