@@ -914,9 +914,16 @@ namespace LeYun.ViewModel
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double canvasWidth = (double)values[0];
-            double actualWidth = (double)values[1];
-            return canvasWidth / actualWidth;
+            try
+            {
+                double canvasWidth = (double)values[0];
+                double actualWidth = (double)values[1];
+                return canvasWidth / actualWidth;
+            }
+            catch (Exception)
+            {
+                return 50;
+            }
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

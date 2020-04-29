@@ -219,18 +219,19 @@
                 <!--275-->
             </Grid.ColumnDefinitions>
 
+            <custom:FloatingCard Margin="15 15 0 15"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-                <custom:FloatingCard Margin="15 15 0 15"/>
+                
                 <!--背景图片-->
-                <Image Grid.Column="0" Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 15"/>
+                <Image Grid.Column="0" Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 0"/>
 
                 <!--线条画布-->
-                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 15">
+                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent"/>
@@ -280,7 +281,7 @@
                 </ItemsControl>
 
                 <!--节点画布-->
-                <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 15">
+                <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 0">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent" viewmodel:MouseBehaviour.MouseLeftButtonDownCommand="{Binding MouseAddNodeCommand}"/>
@@ -342,7 +343,7 @@
                 </ItemsControl>
                 
                 <!--节点颜色说明-->
-                <custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>
+                <!--<custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>-->
                 <Grid Grid.Row="1" Margin="15 0 0 15">
                     <StackPanel Orientation="Horizontal" Margin="20 10 0 10">
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="14"/>
@@ -441,6 +442,8 @@
                   Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
             
             <!--用于在演示时显示车辆运行时信息-->
+            <custom:FloatingCard Grid.Column="1" Margin="15" Background="White"
+                                 Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
             <Grid Grid.Column="1" Background="White" Margin="15"
                   Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}">
 
