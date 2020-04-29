@@ -140,6 +140,7 @@
     <Compile Include="ViewModel\PathProjectPageViewModel.cs" />
     <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
     <Compile Include="ViewModel\SettingPageViewModel.cs" />
+    <Compile Include="ViewModel\ThumbBehavior.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Dlg\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>

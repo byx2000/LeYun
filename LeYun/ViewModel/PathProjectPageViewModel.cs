@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -48,6 +49,7 @@ namespace LeYun.ViewModel
         public DelegateCommand RemoveNodeCommand { get; }
         public DelegateCommand RemoveCarCommand { get; }
         public DelegateCommand PlayDemoCommand { get; }
+        public DelegateCommand NodeDragCommand { get; }
 
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
@@ -174,6 +176,18 @@ namespace LeYun.ViewModel
             RemoveNodeCommand = new DelegateCommand(RemoveNode, CantExecuteDuringDemo);
             RemoveCarCommand = new DelegateCommand(RemoveCar, CantExecuteDuringDemo);
             PlayDemoCommand = new DelegateCommand(PlayDemo, CanPlayDemo);
+            NodeDragCommand = new DelegateCommand(NodeDrag);
+        }
+
+        // 节点拖动
+        private void NodeDrag(object obj)
+        {
+            Segments.Clear();
+            DragDeltaEventArgs args = (DragDeltaEventArgs)obj;
+            Node node = (Node)((Thumb)(args.Source)).DataContext;
+            //MsgBox.Show(GlobalData.CanvasWidth.ToString());
+            node.X += args.HorizontalChange / GlobalData.CanvasWidth * GlobalData.MaxNodeX;
+            node.Y += args.VerticalChange / GlobalData.CanvasHeight * GlobalData.MaxNodeY;
         }
 
         private bool CantExecuteDuringDemo(object arg)

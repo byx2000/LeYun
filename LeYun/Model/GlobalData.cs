@@ -110,6 +110,9 @@ namespace LeYun.Model
             }
         }
 
+        // 画布尺寸
+        public static double CanvasWidth { get; set; }
+        public static double CanvasHeight { get; set; }
 
         // 静态构造函数
         static GlobalData()

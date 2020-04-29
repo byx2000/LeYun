@@ -320,22 +320,20 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button x:Name="btn" Style="{StaticResource NodeButtonStyle}" 
-                                Command="{Binding ElementName=page, Path=DataContext.EditNodeCommand}" 
-                                CommandParameter="{Binding ID}">
-                                    <Button.Margin>
+                                <Thumb x:Name="btn" Style="{StaticResource NodeButtonStyle}" >
+                                    <Thumb.Margin>
                                         <MultiBinding Converter="{StaticResource nodeButtonMarginConverter}">
                                             <Binding ElementName="btn" Path="ActualWidth"/>
                                             <Binding ElementName="btn" Path="ActualHeight"/>
                                         </MultiBinding>
-                                    </Button.Margin>
-                                    <Button.Background>
+                                    </Thumb.Margin>
+                                    <Thumb.Background>
                                         <MultiBinding Converter="{StaticResource nodeButtonColorConverter}">
                                             <Binding Path="ID"/>
                                             <Binding ElementName="dlg" Path="DataContext.CurrentNodeIndex"/>
                                         </MultiBinding>
-                                    </Button.Background>
-                                </Button>
+                                    </Thumb.Background>
+                                </Thumb>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

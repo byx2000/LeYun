@@ -38,7 +38,7 @@
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
                             <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
                             Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
-                            <Button Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
+                            <Thumb Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
                             Width="{Binding ElementName=buttonWidth, Path=Value}"
                             Height="{Binding ElementName=buttonWidth, Path=Value}"/>
                         </StackPanel>
