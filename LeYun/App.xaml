@@ -24,6 +24,7 @@
                     <viewmodel:SearchResultVisibilityConverter x:Key="searchResultVisibilityConverter"/>
                     <viewmodel:NotConverter x:Key="notConverter"/>
                     <viewmodel:IsVisibleConverter x:Key="isVisibleConverter"/>
+                    <dlg:Times100 x:Key="times100"/>
                     <dlg:XRangeConverter x:Key="xRangeConverter"/>
                     <dlg:YRangeConverter x:Key="yRangeConverter"/>
 

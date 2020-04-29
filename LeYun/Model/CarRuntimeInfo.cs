@@ -46,6 +46,17 @@ namespace LeYun.Model
             }
         }
 
+        // 完成百分比
+        private double completedPercent;
+        public double CompletedPercent
+        {
+            get { return completedPercent; }
+            set 
+            { 
+                completedPercent = value;
+                RaisePropertyChanged("CompletedPercent");
+            }
+        }
 
     }
 }

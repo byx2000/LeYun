@@ -224,6 +224,8 @@ namespace LeYun.ViewModel
             // 设置动画
             for (int iCar = 0; iCar < Record.Paths.Count; ++iCar)
             {
+                int iCarTemp = iCar;
+
                 // 跳过未参与配送车辆
                 if (Record.Paths[iCar].Count == 0)
                 {
@@ -242,7 +244,7 @@ namespace LeYun.ViewModel
                 }
 
                 // 初始化车辆运行时信息
-                CarRuntimeInfos.Add(new CarRuntimeInfo { ID = iCar, LineBrush = brush, IsFinished = false });
+                CarRuntimeInfos.Add(new CarRuntimeInfo { ID = iCar, LineBrush = brush, IsFinished = false, CompletedPercent = 0 });
 
                 // 遍历当前车辆的所有配送点
                 Node last = Record.Nodes[0];
@@ -260,6 +262,9 @@ namespace LeYun.ViewModel
                             Thread.Sleep((int)(Record.NodeStayTime * rate * 60 * 1000));
                         }
                         Segments[iStart + t + 1].BeginAnimation();
+
+                        // 更新车辆完成百分比
+                        CarRuntimeInfos.AddCompletedPercent(iCarTemp, 1.0 / Record.Paths[iCarTemp].Count);
                     };
 
                     last = Record.Nodes[iNode];
@@ -267,14 +272,14 @@ namespace LeYun.ViewModel
 
                 // 设置最后一段线条的动画
                 Segments[Segments.Count - 1].SetAnimation(last.X, last.Y, Record.Nodes[0].X, Record.Nodes[0].Y, last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600);
-                int tt = iCar;
+                
                 Segments[Segments.Count - 1].OnAnimationFinish = delegate
                 {
                     // 更新车辆运行时信息
-                    CarRuntimeInfos.SetFinishedState(tt, true);
+                    CarRuntimeInfos.SetFinishedState(iCarTemp, true);
 
                     // 如果是最后一辆车，则演示结束
-                    if (tt == index)
+                    if (iCarTemp == index)
                     {
                         Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                         {

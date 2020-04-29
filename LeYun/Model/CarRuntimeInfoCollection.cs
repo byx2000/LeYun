@@ -19,5 +19,16 @@ namespace LeYun.Model
                 }
             }
         }
+
+        public void AddCompletedPercent(int id, double delta)
+        {
+            for (int i = 0; i < Count; ++i)
+            {
+                if (this[i].ID == id)
+                {
+                    this[i].CompletedPercent += delta;
+                }
+            }
+        }
     }
 }
