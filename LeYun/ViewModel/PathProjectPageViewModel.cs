@@ -632,7 +632,7 @@ namespace LeYun.ViewModel
             // 开启计算线程
             new Thread(delegate ()
             {
-                VRPSolver.Solve(x, y, d, c, m, WTime, WDis, WCar, GenerationCount, OnSolveFinish, OnSolveError);
+                VRPSolver.Solve(x, y, d, c, m, WTime, WDis, WCar, GenerationCount, Record.CarSpeed, Record.NodeStayTime, OnSolveFinish, OnSolveError);
                 Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                 {
                     LoadingDialog.End();

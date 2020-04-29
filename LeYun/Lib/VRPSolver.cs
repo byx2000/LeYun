@@ -24,6 +24,8 @@ namespace LeYun.Kernel
             int numCar, IntPtr capacity, IntPtr disLimit, // 车辆信息
             double k1, double k2, double k3, // 权重
             int generation, // 进化代数
+            double carSpeed, // 车辆平均速度
+            double nodeStayTime, // 节点停留时间
             Callback callback); // 回调方法
 
         // 用C#数据类型包装后的回调方法
@@ -36,6 +38,8 @@ namespace LeYun.Kernel
             double[] capacity, double[] disLimit, // 车辆信息
             double k1, double k2, double k3, // 权重
             int generation, // 进化代数
+            double carSpeed, // 车辆平均速度
+            double nodeStayTime, // 节点停留时间
             OnFinish onFinish, // 求解成功回调方法
             OnError onError) // 求解失败回调方法
         {
@@ -106,7 +110,12 @@ namespace LeYun.Kernel
 
             // 调用原始核心算法代码
 
-            Solve(numNode, px, py, pDemand, numCar, pCapacity, pDisLimit, k1, k2, k3, generation,
+            Solve(numNode, px, py, pDemand,
+                numCar, pCapacity, pDisLimit,
+                k1, k2, k3,
+                generation,
+                carSpeed,
+                nodeStayTime,
                 // 包装原始回调方法
                 delegate (int t_numCar, IntPtr path, IntPtr pathLen, IntPtr load, IntPtr mileage)
                 {
