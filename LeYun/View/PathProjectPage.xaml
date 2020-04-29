@@ -219,16 +219,19 @@
                 <!--275-->
             </Grid.ColumnDefinitions>
 
-            <custom:FloatingCard Margin="15 15 0 15"/>
-            <Grid>
-                <Grid.RowDefinitions>
+            <custom:FloatingCard Grid.Column="0" Margin="15 15 0 15"/>
+            <Grid Grid.Column="0">
+                <!--<Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                </Grid.RowDefinitions>-->
                 
                 
                 <!--背景图片-->
-                <Image Grid.Column="0" Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 0"/>
+                <Grid Grid.Row="0" Grid.RowSpan="2">
+                    <Image Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 15"/>
+                </Grid>
+                
 
                 <!--线条画布-->
                 <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 0">
@@ -353,9 +356,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 
-                <!--节点颜色说明-->
+                <!--图例-->
                 <!--<custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>-->
-                <Grid Grid.Row="1" Margin="15 0 0 15">
+                <Grid Grid.Row="0" Margin="15 0 0 15" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" Margin="20 10 0 10">
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="30 0 0 0">

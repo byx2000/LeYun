@@ -60,7 +60,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 15">
                         <Border Background="#4e91d8" Width="5" Height="5" CornerRadius="5"/>
-                        <TextBlock Text="载重" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBlock Text="载重 (t)" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
                     </StackPanel>
 
 
@@ -109,7 +109,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 15">
                         <Border Background="#f6284c" Width="5" Height="5" CornerRadius="5"/>
-                        <TextBlock Text="里程" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBlock Text="里程 (km)" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
                     </StackPanel>
 
                     <UniformGrid Grid.Row="1" Columns="2">
@@ -155,7 +155,7 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 15">
                         <Border Background="#82cf35" Width="5" Height="5" CornerRadius="5"/>
-                        <TextBlock Text="时间" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                        <TextBlock Text="时间 (min)" Foreground="#86848e" VerticalAlignment="Center" Margin="10 0 0 0"/>
                     </StackPanel>
 
                     <UniformGrid Grid.Row="1" Columns="2">
