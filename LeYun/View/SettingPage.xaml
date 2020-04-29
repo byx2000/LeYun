@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1120"
       xmlns:model="clr-namespace:LeYun.Model"
-      x:Name="page">
+      x:Name="page" Background="White">
 
     <Page.DataContext>
         <viewmodel:SettingPageViewModel />
@@ -16,6 +16,7 @@
     <Page.Resources>
         <viewmodel:ActiveVisibleConverter x:Key="activeVisibleConverter"/>
         <viewmodel:LineWidthConverter x:Key="lineWidthConverter"/>
+        <viewmodel:ErrorTipVisibilityConverter x:Key="errorTipVisibilityConverter"/>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
     </Page.Resources>
 
@@ -54,7 +55,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
-                    <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                    <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
                         <TextBox.Text>
                             <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
                                 <Binding.ValidationRules>
@@ -63,10 +64,15 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=xRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=xRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
-                    <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                    <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
                         <TextBox.Text>
                             <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
                                 <Binding.ValidationRules>
@@ -75,6 +81,11 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=yRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=yRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
 
                 <!--动画演示-->
@@ -85,7 +96,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
-                    <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                    <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
                         <TextBox.Text>
                             <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
                                 <Binding.ValidationRules>
@@ -95,6 +106,11 @@
                         </TextBox.Text>
                     </TextBox>
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="s" Margin="5 0 0 0"/>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=duration, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=duration, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
                 </StackPanel>
                 
                 <!--记录文件存储路径-->

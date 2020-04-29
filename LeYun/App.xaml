@@ -370,22 +370,12 @@
 
                     <!--编辑框样式-->
                     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-                        <!--<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>-->
-                        <Setter Property="BorderBrush" Value="#FFABAdB3"/>
-                        <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
-                        <!--<Setter Property="BorderThickness" Value="0"/>-->
-                        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                        <Setter Property="AllowDrop" Value="true"/>
-                        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-                        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
                         <Setter Property="FontSize" Value="16"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
                                     <Border x:Name="border" BorderBrush="#1e5ab3" BorderThickness="0 0 0 2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
+                                        <ScrollViewer BorderThickness="0" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsEnabled" Value="False">
@@ -398,28 +388,26 @@
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
                                         </Trigger>
-                                        <Trigger Property="IsKeyboardFocused" Value="true">
-                                            <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
-                                        </Trigger>
                                         <!--校验失败时-->
                                         <Trigger Property="Validation.HasError" Value="true">
                                             <Setter TargetName="border" Property="BorderBrush" Value="#de5448"/>
-                                            <Setter Property="Background" Value="#fff1f0"/>
+                                            <Setter TargetName="border" Property="Background" Value="#fff1f0"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
                                             <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Style.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                                    <Condition Property="IsSelectionActive" Value="false"/>
-                                </MultiTrigger.Conditions>
-                                <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                            </MultiTrigger>
-                        </Style.Triggers>
+                        <Setter Property="Validation.ErrorTemplate">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border x:Name="border" BorderBrush="#d84c3f" BorderThickness="0 0 0 2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ScrollViewer BorderThickness="0" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
 
                     <!--提示编辑框样式-->
