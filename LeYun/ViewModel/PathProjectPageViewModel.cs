@@ -491,7 +491,7 @@ namespace LeYun.ViewModel
         // 判断是否能执行求解操作
         private bool CanSolve(object arg)
         {
-            return Record.Nodes.Count > 0 && Record.Cars.Count > 0 && !IsPlayingDemo;
+            return Record.Nodes.Count > 1 && Record.Cars.Count > 0 && !IsPlayingDemo;
         }
 
         // 判断是否能执行清空操作
