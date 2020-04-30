@@ -24,13 +24,13 @@ namespace LeYun.ViewModel
 
         private static void OnLoadedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Window window = (Window)d;
+            FrameworkElement window = (FrameworkElement)d;
             window.Loaded += Window_Loaded;
         }
 
         private static void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Window window = (Window)sender;
+            FrameworkElement window = (FrameworkElement)sender;
             ICommand command = GetLoadedCommand(window);
             command.Execute(e);
         }

@@ -3,14 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
       xmlns:local="clr-namespace:LeYun.View"
       mc:Ignorable="d" 
       x:Name="page"
       xmlns:model="clr-namespace:LeYun.Model"
       xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
       xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
-      d:DesignHeight="800" d:DesignWidth="1200">
+      d:DesignHeight="800" d:DesignWidth="1200"
+      viewmodel:WindowBehavior.LoadedCommand="{Binding LoadRecordsCommand}">
 
     <Page.Resources>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
@@ -20,12 +20,12 @@
         <viewmodel:SearchEnableConverter x:Key="searchEnableConverter"/>
     </Page.Resources>
 
-    <i:Interaction.Triggers>
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction 
                 Command="{Binding LoadRecordsCommand}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
     
     <Border CornerRadius="10" Background="#f1f1f1" BorderBrush="#387cdf" BorderThickness="0">
         <Grid>
