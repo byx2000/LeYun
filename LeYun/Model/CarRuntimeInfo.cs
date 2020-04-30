@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using LeYun.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

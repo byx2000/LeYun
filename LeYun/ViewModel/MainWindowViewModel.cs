@@ -102,7 +102,7 @@ namespace LeYun.ViewModel
 
         private void FullScreen(object parameter)
         {
-            Window window = (Window)(((RoutedEventArgs)parameter).Source);
+            Window window = (Window)((RoutedEventArgs)parameter).Source;
             window.Left = 0.0;
             window.Top = 0.0;
             window.Width = SystemParameters.PrimaryScreenWidth;
