@@ -13,7 +13,8 @@
         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Icon="pack://application:,,,/Img/icon.png"
         x:Name="mainWindow"
-        viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}">
+        viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}"
+        viewmodel:WindowBehavior.ClosingCommand="{Binding SaveConfigurationCommand}">
 
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />

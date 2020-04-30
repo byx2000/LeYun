@@ -24,15 +24,68 @@ namespace LeYun.ViewModel
 
         private static void OnLoadedCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            FrameworkElement window = (FrameworkElement)d;
-            window.Loaded += Window_Loaded;
+            try
+            {
+                FrameworkElement window = (FrameworkElement)d;
+                window.Loaded += Window_Loaded;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private static void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            FrameworkElement window = (FrameworkElement)sender;
-            ICommand command = GetLoadedCommand(window);
-            command.Execute(e);
+            try
+            {
+                FrameworkElement window = (FrameworkElement)sender;
+                ICommand command = GetLoadedCommand(window);
+                command.Execute(e);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        // 窗口关闭事件
+        public static ICommand GetClosingCommand(DependencyObject obj)
+        {
+            return (ICommand)obj.GetValue(ClosingCommandProperty);
+        }
+        public static void SetClosingCommand(DependencyObject obj, ICommand value)
+        {
+            obj.SetValue(ClosingCommandProperty, value);
+        }
+        public static readonly DependencyProperty ClosingCommandProperty =
+            DependencyProperty.RegisterAttached("ClosingCommand", typeof(ICommand), typeof(WindowBehavior), new PropertyMetadata(new PropertyChangedCallback(ClosingCommandChanged)));
+
+        private static void ClosingCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            try
+            {
+                Window window = (Window)d;
+                window.Closing += Window_Closing;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private static void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                FrameworkElement window = (FrameworkElement)sender;
+                ICommand command = GetClosingCommand(window);
+                command.Execute(e);
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }
