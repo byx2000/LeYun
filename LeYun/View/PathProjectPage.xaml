@@ -234,7 +234,7 @@
                 
 
                 <!--线条画布-->
-                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 0">
+                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 15">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent"/>
@@ -284,7 +284,7 @@
                 </ItemsControl>
 
                 <!--节点画布-->
-                <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 0">
+                <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 15">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent" 
