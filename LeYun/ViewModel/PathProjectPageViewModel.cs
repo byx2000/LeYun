@@ -706,7 +706,9 @@ namespace LeYun.ViewModel
         // 计算模式改变
         private void ModeChange(object parameter)
         {
-            switch ((int)parameter)
+            SelectionChangedEventArgs args = (SelectionChangedEventArgs)parameter;
+            ComboBox comboBox = (ComboBox)args.Source;
+            switch (comboBox.SelectedIndex)
             {
                 case 0:
                     GenerationCount = 2000;

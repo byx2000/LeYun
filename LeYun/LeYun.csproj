@@ -126,6 +126,7 @@
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="ViewModel\AboutPageViewModel.cs" />
+    <Compile Include="ViewModel\ComboBoxBehavior.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\DlgViewModelBase.cs" />
     <Compile Include="ViewModel\Dlg\AlgoParamSetDlgViewMode.cs" />

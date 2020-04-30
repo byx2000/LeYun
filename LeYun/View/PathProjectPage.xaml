@@ -103,14 +103,8 @@
                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" Foreground="Black"/>
                 <ComboBox x:Name="ModeChoose" Style="{StaticResource ComboBoxStyle}" Width="120" Margin="0" 
                      FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0"
-                          IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction 
-                                Command="{Binding ModeChangeCommand}" 
-                                CommandParameter="{Binding ElementName=ModeChoose, Path=SelectedIndex}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                          IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}"
+                          viewmodel:ComboBoxBehavior.SelectionChangedCommand="{Binding ModeChangeCommand}">
                     <TextBlock  Text="时间优先"/>
                     <TextBlock  Text="车辆数优先"/>
                     <TextBlock  Text="自定义"/>
