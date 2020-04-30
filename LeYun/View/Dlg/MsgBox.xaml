@@ -21,7 +21,7 @@
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" Margin="10 0 0 0" Foreground="White" FontSize="25"/>
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" x:Name="titleText" Text="消息" Margin="10 0 0 0" Foreground="White" FontSize="16" FontWeight="Bold"/>
                         </StackPanel>
-                        <TextBlock Style="{StaticResource TitleBarButtonStyle}" x:Name="close" HorizontalAlignment="Right" Text="&#xf00d;" Foreground="White" Margin="0 0 10 0" MouseLeftButtonUp="closeWindow" FontSize="25"/>
+                        <Button Style="{StaticResource TitleBarCloseButtonStyle}" x:Name="close" HorizontalAlignment="Right" Click="closeWindow"/>
                     </Grid>
                 </Border>
 

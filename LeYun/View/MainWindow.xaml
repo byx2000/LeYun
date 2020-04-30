@@ -16,6 +16,42 @@
         viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}"
         viewmodel:WindowBehavior.ClosingCommand="{Binding SaveConfigurationCommand}">
 
+    <Window.Resources>
+        <!--用于侧边栏选项的单选按钮样式-->
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="{StaticResource ThemeColor}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource TextColorLight}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid x:Name="grid" Background="{StaticResource ThemeColor}" >
+                            <ContentPresenter 
+                                Grid.Column="1" 
+                                Focusable="False" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                RecognizesAccessKey="True"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ThemeColorDark}" TargetName="grid"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ThemeColorDark}" TargetName="grid"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
@@ -29,7 +65,7 @@
             </Grid.RowDefinitions>
 
             <!--标题栏-->
-            <Border Grid.Row="0" Background="#387cdf" />
+            <Border Grid.Row="0" Background="{StaticResource ThemeColorLight}" />
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10 0 0 0">
                 <!--logo-->
                 <Image Source="pack://application:,,,/Img/logo.png" Margin="10"/>
@@ -41,18 +77,14 @@
             </StackPanel>
 
             <!--最小化和关闭按钮-->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}"
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 10 0">
+                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" FontSize="30"
                         Command="{Binding MinimizeCommand}" 
-                        CommandParameter="{Binding ElementName=mainWindow}">
-                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf068;" Foreground="White" FontSize="30"/>
-                </Button>
-                
-                <Button Style="{StaticResource TitleBarCloseButtonStyle}"
+                        CommandParameter="{Binding ElementName=mainWindow}"/>
+
+                <Button Style="{StaticResource TitleBarCloseButtonStyle}" FontSize="30"
                         Command="{Binding CloseCommand}" 
-                        CommandParameter="{Binding ElementName=mainWindow}">
-                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00d;" Foreground="White" FontSize="30"/>
-                </Button>
+                        CommandParameter="{Binding ElementName=mainWindow}"/>
             </StackPanel>
 
             <!--主内容区-->
