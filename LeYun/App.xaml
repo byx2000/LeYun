@@ -172,15 +172,16 @@
                     </Style>
 
                     <!--窗口标题栏关闭按钮样式-->
-                    <!--<Style x:Key="TitleBarCloseButtonStyle" TargetType="{x:Type Button}">
+                    <Style x:Key="TitleBarCloseButtonStyle" TargetType="{x:Type Button}">
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="5"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="border">
-                                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00d;" Foreground="White" FontSize="20"/>
+                                    <Border x:Name="border" Padding="5">
+                                        <ContentPresenter />
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -190,8 +191,31 @@
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
-                    </Style>-->
-                    
+                    </Style>
+
+                    <!--窗口标题栏最小化按钮样式-->
+                    <Style x:Key="TitleBarMinimizeButtonStyle" TargetType="{x:Type Button}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="border" Padding="5">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#1e5ab3" TargetName="border"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
                     <!--标题栏按钮（最小化和关闭按钮）样式-->
                     <Style x:Key="TitleBarButtonStyle" TargetType="TextBlock">
                         <Setter Property="FontFamily" Value="../Font/#FontAwesome"/>

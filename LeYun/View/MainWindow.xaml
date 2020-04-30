@@ -20,17 +20,6 @@
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
 
-    <!--<i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction 
-                Command="{Binding FullScreenCommand}" 
-                CommandParameter="{Binding ElementName=mainWindow}"/>
-        </i:EventTrigger>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding SaveConfigurationCommand}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>-->
-    
     <!--窗格设计-->
     <Border Background="#f1f1f1">
         <Grid UseLayoutRounding="True">
@@ -53,24 +42,17 @@
 
             <!--最小化和关闭按钮-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <TextBlock Style="{StaticResource TitleBarButtonStyle}" Text="&#xf068;" Foreground="White" FontSize="30">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonUp">
-                            <i:InvokeCommandAction 
-                                Command="{Binding MinimizeCommand}" 
-                                CommandParameter="{Binding ElementName=mainWindow}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
-                <TextBlock Style="{StaticResource TitleBarButtonStyle}" Text="&#xf00d;" Foreground="White" FontSize="30">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonUp">
-                            <i:InvokeCommandAction 
-                                Command="{Binding CloseCommand}" 
-                                CommandParameter="{Binding ElementName=mainWindow}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBlock>
+                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}"
+                        Command="{Binding MinimizeCommand}" 
+                        CommandParameter="{Binding ElementName=mainWindow}">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf068;" Foreground="White" FontSize="30"/>
+                </Button>
+                
+                <Button Style="{StaticResource TitleBarCloseButtonStyle}"
+                        Command="{Binding CloseCommand}" 
+                        CommandParameter="{Binding ElementName=mainWindow}">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00d;" Foreground="White" FontSize="30"/>
+                </Button>
             </StackPanel>
 
             <!--主内容区-->
