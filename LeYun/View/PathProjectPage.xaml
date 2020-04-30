@@ -18,10 +18,6 @@
         <viewmodel:RulerWidthConverter x:Key="rulerWidthConverter"/>
     </Page.Resources>
 
-    <!--<Page.DataContext>
-        <viewmodel:PathProjectPageViewModel />
-    </Page.DataContext>-->
-
     <!--右边内容区-->
     <Grid Grid.Column="1">
         <Grid.RowDefinitions>
@@ -55,12 +51,10 @@
                         </Grid>
                     </Border>
                 </Popup>
-                <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding ShowSavePopupCommand}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding ShowSavePopupCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30" 
+                        Command="{Binding ShowSavePopupCommand}"
+                        viewmodel:MouseBehaviour.MouseEnterCommand="{Binding ShowSavePopupCommand}">
+
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -121,12 +115,9 @@
                     <TextBlock  Text="车辆数优先"/>
                     <TextBlock  Text="自定义"/>
                 </ComboBox>
-                <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" Command="{Binding ShowAddCarPopupCommand}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding ShowAddCarPopupCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
+                        Command="{Binding ShowAddCarPopupCommand}"
+                        viewmodel:MouseBehaviour.MouseEnterCommand="{Binding ShowAddCarPopupCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -154,12 +145,9 @@
                         </Grid>
                     </Border>
                 </Popup>
-                <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0" Command="{Binding ShowAddNodePopupCommand}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseEnter">
-                            <i:InvokeCommandAction Command="{Binding ShowAddNodePopupCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0" 
+                        Command="{Binding ShowAddNodePopupCommand}"
+                        viewmodel:MouseBehaviour.MouseEnterCommand="{Binding ShowAddNodePopupCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>

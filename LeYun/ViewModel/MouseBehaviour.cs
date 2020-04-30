@@ -121,5 +121,31 @@ namespace LeYun.ViewModel
         {
             return (ICommand)element.GetValue(MouseMoveCommandProperty);
         }
+
+        // 鼠标移入事件
+        public static ICommand GetMouseEnterCommand(DependencyObject obj)
+        {
+            return (ICommand)obj.GetValue(MouseEnterCommandProperty);
+        }
+        public static void SetMouseEnterCommand(DependencyObject obj, ICommand value)
+        {
+            obj.SetValue(MouseEnterCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty MouseEnterCommandProperty =
+            DependencyProperty.RegisterAttached("MouseEnterCommand", typeof(ICommand), typeof(MouseBehaviour), new PropertyMetadata(new PropertyChangedCallback(OnMouseEnterCommandChanged)));
+
+        private static void OnMouseEnterCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)d;
+            element.MouseEnter += Element_MouseEnter;
+        }
+
+        private static void Element_MouseEnter(object sender, MouseEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            ICommand command = GetMouseEnterCommand(element);
+            command.Execute(e);
+        }
     }
 }
