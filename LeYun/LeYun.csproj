@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\SettingPageViewModel.cs" />
     <Compile Include="ViewModel\ThumbBehavior.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\WindowBehavior.cs" />
     <Compile Include="View\Dlg\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>
     </Compile>

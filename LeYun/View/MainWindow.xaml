@@ -13,13 +13,14 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Icon="pack://application:,,,/Img/icon.png"
-        x:Name="mainWindow">
+        x:Name="mainWindow"
+        viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}">
 
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
 
-    <i:Interaction.Triggers>
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction 
                 Command="{Binding FullScreenCommand}" 
@@ -28,7 +29,7 @@
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding SaveConfigurationCommand}"/>
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
     
     <!--窗格设计-->
     <Border Background="#f1f1f1">
