@@ -138,7 +138,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}"  FontSize="22" FontWeight="Bold" HorizontalAlignment="Left"
                                            Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
                                 
@@ -229,7 +229,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.UseCarCount}"/>
+                                           Text="{Binding CurrentRecord.UseCarCount, StringFormat={}{0} 辆}"/>
                                 
                             </Grid>
                         </Grid>

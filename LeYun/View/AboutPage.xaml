@@ -61,11 +61,11 @@
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 50 0">
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 50 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="ZERO EXPRESS" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold"/>
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="零渡速递" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold"/>
                 </StackPanel>
-                <TextBlock Background="White" Grid.Row="1" TextWrapping="Wrap" Margin="-100 0 50 50" TextAlignment="Justify" FontSize="18" Padding="20"
+                <TextBlock Background="White" Grid.Row="1" TextWrapping="Wrap" Margin="-150 0 50 50" TextAlignment="Justify" FontSize="18" Padding="20"
                            Text="Founded in Jaunary 2020, zero ferry express company is a high-tech company based on cloud computing and big data to develop modern logistics and distribution route optimization. The company is committed to developing a visual VRP solver desktop program(LeYun), which allows users to set up relevant data and information, and ultimately, the solution is displayed to users in graphics, documents and other forms, with practicability, advanced nature and high reliability.">
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
