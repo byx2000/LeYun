@@ -51,6 +51,12 @@ namespace LeYun.ViewModel
         public DelegateCommand PlayDemoCommand { get; }
         public DelegateCommand NodeDragCommand { get; }
 
+        // 画布宽度
+        public double CanvasWidth { get; set; }
+
+        // 画布高度
+        public double CanvasHeight { get; set; }
+
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
         public ProblemRecord Record
@@ -185,9 +191,8 @@ namespace LeYun.ViewModel
             Segments.Clear();
             DragDeltaEventArgs args = (DragDeltaEventArgs)obj;
             Node node = (Node)((Thumb)(args.Source)).DataContext;
-            //MsgBox.Show(GlobalData.CanvasWidth.ToString());
-            node.X += args.HorizontalChange / GlobalData.CanvasWidth * GlobalData.MaxNodeX;
-            node.Y += args.VerticalChange / GlobalData.CanvasHeight * GlobalData.MaxNodeY;
+            node.X += args.HorizontalChange / CanvasWidth * GlobalData.MaxNodeX;
+            node.Y += args.VerticalChange / CanvasHeight * GlobalData.MaxNodeY;
         }
 
         private bool CantExecuteDuringDemo(object arg)

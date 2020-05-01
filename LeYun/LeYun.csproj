@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\PathProjectPageViewModel.cs" />
     <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
     <Compile Include="ViewModel\SettingPageViewModel.cs" />
+    <Compile Include="ViewModel\SizeObserver.cs" />
     <Compile Include="ViewModel\ThumbBehavior.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\WindowBehavior.cs" />

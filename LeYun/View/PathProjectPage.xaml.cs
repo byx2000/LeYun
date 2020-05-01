@@ -23,13 +23,6 @@ namespace LeYun.View
         public PathProjectPage()
         {
             InitializeComponent();
-            Loaded += PathProjectPage_Loaded;
-        }
-
-        private void PathProjectPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            GlobalData.CanvasWidth = canvas.ActualWidth;
-            GlobalData.CanvasHeight = canvas.ActualHeight;
         }
     }
 }
