@@ -106,7 +106,7 @@
                           viewmodel:ComboBoxBehavior.SelectionChangedCommand="{Binding ModeChangeCommand}">
                     <TextBlock  Text="时间优先"/>
                     <TextBlock  Text="车辆数优先"/>
-                    <TextBlock  Text="自定义"/>
+                    <TextBlock  Text="自定义设置"/>
                 </ComboBox>
                 <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
                         Command="{Binding ShowAddCarPopupCommand}"
