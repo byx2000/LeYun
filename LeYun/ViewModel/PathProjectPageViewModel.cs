@@ -434,6 +434,7 @@ namespace LeYun.ViewModel
             double x = MouseX / CanvasWidth * GlobalData.MaxNodeX;
             double y = MouseY / CanvasHeight * GlobalData.MaxNodeY;
             Record.Nodes.Add(new Node { X = x, Y = y, Demand = 0 });
+            CurrentNodeIndex = Record.Nodes.Count - 1;
         }
 
         // 设置运行参数
@@ -598,6 +599,7 @@ namespace LeYun.ViewModel
             if (!viewModel.IsCancel)
             {
                 Record.Nodes.Add(new Node { X = viewModel.X, Y = viewModel.Y, Demand = viewModel.Demand });
+                CurrentNodeIndex = Record.Nodes.Count - 1;
             }
         }
 
