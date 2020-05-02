@@ -272,7 +272,10 @@
                                     viewmodel:MouseBehaviour.MouseLeftButtonDownCommand="{Binding MouseAddNodeCommand}"
                                     viewmodel:SizeObserver.Observe="True"
                                     viewmodel:SizeObserver.ObservedWidth="{Binding CanvasWidth, Mode=OneWayToSource}"
-                                    viewmodel:SizeObserver.ObservedHeight="{Binding CanvasHeight, Mode=OneWayToSource}"/>
+                                    viewmodel:SizeObserver.ObservedHeight="{Binding CanvasHeight, Mode=OneWayToSource}"
+                                    viewmodel:MouseObserver.Observe="True"
+                                    viewmodel:MouseObserver.MouseX="{Binding MouseX, Mode=OneWayToSource}"
+                                    viewmodel:MouseObserver.MouseY="{Binding MouseY, Mode=OneWayToSource}"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 

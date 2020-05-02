@@ -123,6 +123,7 @@
     <Compile Include="ViewModel\Dlg\RunParamSetDlgViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MouseBehaviour.cs" />
+    <Compile Include="ViewModel\MouseObserver.cs" />
     <Compile Include="ViewModel\PathProjectPageViewModel.cs" />
     <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
     <Compile Include="ViewModel\SettingPageViewModel.cs" />

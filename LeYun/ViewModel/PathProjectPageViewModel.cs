@@ -57,6 +57,31 @@ namespace LeYun.ViewModel
         // 画布高度
         public double CanvasHeight { get; set; }
 
+        // 鼠标X坐标
+        private double mouseX;
+        public double MouseX
+        {
+            get { return mouseX; }
+            set 
+            { 
+                mouseX = value;
+                RaisePropertyChanged("MouseX");
+            }
+        }
+
+        // 鼠标Y坐标
+        private double mouseY;
+        public double MouseY
+        {
+            get { return mouseY; }
+            set 
+            { 
+                mouseY = value;
+                RaisePropertyChanged("MouseY");
+            }
+        }
+
+
         // 当前问题记录
         private ProblemRecord record = new ProblemRecord();
         public ProblemRecord Record
@@ -406,17 +431,9 @@ namespace LeYun.ViewModel
         private void MouseAddNode(object obj)
         {
             Segments.Clear();
-
-            MouseButtonEventArgs args = (MouseButtonEventArgs)obj;
-            Canvas canvas = (Canvas)args.Source;
-            double canvasWidth = canvas.ActualWidth;
-            double canvasHeight = canvas.ActualHeight;
-            double xPos = args.GetPosition(canvas).X;
-            double yPos = args.GetPosition(canvas).Y;
-            double xNode = xPos / canvasWidth * GlobalData.MaxNodeX;
-            double yNode = yPos / canvasHeight * GlobalData.MaxNodeY;
-
-            Record.Nodes.Add(new Node { X = xNode, Y = yNode, Demand = 0 });
+            double x = MouseX / CanvasWidth * GlobalData.MaxNodeX;
+            double y = MouseY / CanvasHeight * GlobalData.MaxNodeY;
+            Record.Nodes.Add(new Node { X = x, Y = y, Demand = 0 });
         }
 
         // 设置运行参数
