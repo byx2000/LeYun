@@ -543,6 +543,7 @@ namespace LeYun.ViewModel
             if (!viewModel.IsCancel)
             {
                 Record.Cars.Add(new Car { WeightLimit = viewModel.WeightLimit, DisLimit = viewModel.DisLimit });
+                Segments.Clear();
             }
         }
 
