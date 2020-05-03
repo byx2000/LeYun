@@ -1,60 +1,66 @@
 ﻿using LeYun.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace LeYun.Model
 {
-    class Segment : ViewModelBase
+    class Segment : Animatable, INotifyPropertyChanged
     {
-        private double x1;
-        public double X1 
-        { 
-            get { return x1; }
-            set
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
             {
-                x1 = value;
-                RaisePropertyChanged("X1");
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
-        private double y1;
-        public double Y1 
-        { 
-            get { return y1; }
-            set
-            {
-                y1 = value;
-                RaisePropertyChanged("Y1");
-            }
+        public double X1
+        {
+            get { return (double)GetValue(X1Property); }
+            set { SetValue(X1Property, value); }
         }
+        public static readonly DependencyProperty X1Property =
+            DependencyProperty.Register("X1", typeof(double), typeof(Segment), new PropertyMetadata(0.0d));
 
-        private double x2;
-        public double X2 
-        { 
-            get { return x2; }
-            set
-            {
-                x2 = value;
-                RaisePropertyChanged("X2");
-            }
-        }
 
-        private double y2;
-        public double Y2 
-        { 
-            get { return y2; }
-            set
-            {
-                y2 = value;
-                RaisePropertyChanged("Y2");
-            }
+
+        public double Y1
+        {
+            get { return (double)GetValue(Y1Property); }
+            set { SetValue(Y1Property, value); }
         }
+        public static readonly DependencyProperty Y1Property =
+            DependencyProperty.Register("Y1", typeof(double), typeof(Segment), new PropertyMetadata(0.0d));
+
+
+
+        public double X2
+        {
+            get { return (double)GetValue(X2Property); }
+            set { SetValue(X2Property, value); }
+        }
+        public static readonly DependencyProperty X2Property =
+            DependencyProperty.Register("X2", typeof(double), typeof(Segment), new PropertyMetadata(0.0d));
+
+
+
+        public double Y2
+        {
+            get { return (double)GetValue(Y2Property); }
+            set { SetValue(Y2Property, value); }
+        }
+        public static readonly DependencyProperty Y2Property =
+            DependencyProperty.Register("Y2", typeof(double), typeof(Segment), new PropertyMetadata(0.0d));
 
         private Brush stroke = Brushes.Black;
         public Brush Stroke 
@@ -68,71 +74,48 @@ namespace LeYun.Model
         }
 
         // 动画参数
-        private double xFrom, yFrom, xTo, yTo, second;
+        public double XAnimationFrom { get; set; }
+        public double YAnimationFrom { get; set; }
+        public double XAnimationTo { get; set; }
+        public double YAnimationTo { get; set; }
+        public double Duration { get; set; } // 秒
+        public double Delay { get; set; } // 秒
 
         // 动画完成时的回调函数
         public delegate void OnAnimationFinishHandler();
-        public OnAnimationFinishHandler OnAnimationFinish { get; set; }
-
-        // 设置动画
-        public void SetAnimation(double xFrom, double yFrom, double xTo, double yTo, double second)
-        {
-            this.xFrom = xFrom;
-            this.yFrom = yFrom;
-            this.xTo = xTo;
-            this.yTo = yTo;
-            this.second = second;
-        }
+        public OnAnimationFinishHandler AnimationCompleted { get; set; }
 
         // 开始播放动画
         public void BeginAnimation()
         {
-            double frame = 60;
-            double xDelta = xTo - xFrom;
-            double yDelta = yTo - yFrom;
-            int count = (int)(second * frame);
-
-            new Thread(delegate ()
+            DoubleAnimation xAnim = new DoubleAnimation();
+            xAnim.From = XAnimationFrom;
+            xAnim.To = XAnimationTo;
+            xAnim.Duration = new Duration(TimeSpan.FromSeconds(Duration));
+            xAnim.BeginTime = TimeSpan.FromSeconds(Delay);
+            xAnim.Completed += delegate (object sender, EventArgs e)
             {
-                X1 = xFrom;
-                Y1 = yFrom;
-                X2 = X1;
-                Y2 = Y1;
-                for (int i = 0; i < count; ++i)
+                if (AnimationCompleted != null)
                 {
-                    X2 += xDelta / count;
-                    Y2 += yDelta / count;
-                    Thread.Sleep((int)(1000 / frame));
+                    AnimationCompleted();
                 }
-                if (OnAnimationFinish != null)
-                {
-                    OnAnimationFinish();
-                }
-            }).Start();
+            };
+
+            DoubleAnimation yAnim = new DoubleAnimation();
+            yAnim.From = YAnimationFrom;
+            yAnim.To = YAnimationTo;
+            yAnim.Duration = new Duration(TimeSpan.FromSeconds(Duration));
+            yAnim.BeginTime = TimeSpan.FromSeconds(Delay);
+
+            X1 = X2 = XAnimationFrom;
+            Y1 = Y2 = YAnimationFrom;
+            BeginAnimation(X2Property, xAnim);
+            BeginAnimation(Y2Property, yAnim);
         }
 
-        //public void BeginAnimation(Point from, Point to, double second, OnFinish onFinish = null)
-        //{
-        //    X1 = X2 = from.X;
-        //    Y1 = Y2 = from.Y;
-        //    double frame = 60;
-        //    double xDelta = to.X - from.X;
-        //    double yDelta = to.Y - from.Y;
-        //    int count = (int)(second * frame);
-
-        //    new Thread(delegate ()
-        //    {
-        //        for (int i = 0; i < count; ++i)
-        //        {
-        //            X2 += xDelta / count;
-        //            Y2 += yDelta / count;
-        //            Thread.Sleep(16);
-        //        }
-        //        if (onFinish != null)
-        //        {
-        //            onFinish();
-        //        }
-        //    }).Start();    
-        //}
+        protected override Freezable CreateInstanceCore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

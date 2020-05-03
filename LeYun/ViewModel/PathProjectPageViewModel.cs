@@ -19,6 +19,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPFCustomControls;
@@ -250,22 +251,25 @@ namespace LeYun.ViewModel
             // 清空车辆运行时信息
             CarRuntimeInfos.Clear();
 
-            // 演示时长
-            double duration = GlobalData.DemoDuration;
+            // 演示时长 s
+            double totalDemoTime = GlobalData.DemoDuration;
 
-            // 获取配送总时间
-            double totalTime = Record.GetTotalTime();
+            // 获取配送总时间 s
+            double totalTime = Record.GetTotalTime() * 60;
 
             // 计算时间缩放比例
-            double rate = duration / 60 / totalTime;
+            double rate = totalDemoTime / totalTime;
+
+            // 计算节点停留时间 s
+            double nodeStayTime = Record.NodeStayTime * rate * 60;
 
             // 获取配送时间最长的车辆编号
             int index = Record.GetSlowestCarIndex();
 
-            // 存储动画开始的线条
+            //存储动画开始的线条
             List<int> startIndex = new List<int>();
 
-            // 设置动画
+            //设置动画
             for (int iCar = 0; iCar < Record.Paths.Count; ++iCar)
             {
                 int iCarTemp = iCar;
@@ -297,30 +301,47 @@ namespace LeYun.ViewModel
                     int iNode = Record.Paths[iCar][i];
 
                     // 设置动画
-                    Segments[iStart + i].SetAnimation(last.X, last.Y, Record.Nodes[iNode].X, Record.Nodes[iNode].Y, last.Distance(Record.Nodes[iNode]) / Record.CarSpeed * rate * 3600);
-                    int t = i;
-                    Segments[iStart + i].OnAnimationFinish = delegate
+                    Segments[iStart + i].XAnimationFrom = last.X;
+                    Segments[iStart + i].YAnimationFrom = last.Y;
+                    Segments[iStart + i].XAnimationTo = Record.Nodes[iNode].X;
+                    Segments[iStart + i].YAnimationTo = Record.Nodes[iNode].Y;
+                    Segments[iStart + i].Duration = last.Distance(Record.Nodes[iNode]) / Record.CarSpeed * rate * 3600;
+                    if (i != 0)
                     {
-                        if (Record.NodeStayTime > 0)
-                        {
-                            Thread.Sleep((int)(Record.NodeStayTime * rate * 60 * 1000));
-                        }
+                        Segments[iStart + i].Delay = nodeStayTime;
+                    }
+
+                    int t = i;
+                    Segments[iStart + i].AnimationCompleted = delegate
+                    {
+                        // 启动下一线条动画
                         Segments[iStart + t + 1].BeginAnimation();
 
                         // 更新车辆完成百分比
-                        CarRuntimeInfos.AddCompletedPercent(iCarTemp, 1.0 / Record.Paths[iCarTemp].Count);
+                        new Thread(delegate() 
+                        {
+                            CarRuntimeInfos.AddCompletedPercent(iCarTemp, 1.0 / Record.Paths[iCarTemp].Count);
+                        }).Start();
                     };
 
                     last = Record.Nodes[iNode];
                 }
 
                 // 设置最后一段线条的动画
-                Segments[Segments.Count - 1].SetAnimation(last.X, last.Y, Record.Nodes[0].X, Record.Nodes[0].Y, last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600);
-                
-                Segments[Segments.Count - 1].OnAnimationFinish = delegate
+                Segments[Segments.Count - 1].XAnimationFrom = last.X;
+                Segments[Segments.Count - 1].YAnimationFrom = last.Y;
+                Segments[Segments.Count - 1].XAnimationTo = Record.Nodes[0].X;
+                Segments[Segments.Count - 1].YAnimationTo = Record.Nodes[0].Y;
+                Segments[Segments.Count - 1].Duration = last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600;
+                Segments[Segments.Count - 1].Delay = nodeStayTime;
+                Segments[Segments.Count - 1].AnimationCompleted = delegate
                 {
                     // 更新车辆运行时信息
-                    CarRuntimeInfos.SetFinishedState(iCarTemp, true);
+                    new Thread(delegate ()
+                    {
+                        CarRuntimeInfos.SetFinishedState(iCarTemp, true);
+                    }).Start();
+                    
 
                     // 如果是最后一辆车，则演示结束
                     if (iCarTemp == index)
