@@ -42,8 +42,8 @@ namespace LeYun.ViewModel
         public int CurrentRecordIndex
         {
             get { return currentRecordIndex; }
-            set 
-            { 
+            set
+            {
                 currentRecordIndex = value;
                 RaisePropertyChanged("CurrentRecordIndex");
                 RaisePropertyChanged("CurrentRecord");
@@ -55,8 +55,8 @@ namespace LeYun.ViewModel
         public ProblemRecord CurrentRecord
         {
             get { return currentRecord; }
-            set 
-            { 
+            set
+            {
                 currentRecord = value;
                 RaisePropertyChanged("CurrentRecord");
             }
@@ -83,7 +83,7 @@ namespace LeYun.ViewModel
                             SearchResult.Add(Records[i]);
                         }
                     }
-                }                
+                }
 
                 RaisePropertyChanged("SearchText");
                 RaisePropertyChanged("SearchResult");
@@ -110,7 +110,7 @@ namespace LeYun.ViewModel
 
         // 删除记录
         private void DeleteRecord(object obj)
-        {            
+        {
             FileInfo file = new FileInfo(CurrentRecord.Filename);
             file.Delete();
             Records.Remove(CurrentRecord);
@@ -237,118 +237,85 @@ namespace LeYun.ViewModel
         // 加载时读取所有历史记录
         private void LoadRecords(object obj)
         {
-            try
-            {
-                // 读取所有历史记录
-                DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
-                FileInfo[] files = dir.GetFiles();
-
-                List<ProblemRecord> records = new List<ProblemRecord>();
-                for (int i = 0; i < files.Length; ++i)
-                {
-                    if (files[i].Extension == ".rec")
-                    {
-                        records.Add(new ProblemRecord());
-                        records[i].ReadFromFile(files[i].FullName);
-                        records[i].Filename = files[i].FullName;
-                    }                    
-                }
-
-                // 按照时间先后排序
-                records.Sort(delegate (ProblemRecord r1, ProblemRecord r2) 
-                {
-                    return r2.CreateTime.CompareTo(r1.CreateTime);
-                });
-
-                Records.Clear();
-                for (int i = 0; i < records.Count; ++i)
-                {
-                    Records.Add(records[i]);
-                }
-
-                // 清空搜索词
-                SearchText = "";
-
-                // 清空搜索结果
-                SearchResult.Clear();
-
-                // 默认选择第一项
-                if (Records.Count > 0)
-                {
-                    CurrentRecordIndex = 0;
-                }
-                else
-                {
-                    CurrentRecordIndex = -1;
-                }
-            }
-            catch (Exception e)
-            {
-                Records.Clear();
-                MsgBox.Show("读取记录出错！\n" + e.Message);
-            }
-
-            // 计算相关数据
-            /*for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
-            {
-                Records[iRecord].UseCarCount = 0;
-                Records[iRecord].TotalTime = -1;
-                Records[iRecord].TotalDis = 0;
-                Records[iRecord].TotalLoadRate = 0;
-                for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
-                {
-                    if (Records[iRecord].Paths[iCar].Count > 0)
-                    {
-                        Records[iRecord].UseCarCount++;
-                        Records[iRecord].Cars[iCar].Weight = 0;
-                        Records[iRecord].Cars[iCar].Dis = 0;
-                        Point last = new Point(Records[iRecord].Nodes[0].X, Records[iRecord].Nodes[0].Y);
-                        for (int i = 0; i < Records[iRecord].Paths[iCar].Count; ++i)
-                        {
-                            int iNode = Records[iRecord].Paths[iCar][i];
-                            Records[iRecord].Cars[iCar].Weight += Records[iRecord].Nodes[iNode].Demand;
-                            Records[iRecord].Cars[iCar].Dis += Math.Sqrt((Records[iRecord].Nodes[iNode].X - last.X) * (Records[iRecord].Nodes[iNode].X - last.X) + (Records[iRecord].Nodes[iNode].Y - last.Y) * (Records[iRecord].Nodes[iNode].Y - last.Y));
-                            last = new Point(Records[iRecord].Nodes[iNode].X, Records[iRecord].Nodes[iNode].Y);
-                            Records[iRecord].Cars[iCar].Path.Add(Records[iRecord].Nodes[iNode]);
-                        }
-                        Records[iRecord].TotalLoadRate += Records[iRecord].Cars[iCar].LoadRate;
-                        Records[iRecord].Cars[iCar].Dis += Math.Sqrt((Records[iRecord].Nodes[0].X - last.X) * (Records[iRecord].Nodes[0].X - last.X) + (Records[iRecord].Nodes[0].Y - last.Y) * (Records[iRecord].Nodes[0].Y - last.Y));
-                        Records[iRecord].TotalDis += Records[iRecord].Cars[iCar].Dis;
-                        Records[iRecord].Cars[iCar].Time = Records[iRecord].Cars[iCar].Dis / Records[iRecord].CarSpeed * 60 + Records[iRecord].NodeStayTime * Records[iRecord].Paths[iCar].Count;
-                        Records[iRecord].TotalTime = Math.Max(Records[iRecord].TotalTime, Records[iRecord].Cars[iCar].Time);
-                    }
-                }
-
-
-                Records[iRecord].TotalLoadRate /= Records[iRecord].UseCarCount;
-            }*/
-
-            // 计算相关数据
             new Thread(delegate ()
-            {                
-                for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                 {
-                    Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
-                    Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
-                    Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
-                    Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
-
-                    for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
+                    // 读取文件
+                    try
                     {
-                        Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
-                        Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
-                        Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
-                        Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
+                        // 读取所有历史记录
+                        DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
+                        FileInfo[] files = dir.GetFiles();
+
+                        List<ProblemRecord> records = new List<ProblemRecord>();
+                        for (int i = 0; i < files.Length; ++i)
+                        {
+                            if (files[i].Extension == ".rec")
+                            {
+                                records.Add(new ProblemRecord());
+                                records[i].ReadFromFile(files[i].FullName);
+                                records[i].Filename = files[i].FullName;
+                            }
+                        }
+
+                        // 按照时间先后排序
+                        records.Sort(delegate (ProblemRecord r1, ProblemRecord r2)
+                        {
+                            return r2.CreateTime.CompareTo(r1.CreateTime);
+                        });
+
+                        Records.Clear();
+                        for (int i = 0; i < records.Count; ++i)
+                        {
+                            Records.Add(records[i]);
+                        }
+
+                        // 清空搜索词
+                        SearchText = "";
+
+                        // 清空搜索结果
+                        SearchResult.Clear();
+
+                        // 默认选择第一项
+                        if (Records.Count > 0)
+                        {
+                            CurrentRecordIndex = 0;
+                        }
+                        else
+                        {
+                            CurrentRecordIndex = -1;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Records.Clear();
+                        MsgBox.Show("读取记录出错！\n" + e.Message);
                     }
 
-                    for (int iNode = 1; iNode < Records[iRecord].Nodes.Count; ++iNode)
+                    // 计算相关数据
+                    for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
                     {
-                        Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
+                        Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
+                        Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
+                        Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
+                        Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
+
+                        for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
+                        {
+                            Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
+                            Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
+                            Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
+                            Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
+                        }
+
+                        for (int iNode = 1; iNode < Records[iRecord].Nodes.Count; ++iNode)
+                        {
+                            Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
+                        }
                     }
-                }
+                }));
             }).Start();
-
-            
         }
     }
 
