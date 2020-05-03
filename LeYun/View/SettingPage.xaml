@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1120"
       xmlns:model="clr-namespace:LeYun.Model"
-      x:Name="page" Background="White">
+      x:Name="page" Background="#f2f2f2">
 
     <Page.DataContext>
         <viewmodel:SettingPageViewModel />
@@ -18,13 +18,386 @@
         <viewmodel:LineWidthConverter x:Key="lineWidthConverter"/>
         <viewmodel:ErrorTipVisibilityConverter x:Key="errorTipVisibilityConverter"/>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
+        <Style x:Key="TabRadioButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border x:Name="border" Background="Transparent" BorderBrush="#e5e5e5" BorderThickness="0 0 0 1">
+                            <Grid>
+                                <ContentPresenter Margin="10 15 10 15" HorizontalAlignment="Left"/>
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf054;" HorizontalAlignment="Right" Margin="0 0 10 0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#e5e5e5"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#d0d0d0"/>
+                                <!--<Setter Property="Foreground" Value="White"/>-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
-    <ScrollViewer>
-        <Grid Margin="20">
-            <StackPanel>
-                <!--外观-->
+    <Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!--选项卡-->
+        <Border Grid.Column="0" Background="#f2f2f2" BorderBrush="#e4e4e4" BorderThickness="1"/>
+        <StackPanel Grid.Column="0"  Margin="0 0 0 0">
+            <RadioButton x:Name="CanvasSettingTab" Style="{StaticResource TabRadioButtonStyle}" Width="200" IsChecked="True">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf044;"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="画布设置" Margin="10 0 0 0"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="DemoSettingTab" Style="{StaticResource TabRadioButtonStyle}" Width="200">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf008;"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示设置" Margin="10 0 0 0"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="StoreSettingTab" Style="{StaticResource TabRadioButtonStyle}" Width="200">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf187;"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="存储设置" Margin="10 0 0 0"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="OtherSettingTab" Style="{StaticResource TabRadioButtonStyle}" Width="200">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="其它设置" Margin="10 0 0 0"/>
+                </StackPanel>
+            </RadioButton>
+        </StackPanel>
+
+        <!--设置内容-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--画布设置提示信息-->
+            <Border Grid.Row="0" Background="White" BorderBrush="#e5e5e5" BorderThickness="0 0 0 1"
+                    Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
+                    Visibility="{Binding ElementName=CanvasSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置画布元素尺寸以及坐标范围" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Border>
+
+            <!--演示设置提示信息-->
+            <Border Grid.Row="0" Background="White"
+                    Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
+                    Visibility="{Binding ElementName=DemoSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置动画演示功能的细节" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Border>
+
+            <!--存储设置提示信息-->
+            <Border Grid.Row="0" Background="White"
+                    Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
+                    Visibility="{Binding ElementName=StoreSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置历史记录存放位置，以及存储空间清理" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Border>
+
+            <!--其它设置提示信息-->
+            <Border Grid.Row="0" Background="White"
+                    Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
+                    Visibility="{Binding ElementName=OtherSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="包括软件激活等杂项设置" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Border>
+
+            <!--画布设置内容-->
+            <Grid Grid.Row="1" Margin="20 20 0 0" Background="#f2f2f2"
+              Visibility="{Binding ElementName=CanvasSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                 <StackPanel>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="画布元素"/>
+                    <!--路径线条粗细-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
+                        <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
+                                Value="{Binding Path=(model:GlobalData.LineThickness)}"/>
+                        <Border Width="50" BorderBrush="Black" VerticalAlignment="Center" Margin="10 0 0 0"
+                                BorderThickness="{Binding ElementName=lineThickness, Path=Value, Converter={StaticResource lineWidthConverter}}"/>
+                    </StackPanel>
+                    <!--节点按钮直径-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
+                        <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
+                            Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
+                        <Thumb Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
+                            Width="{Binding ElementName=buttonWidth, Path=Value}"
+                            Height="{Binding ElementName=buttonWidth, Path=Value}"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" Margin="0 30 0 0"/>
+                    <!--X坐标范围-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
+                        <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center" Background="Transparent">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:NodeMaxXValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                            Visibility="{Binding ElementName=xRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=xRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--Y坐标范围-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
+                        <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center" Background="Transparent">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:NodeMaxYValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=yRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=yRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--警告-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="超出坐标范围的节点不会显示在画布上"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!--演示设置内容-->
+            <Grid Grid.Row="1" Margin="20 20 0 0"
+                  Visibility="{Binding ElementName=DemoSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel>
+                    <!--演示时长-->
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
+                        <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                            <TextBox.Text>
+                                <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
+                                    <Binding.ValidationRules>
+                                        <viewmodel:DemoDurationValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="s" Margin="5 0 0 0"/>
+                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=duration, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=duration, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--警告-->
+
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="实际演示时长取决于电脑配置"/>
+                    </StackPanel>
+
+                    <!--演示结束是否弹出消息框-->
+                    <ToggleButton Margin="0 20 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示结束后弹出提示"
+                              IsChecked="{Binding Path=(model:GlobalData.PopupAfterDemo)}"/>
+                </StackPanel>
+            </Grid>
+
+            <!--存储设置内容-->
+            <Grid Grid.Row="1" Margin="20 20 0 0"
+              Visibility="{Binding ElementName=StoreSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel>
+                    <!--记录文件存储路径-->
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径" />
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
+                         Text="{Binding CurrentRecordPath}"/>
+                        <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" Content="更改"
+                        Command="{Binding ChangeRecordLocationCommand}"/>
+                    </StackPanel>
+                    <!--警告-->
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="改变存储路径后，原来的历史记录文件会移动到新文件夹"/>
+                    </StackPanel>
+                    <!--清空历史记录-->
+                    <Button Style="{StaticResource ButtonStyle}" Content="清空历史记录" Margin="0 30 0 0" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+
+            <!--其它设置内容-->
+            <Grid Grid.Row="1" Margin="20 20 0 0"
+              Visibility="{Binding ElementName=OtherSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+                <StackPanel
+                    Visibility="{Binding Path=(model:GlobalData.IsActive), Converter={StaticResource activeVisibleConverter}}">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="软件激活"/>
+                    <TextBlock Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" Text="当前软件版本为试用版" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="试用版不包含动画演示、车辆详情和历史记录搜索功能，且包含广告"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
+                        <TextBox x:Name="key" Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" Text="XXX-XXX-XXX"/>
+                        <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" 
+                            Content="激活"
+                            Command="{Binding ActivateCommand}"
+                            CommandParameter="{Binding ElementName=key, Path=Text}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--画布设置内容-->
+        <!--<Grid Grid.Row="1" Margin="50"
+              Visibility="{Binding ElementName=CanvasSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="画布元素"/>
+                --><!--路径线条粗细--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="路径线条粗细："/>
+                    <Slider x:Name="lineThickness" Style="{StaticResource SliderStyle}" Width="200" Minimum="1" Maximum="5" 
+                            Value="{Binding Path=(model:GlobalData.LineThickness)}"/>
+                    <Border Width="50" BorderBrush="Black" VerticalAlignment="Center" Margin="10 0 0 0"
+                            BorderThickness="{Binding ElementName=lineThickness, Path=Value, Converter={StaticResource lineWidthConverter}}"/>
+                </StackPanel>
+                --><!--节点按钮直径--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点按钮直径："/>
+                    <Slider x:Name="buttonWidth" Style="{StaticResource SliderStyle}" Width="200" Minimum="10" Maximum="20" 
+                            Value="{Binding Path=(model:GlobalData.NodeButtonWidth)}"/>
+                    <Thumb Style="{StaticResource NodeButtonStyle}" Margin="10 0 0 0"
+                            Width="{Binding ElementName=buttonWidth, Path=Value}"
+                            Height="{Binding ElementName=buttonWidth, Path=Value}"/>
+                </StackPanel>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" Margin="0 30 0 0"/>
+                --><!--X坐标范围--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
+                    <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
+                                <Binding.ValidationRules>
+                                    <viewmodel:NodeMaxXValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=xRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=xRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+                --><!--Y坐标范围--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
+                    <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
+                                <Binding.ValidationRules>
+                                    <viewmodel:NodeMaxYValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=yRange, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=yRange, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+                --><!--警告--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="超出坐标范围的节点不会显示在画布上"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>-->
+
+        <!--演示设置内容-->
+        <!--<Grid Grid.Row="1" Margin="50"
+              Visibility="{Binding ElementName=DemoSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+            <StackPanel>
+                --><!--演示时长--><!--
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
+                    <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
+                                <Binding.ValidationRules>
+                                    <viewmodel:DemoDurationValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="s" Margin="5 0 0 0"/>
+                    <StackPanel Orientation="Horizontal" Margin="10 0 0 0" 
+                                Visibility="{Binding ElementName=duration, Path=ToolTip, Converter={StaticResource errorTipVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf057;" Foreground="#dd4f43"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ElementName=duration, Path=ToolTip}" Foreground="#838383" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+                --><!--警告--><!--
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="实际演示时长取决于电脑配置"/>
+                </StackPanel>
+                --><!--演示结束是否弹出消息框--><!--
+                <ToggleButton Margin="0 20 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示结束后弹出提示"
+                              IsChecked="{Binding Path=(model:GlobalData.PopupAfterDemo)}"/>
+            </StackPanel>
+        </Grid>-->
+
+        <!--存储设置内容-->
+        <!--<Grid Grid.Row="1"
+              Visibility="{Binding ElementName=StoreSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="存储设置"/>
+        </Grid>-->
+
+        <!--其它设置内容-->
+        <!--<Grid Grid.Row="1"
+              Visibility="{Binding ElementName=OtherSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="其它设置"/>
+        </Grid>-->
+    </Grid>
+
+    <!--<WrapPanel Margin="20" Orientation="Horizontal">
+                --><!--外观--><!--
+                <StackPanel Margin="20 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="外观"/>
                     <StackPanel Margin="0 20 0 0">
                         <StackPanel Orientation="Horizontal">
@@ -46,8 +419,8 @@
                 </StackPanel>
                 
 
-                <!--坐标范围-->
-                <StackPanel Margin="0 50 0 0">
+                --><!--坐标范围--><!--
+                <StackPanel Margin="20 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="坐标范围" />
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
@@ -90,8 +463,8 @@
                 </StackPanel>
                 
 
-                <!--动画演示-->
-                <StackPanel Margin="0 50 0 0">
+                --><!--动画演示--><!--
+                <StackPanel Margin="20 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="动画演示"/>
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
@@ -120,8 +493,8 @@
                 </StackPanel>
                 
 
-                <!--记录文件存储路径-->
-                <StackPanel Margin="0 50 0 0">
+                --><!--记录文件存储路径--><!--
+                <StackPanel Margin="20 20 0 0">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="记录文件存储路径" />
                     <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                         <TextBox Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" IsReadOnly="True"
@@ -131,8 +504,8 @@
                     </StackPanel>
                 </StackPanel>
 
-                <!--软件激活-->
-                <StackPanel Margin="0 50 0 0"
+                --><!--软件激活--><!--
+                <StackPanel Margin="20 20 0 0"
                     Visibility="{Binding Path=(model:GlobalData.IsActive), Converter={StaticResource activeVisibleConverter}}">
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="软件激活"/>
                     <TextBlock Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" Text="当前软件版本为试用版" HorizontalAlignment="Left"/>
@@ -149,7 +522,5 @@
                             CommandParameter="{Binding ElementName=key, Path=Text}"/>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
-    </ScrollViewer>
+        </WrapPanel>-->
 </Page>

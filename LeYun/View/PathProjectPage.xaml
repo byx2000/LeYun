@@ -92,7 +92,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf108;"/>
+                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf008;"/>
                         <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="动画演示" FontSize="12" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>

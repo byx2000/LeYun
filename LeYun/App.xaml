@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:LeYun" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
              xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
-             xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
+             xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg" 
+             xmlns:model="clr-namespace:LeYun.Model" xmlns:commonconverter="clr-namespace:LeYun.Model.CommonConverter"
              StartupUri="View/Dlg/Splash.xaml">
 
     <!--StartupUri="View/MainWindow.xaml"-->
@@ -14,6 +15,7 @@
                 <ResourceDictionary>
                     
                     <!--转换器-->
+                    <commonconverter:BoolToVisibility x:Key="BoolToVisibility"/>
                     <viewmodel:NodeButtonMarginConverter x:Key="nodeButtonMarginConverter"/>
                     <viewmodel:NodeButtonXConverter x:Key="nodeButtonXConverter"/>
                     <viewmodel:NodeButtonYConverter x:Key="nodeButtonYConverter"/>

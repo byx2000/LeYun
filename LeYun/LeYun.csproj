@@ -105,6 +105,7 @@
     <Compile Include="Model\CarCollection.cs" />
     <Compile Include="Model\CarRuntimeInfo.cs" />
     <Compile Include="Model\CarRuntimeInfoCollection.cs" />
+    <Compile Include="Model\CommonConverter.cs" />
     <Compile Include="Model\GlobalData.cs" />
     <Compile Include="Model\Node.cs" />
     <Compile Include="Model\NodeCollection.cs" />
