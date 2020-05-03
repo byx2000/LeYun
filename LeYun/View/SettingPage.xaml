@@ -96,35 +96,35 @@
                     Visibility="{Binding ElementName=CanvasSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
                     <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置画布元素尺寸以及坐标范围" Margin="10 0 0 0"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置画布相关细节" Margin="10 0 0 0"/>
                 </StackPanel>
             </Border>
 
             <!--演示设置提示信息-->
-            <Border Grid.Row="0" Background="White"
+            <Border Grid.Row="0" Background="White" BorderBrush="#e5e5e5" BorderThickness="0 0 0 1"
                     Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
                     Visibility="{Binding ElementName=DemoSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
                     <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置动画演示功能的细节" Margin="10 0 0 0"/>
                 </StackPanel>
             </Border>
 
             <!--存储设置提示信息-->
-            <Border Grid.Row="0" Background="White"
+            <Border Grid.Row="0" Background="White" BorderBrush="#e5e5e5" BorderThickness="0 0 0 1"
                     Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
                     Visibility="{Binding ElementName=StoreSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
                     <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="设置历史记录存放位置，以及存储空间清理" Margin="10 0 0 0"/>
                 </StackPanel>
             </Border>
 
             <!--其它设置提示信息-->
-            <Border Grid.Row="0" Background="White"
+            <Border Grid.Row="0" Background="White" BorderBrush="#e5e5e5" BorderThickness="0 0 0 1"
                     Height="{Binding ElementName=CanvasSettingTab, Path=ActualHeight}"
                     Visibility="{Binding ElementName=OtherSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 0 0 0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20 0 0 0">
                     <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20" Foreground="{StaticResource ThemeColor}"/>
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="包括软件激活等杂项设置" Margin="10 0 0 0"/>
                 </StackPanel>
