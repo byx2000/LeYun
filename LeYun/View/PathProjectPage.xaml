@@ -190,6 +190,36 @@
             </StackPanel>
         </Grid>
         
+        <!--演示时在操作区域显示时间-->
+        <Grid Grid.Row="0" Background="#666666"
+              Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}">
+            
+            <custom:ProgressBar Foreground="#ff7573" Background="#666666" EnableAnimation="False" 
+                                Value="{Binding CurrentDemoProgress.Value}"/>
+
+            <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf017;" Foreground="White" FontSize="50"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30" Margin="20 0 0 0" Text="配送时间："/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30"
+                        Text="{Binding CurrentTime.Value, StringFormat={}{0:F2} min}"/>
+            </StackPanel>-->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf017;" Foreground="White" FontSize="50"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30" Margin="20 0 0 0" Text="配送时间："/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30"
+                        Text="{Binding CurrentTime.Value, StringFormat={}{0:F2} min}"/>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
         
 
         <!--计算显示区域-->

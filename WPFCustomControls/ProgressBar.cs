@@ -66,13 +66,16 @@ namespace WPFCustomControls
         // 播放动画
         public void PlayAnimation()
         {
-            DoubleAnimation animation = new DoubleAnimation();
-            animation.From = 0;
-            animation.To = frontBar.ActualWidth;
-            animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-            animation.EasingFunction = new CircleEase();
-            animation.FillBehavior = FillBehavior.Stop;
-            frontBar.BeginAnimation(Border.WidthProperty, animation);
+            if (frontBar != null)
+            {
+                DoubleAnimation animation = new DoubleAnimation();
+                animation.From = 0;
+                animation.To = frontBar.ActualWidth;
+                animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+                animation.EasingFunction = new CircleEase();
+                animation.FillBehavior = FillBehavior.Stop;
+                frontBar.BeginAnimation(Border.WidthProperty, animation);
+            }
         }
 
         // 静态构造函数

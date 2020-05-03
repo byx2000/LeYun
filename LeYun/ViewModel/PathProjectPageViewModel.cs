@@ -171,6 +171,31 @@ namespace LeYun.ViewModel
             }
         }
 
+        // 当前时间（仅用于演示）
+        private AnimatableValue currentTime = new AnimatableValue();
+        public AnimatableValue CurrentTime
+        {
+            get { return currentTime; }
+            set 
+            { 
+                currentTime = value;
+                RaisePropertyChanged("CurrentTime");
+            }
+        }
+
+        // 当前演示进度（仅用于演示）
+        private AnimatableValue currentDemoPeogress = new AnimatableValue();
+        public AnimatableValue CurrentDemoProgress
+        {
+            get { return currentDemoPeogress; }
+            set 
+            { 
+                currentDemoPeogress = value;
+                RaisePropertyChanged("CurrentDemoProgress");
+            }
+        }
+
+
         // 当前选中节点下标
         private int currentNodeIndex;
         public int CurrentNodeIndex
@@ -359,6 +384,21 @@ namespace LeYun.ViewModel
                 };
             }
 
+            //启动时间动画
+            DoubleAnimation timeAnim = new DoubleAnimation();
+            timeAnim.From = 0;
+            timeAnim.To = totalTime / 60;
+            timeAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
+            CurrentTime.BeginAnimation(AnimatableValue.ValueProperty, timeAnim);
+
+            // 启动演示进度动画
+            DoubleAnimation progressAnim = new DoubleAnimation();
+            progressAnim.From = 0;
+            progressAnim.To = 1;
+            progressAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
+            CurrentDemoProgress.BeginAnimation(AnimatableValue.ValueProperty, progressAnim);
+
+            // 启动线条动画
             for (int i = 0; i < startIndex.Count; ++i)
             {
                 Segments[startIndex[i]].BeginAnimation();

@@ -100,6 +100,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Lib\VRPSolver.cs" />
+    <Compile Include="Model\AnimatableValue.cs" />
     <Compile Include="Model\Car.cs" />
     <Compile Include="Model\CarCollection.cs" />
     <Compile Include="Model\CarRuntimeInfo.cs" />
