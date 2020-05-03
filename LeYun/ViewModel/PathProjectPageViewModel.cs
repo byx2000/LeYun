@@ -242,6 +242,7 @@ namespace LeYun.ViewModel
             Segments.Clear();
             DragDeltaEventArgs args = (DragDeltaEventArgs)obj;
             Node node = (Node)((Thumb)(args.Source)).DataContext;
+            CurrentNodeIndex = node.ID;
             node.X += args.HorizontalChange / CanvasWidth * GlobalData.MaxNodeX;
             node.Y += args.VerticalChange / CanvasHeight * GlobalData.MaxNodeY;
         }
