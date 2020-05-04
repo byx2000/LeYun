@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
              xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg" 
              xmlns:model="clr-namespace:LeYun.Model" xmlns:commonconverter="clr-namespace:LeYun.Model.CommonConverter"
-             StartupUri="View/Dlg/Splash.xaml">
+             StartupUri="View/Dialog/Splash.xaml">
 
     <!--StartupUri="View/MainWindow.xaml"-->
     <Application.Resources>

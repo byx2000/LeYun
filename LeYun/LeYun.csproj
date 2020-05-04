@@ -72,7 +72,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Img\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero2" />
@@ -99,7 +99,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Lib\VRPSolver.cs" />
+    <Compile Include="Kernel\VRPSolver.cs" />
     <Compile Include="Model\AnimatableValue.cs" />
     <Compile Include="Model\Car.cs" />
     <Compile Include="Model\CarCollection.cs" />
@@ -112,168 +112,168 @@
     <Compile Include="Model\ProblemRecord.cs" />
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Util.cs" />
-    <Compile Include="ViewModel\AboutPageViewModel.cs" />
-    <Compile Include="ViewModel\ComboBoxBehavior.cs" />
-    <Compile Include="ViewModel\DelegateCommand.cs" />
-    <Compile Include="ViewModel\DlgViewModelBase.cs" />
-    <Compile Include="ViewModel\Dlg\AlgoParamSetDlgViewMode.cs" />
-    <Compile Include="ViewModel\Dlg\CarDetailDlgViewModel.cs" />
-    <Compile Include="ViewModel\Dlg\CarInfoDlgViewModel.cs" />
-    <Compile Include="ViewModel\Dlg\NodeDetailDlgViewModel.cs" />
-    <Compile Include="ViewModel\Dlg\NodeInfoDlgViewModel.cs" />
-    <Compile Include="ViewModel\Dlg\RenameDlgViewModel.cs" />
-    <Compile Include="ViewModel\Dlg\RunParamSetDlgViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\MouseBehaviour.cs" />
-    <Compile Include="ViewModel\MouseObserver.cs" />
-    <Compile Include="ViewModel\PathProjectPageViewModel.cs" />
-    <Compile Include="ViewModel\RouteRecordPageViewModel.cs" />
-    <Compile Include="ViewModel\SettingPageViewModel.cs" />
-    <Compile Include="ViewModel\SizeObserver.cs" />
-    <Compile Include="ViewModel\ThumbBehavior.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="ViewModel\WindowBehavior.cs" />
-    <Compile Include="View\Dlg\AdDlg.xaml.cs">
+    <Compile Include="ViewModel\Page\AboutPageViewModel.cs" />
+    <Compile Include="ViewModel\Behavior\ComboBoxBehavior.cs" />
+    <Compile Include="ViewModel\Basic\DelegateCommand.cs" />
+    <Compile Include="ViewModel\Basic\DlgViewModelBase.cs" />
+    <Compile Include="ViewModel\Dialog\AlgoParamSetDlgViewMode.cs" />
+    <Compile Include="ViewModel\Dialog\CarDetailDlgViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\CarInfoDlgViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\NodeDetailDlgViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\NodeInfoDlgViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\RenameDlgViewModel.cs" />
+    <Compile Include="ViewModel\Dialog\RunParamSetDlgViewModel.cs" />
+    <Compile Include="ViewModel\MainWindow\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Behavior\MouseBehaviour.cs" />
+    <Compile Include="ViewModel\Observer\MouseObserver.cs" />
+    <Compile Include="ViewModel\Page\PathProjectPageViewModel.cs" />
+    <Compile Include="ViewModel\Page\RouteRecordPageViewModel.cs" />
+    <Compile Include="ViewModel\Page\SettingPageViewModel.cs" />
+    <Compile Include="ViewModel\Observer\SizeObserver.cs" />
+    <Compile Include="ViewModel\Behavior\ThumbBehavior.cs" />
+    <Compile Include="ViewModel\Basic\ViewModelBase.cs" />
+    <Compile Include="ViewModel\Behavior\WindowBehavior.cs" />
+    <Compile Include="View\Dialog\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\BusinessDlg.xaml.cs">
+    <Compile Include="View\Dialog\BusinessDlg.xaml.cs">
       <DependentUpon>BusinessDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\DevelopmentTeamDlg.xaml.cs">
+    <Compile Include="View\Dialog\DevelopmentTeamDlg.xaml.cs">
       <DependentUpon>DevelopmentTeamDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\HelpDlg.xaml.cs">
+    <Compile Include="View\Dialog\HelpDlg.xaml.cs">
       <DependentUpon>HelpDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\UpdateLogDlg.xaml.cs">
+    <Compile Include="View\Dialog\UpdateLogDlg.xaml.cs">
       <DependentUpon>UpdateLogDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingPage.xaml.cs">
+    <Compile Include="View\Page\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\AlgoParamSetDlg.xaml.cs">
+    <Compile Include="View\Dialog\AlgoParamSetDlg.xaml.cs">
       <DependentUpon>AlgoParamSetDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\CarDetailDlg.xaml.cs">
+    <Compile Include="View\Dialog\CarDetailDlg.xaml.cs">
       <DependentUpon>CarDetailDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\CarInfoDlg.xaml.cs">
+    <Compile Include="View\Dialog\CarInfoDlg.xaml.cs">
       <DependentUpon>CarInfoDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\LoadingDialog.xaml.cs">
+    <Compile Include="View\Dialog\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\MsgBox.xaml.cs">
+    <Compile Include="View\Dialog\MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\NodeDetailDlg.xaml.cs">
+    <Compile Include="View\Dialog\NodeDetailDlg.xaml.cs">
       <DependentUpon>NodeDetailDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\NodeInfoDlg.xaml.cs">
+    <Compile Include="View\Dialog\NodeInfoDlg.xaml.cs">
       <DependentUpon>NodeInfoDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\RenameDlg.xaml.cs">
+    <Compile Include="View\Dialog\RenameDlg.xaml.cs">
       <DependentUpon>RenameDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\RunParamSetDlg.xaml.cs">
+    <Compile Include="View\Dialog\RunParamSetDlg.xaml.cs">
       <DependentUpon>RunParamSetDlg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Dlg\Splash.xaml.cs">
+    <Compile Include="View\Dialog\Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\PathProjectPage.xaml.cs">
+    <Compile Include="View\Page\PathProjectPage.xaml.cs">
       <DependentUpon>PathProjectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RouteRecordPage.xaml.cs">
+    <Compile Include="View\Page\RouteRecordPage.xaml.cs">
       <DependentUpon>RouteRecordPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AboutPage.xaml.cs">
+    <Compile Include="View\Page\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\Dlg\AdDlg.xaml">
+    <Page Include="View\Dialog\AdDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\BusinessDlg.xaml">
+    <Page Include="View\Dialog\BusinessDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\DevelopmentTeamDlg.xaml">
+    <Page Include="View\Dialog\DevelopmentTeamDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\HelpDlg.xaml">
+    <Page Include="View\Dialog\HelpDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\UpdateLogDlg.xaml">
+    <Page Include="View\Dialog\UpdateLogDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SettingPage.xaml">
+    <Page Include="View\Page\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\AlgoParamSetDlg.xaml">
+    <Page Include="View\Dialog\AlgoParamSetDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\CarDetailDlg.xaml">
+    <Page Include="View\Dialog\CarDetailDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\CarInfoDlg.xaml">
+    <Page Include="View\Dialog\CarInfoDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\LoadingDialog.xaml">
+    <Page Include="View\Dialog\LoadingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\MsgBox.xaml">
+    <Page Include="View\Dialog\MsgBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\NodeDetailDlg.xaml">
+    <Page Include="View\Dialog\NodeDetailDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\NodeInfoDlg.xaml">
+    <Page Include="View\Dialog\NodeInfoDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\RenameDlg.xaml">
+    <Page Include="View\Dialog\RenameDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\RunParamSetDlg.xaml">
+    <Page Include="View\Dialog\RunParamSetDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Dlg\Splash.xaml">
+    <Page Include="View\Dialog\Splash.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\MainWindow\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PathProjectPage.xaml">
+    <Page Include="View\Page\PathProjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RouteRecordPage.xaml">
+    <Page Include="View\Page\RouteRecordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AboutPage.xaml">
+    <Page Include="View\Page\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -327,7 +327,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\icon.png" />
-    <Resource Include="icon.ico" />
+    <Resource Include="Img\icon.ico" />
     <Resource Include="Img\p2.png" />
     <Resource Include="Img\p1.png" />
   </ItemGroup>
