@@ -7,6 +7,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
         mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
         x:Name="dlg"
         xmlns:model="clr-namespace:LeYun.Model"
         Title="{Binding Title}" Height="290" Width="280" WindowStartupLocation="CenterScreen">
@@ -31,7 +32,8 @@
             <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标：" HorizontalAlignment="Left" Margin="0 15 0 0"/>
             <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="需求量：" HorizontalAlignment="Left" Margin="0 15 0 0"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="xVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="xVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True">
                 <TextBox.Text>
                     <Binding Path="X" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -40,7 +42,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="4" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left" >
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True">
                 <TextBox.Text>
                     <Binding Path="Demand" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -49,7 +52,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True">
                 <TextBox.Text>
                     <Binding Path="Y" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>

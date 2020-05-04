@@ -44,6 +44,7 @@
                 <!--搜索框-->
                 <TextBox Grid.Row="0" x:Name="searchBox" Style="{StaticResource SearchTextBoxStyle}" Margin="10" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                         viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True"
                          IsEnabled="{Binding Path=(model:GlobalData.IsActive), UpdateSourceTrigger=PropertyChanged, Converter={StaticResource searchEnableConverter}}"/>
                 <!--全部记录列表-->
                 <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"

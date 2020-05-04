@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LeYun.View.Dlg" xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
-                           mc:Ignorable="d"
+        xmlns:local="clr-namespace:LeYun.View.Dlg" 
+        xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg"
+        xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
+        mc:Ignorable="d"
         x:Name="dlg"
         Title="运行参数设置" Height="200" Width="350" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -23,7 +25,8 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间：" HorizontalAlignment="Right" Margin="0 10 0 0"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="capacity" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100"  TextAlignment="Center" HorizontalAlignment="Left">
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="capacity" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100"  TextAlignment="Center" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True">
                 <TextBox.Text>
                     <Binding Path="CarSpeed" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -32,7 +35,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" x:Name="disLimit" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="disLimit" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True">
                 <TextBox.Text>
                     <Binding Path="NodeStayTime" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>

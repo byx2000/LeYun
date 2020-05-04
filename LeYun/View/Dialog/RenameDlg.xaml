@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
+        xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
         mc:Ignorable="d"
         x:Name="dlg"
         Title="{Binding Title}" Height="200" Width="300" WindowStartupLocation="CenterScreen">
@@ -15,11 +16,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="请输入新名称：" HorizontalAlignment="Left" Margin="0 10 0 10"/>
-            <!--<StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 10">
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="请输入新名称：" HorizontalAlignment="Left"/>
-                <TextBox Style="{StaticResource TextBoxStyle}" Width="100" Text="{Binding NewName}"/>
-            </StackPanel>-->
-            <TextBox Grid.Row="1" Style="{StaticResource TextBoxStyle}" Width="200" Text="{Binding NewName}" Margin="0 10 0 10" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Style="{StaticResource TextBoxStyle}" Width="200" Text="{Binding NewName}" Margin="0 10 0 10" HorizontalAlignment="Left"
+                     viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True"/>
             <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Width="70" Height="25" Margin="0 15 0 0" Content="确定"
                     Command="{Binding OkCommand}"
                     CommandParameter="{Binding ElementName=dlg}"/>
