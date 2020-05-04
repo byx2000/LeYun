@@ -70,7 +70,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding Weight, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding Weight, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="实际载重" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                         <Grid>
@@ -78,7 +79,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding WeightLimit, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding WeightLimit, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="最大载重" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                     </UniformGrid>
@@ -90,9 +92,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="满载率" HorizontalAlignment="Left" Foreground="#86848e"/>
                         <TextBlock Grid.Row="0" HorizontalAlignment="Right" 
-                                   Text="{Binding LoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}">
-                            
-                        </TextBlock>
+                                   Text="{Binding LoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
                         <custom:ProgressBar Grid.Row="1" Height="5" Foreground="#4e91d8" Margin="0 10 0 0" Value="{Binding LoadRate}">
                         </custom:ProgressBar>
                     </Grid>
@@ -118,7 +118,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding Dis, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding Dis, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="实际里程" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                         <Grid>
@@ -126,7 +127,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding DisLimit, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding DisLimit, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="最大里程" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                     </UniformGrid>
@@ -164,7 +166,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding Time, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding Time, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="配送时间" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                         <Grid>
@@ -172,7 +175,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding TotalTime, StringFormat={}{0:F2}}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding TotalTime, StringFormat={}{0:F2}}"/>
                             <TextBlock Grid.Row="1" Text="总时间" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                     </UniformGrid>
@@ -208,7 +212,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding NodeCount}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding NodeCount}"/>
                             <TextBlock Grid.Row="1" Text="配送节点数" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                         <Grid>
@@ -216,7 +221,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding TotalNodeCount}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"/>
+                            <TextBox Grid.Row="0" Style="{StaticResource CopyableTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" FontSize="25" Foreground="#070707"
+                                     Text="{Binding TotalNodeCount}"/>
                             <TextBlock Grid.Row="1" Text="节点总数" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#86848e" Margin="0 5 0 0"/>
                         </Grid>
                     </UniformGrid>

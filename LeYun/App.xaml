@@ -182,6 +182,13 @@
                         </Style.Triggers>
                     </Style>
 
+                    <!--可复制文本样式-->
+                    <Style x:Key="CopyableTextStyle" TargetType="{x:Type TextBox}">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="IsReadOnly" Value="True"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    
                     <!--窗口标题栏关闭按钮样式-->
                     <Style x:Key="TitleBarCloseButtonStyle" TargetType="{x:Type Button}">
                         <Setter Property="VerticalAlignment" Value="Center"/>
