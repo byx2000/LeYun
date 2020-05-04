@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
-        xmlns:model="clr-namespace:LeYun.Model"
+        xmlns:model="clr-namespace:LeYun.Model" Topmost="True"
         Height="250" Width="450" WindowStartupLocation="CenterScreen" Background="#387cdf" Style="{StaticResource ShadowWindowStyle}">
     <Window.Resources>
         <local:ProgressWidthConverter x:Key="progressWidthConverter"/>

@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Icon="pack://application:,,,/Img/icon.png"
-        x:Name="mainWindow"
+        x:Name="mainWindow" Topmost="True"
         viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}"
         viewmodel:WindowBehavior.ClosingCommand="{Binding SaveConfigurationCommand}">
 

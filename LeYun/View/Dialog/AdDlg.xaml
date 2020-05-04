@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Style="{StaticResource ShadowWindowStyle}" Background="Transparent" BorderThickness="0"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Style="{StaticResource ShadowWindowStyle}" Background="Transparent" BorderThickness="0" Topmost="True"
         Height="584" Width="734">
     
     <Border>

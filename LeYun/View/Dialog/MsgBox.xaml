@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
-        Title="MsgBox" Height="200" Width="300" WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove" BorderThickness="0" Style="{StaticResource WindowLoadAnimationStyle}">
+        Title="MsgBox" Height="200" Width="300" Topmost="True"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove" BorderThickness="0" Style="{StaticResource WindowLoadAnimationStyle}">
     <Grid>
         <Border Background="White" BorderBrush="#387cdf" BorderThickness="0">
             <Grid>
