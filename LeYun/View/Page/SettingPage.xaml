@@ -257,7 +257,8 @@
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="改变存储路径后，原来的历史记录文件会移动到新文件夹"/>
                     </StackPanel>
                     <!--清空历史记录-->
-                    <Button Style="{StaticResource ButtonStyle}" Content="清空历史记录" Margin="0 30 0 0" HorizontalAlignment="Left"/>
+                    <Button Style="{StaticResource ButtonStyle}" Content="清空历史记录" Margin="0 30 0 0" HorizontalAlignment="Left"
+                            Command="{Binding ClearHistoryCommand}"/>
                 </StackPanel>
             </Grid>
 

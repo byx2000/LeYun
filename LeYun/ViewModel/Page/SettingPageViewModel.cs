@@ -20,6 +20,7 @@ namespace LeYun.ViewModel
         // 命令
         public DelegateCommand ChangeRecordLocationCommand { get; }
         public DelegateCommand ActivateCommand { get; }
+        public DelegateCommand ClearHistoryCommand { get; }
 
         // 当前记录保存路径
         private string currentRecordPath = GlobalData.RecordPath;
@@ -50,6 +51,34 @@ namespace LeYun.ViewModel
         {
             ChangeRecordLocationCommand = new DelegateCommand(ChangeRecordLocation);
             ActivateCommand = new DelegateCommand(Activate, CanActivate);
+            ClearHistoryCommand = new DelegateCommand(ClearHistory);
+        }
+
+        // 清空历史记录
+        private void ClearHistory(object obj)
+        {
+            try
+            {
+                // 读取所有历史记录
+                DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
+                FileInfo[] files = dir.GetFiles();
+
+                // 删除所有历史记录文件
+                for (int i = 0; i < files.Length; ++i)
+                {
+                    if (files[i].Extension == ".rec")
+                    {
+                        files[i].Delete();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show("清空历史记录失败！\n" + e.Message);
+                return;
+            }
+
+            MsgBox.Show("已清除所有历史记录！");
         }
 
         // 判断是否能激活
