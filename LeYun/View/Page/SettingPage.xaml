@@ -265,21 +265,27 @@
             <!--其它设置内容-->
             <Grid Grid.Row="1" Margin="20 20 0 0"
               Visibility="{Binding ElementName=OtherSettingTab, Path=IsChecked, Converter={StaticResource BoolToVisibility}}">
-                <StackPanel
-                    Visibility="{Binding Path=(model:GlobalData.IsActive), Converter={StaticResource activeVisibleConverter}}">
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="软件激活"/>
-                    <TextBlock Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" Text="当前软件版本为试用版" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="试用版不包含动画演示、车辆详情和历史记录搜索功能，且包含广告"/>
-                    </StackPanel>
+                <StackPanel>
+                    <!--恢复默认设置-->
+                    <Button Style="{StaticResource ButtonStyle}" Content="恢复默认设置" HorizontalAlignment="Left"
+                            Command="{Binding RestoreDefaultCommand}"/>
+                    <!--激活-->
+                    <StackPanel Margin="0 30 0 0"
+                        Visibility="{Binding Path=(model:GlobalData.IsActive), Converter={StaticResource activeVisibleConverter}}">
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="22" Text="软件激活"/>
+                        <TextBlock Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" Text="当前软件版本为试用版" HorizontalAlignment="Left"/>
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" Foreground="#387cdf"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="10 0 0 0" Text="试用版不包含动画演示、车辆详情和历史记录搜索功能，且包含广告"/>
+                        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
-                        <TextBox x:Name="key" Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" Text="XXX-XXX-XXX"/>
-                        <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" 
+                        <StackPanel Orientation="Horizontal" Margin="0 15 0 0">
+                            <TextBox x:Name="key" Style="{StaticResource TextBoxStyle}" Width="300" Background="Transparent" Text="XXX-XXX-XXX"/>
+                            <Button Style="{StaticResource ButtonStyle}" Margin="20 0 0 0" 
                             Content="激活"
                             Command="{Binding ActivateCommand}"
                             CommandParameter="{Binding ElementName=key, Path=Text}"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Grid>

@@ -21,6 +21,7 @@ namespace LeYun.ViewModel
         public DelegateCommand ChangeRecordLocationCommand { get; }
         public DelegateCommand ActivateCommand { get; }
         public DelegateCommand ClearHistoryCommand { get; }
+        public DelegateCommand RestoreDefaultCommand { get; }
 
         // 当前记录保存路径
         private string currentRecordPath = GlobalData.RecordPath;
@@ -52,6 +53,20 @@ namespace LeYun.ViewModel
             ChangeRecordLocationCommand = new DelegateCommand(ChangeRecordLocation);
             ActivateCommand = new DelegateCommand(Activate, CanActivate);
             ClearHistoryCommand = new DelegateCommand(ClearHistory);
+            RestoreDefaultCommand = new DelegateCommand(RestoreDefault);
+        }
+
+        // 恢复默认设置
+        private void RestoreDefault(object obj)
+        {
+            GlobalData.MaxNodeX = 30;
+            GlobalData.MaxNodeY = 20;
+            //GlobalData.RecordPath = "./record";
+            GlobalData.LineThickness = 2.5;
+            GlobalData.NodeButtonWidth = 15;
+            GlobalData.DemoDuration = 20;
+            GlobalData.PopupAfterDemo = true;
+            MsgBox.Show("已恢复默认设置！");
         }
 
         // 清空历史记录
