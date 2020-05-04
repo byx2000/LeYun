@@ -25,7 +25,7 @@
 
             <TextBox Grid.Row="0" Grid.Column="1" x:Name="capacity" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100"  TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
-                    <Binding Path="CarSpeed" StringFormat="{}{0:F2}">
+                    <Binding Path="CarSpeed" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <dlg:CarSpeedValidationRule />
                         </Binding.ValidationRules>
@@ -34,7 +34,7 @@
             </TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="disLimit" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
-                    <Binding Path="NodeStayTime" StringFormat="{}{0:F2}">
+                    <Binding Path="NodeStayTime" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <dlg:NodeStayTimeValidationRule />
                         </Binding.ValidationRules>

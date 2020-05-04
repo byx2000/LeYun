@@ -158,7 +158,7 @@
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="X坐标范围：0 — "/>
                         <TextBox x:Name="xRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center" Background="Transparent">
                             <TextBox.Text>
-                                <Binding Path="(model:GlobalData.MaxNodeX)" StringFormat="{}{0:F2}">
+                                <Binding Path="(model:GlobalData.MaxNodeX)" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <viewmodel:NodeMaxXValidationRule />
                                     </Binding.ValidationRules>
@@ -176,7 +176,7 @@
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y坐标范围：0 — "/>
                         <TextBox x:Name="yRange" Style="{StaticResource TextBoxStyle}" Width="100" TextAlignment="Center" Background="Transparent">
                             <TextBox.Text>
-                                <Binding Path="(model:GlobalData.MaxNodeY)" StringFormat="{}{0:F2}">
+                                <Binding Path="(model:GlobalData.MaxNodeY)" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <viewmodel:NodeMaxYValidationRule />
                                     </Binding.ValidationRules>
@@ -208,7 +208,7 @@
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="演示时长："/>
                         <TextBox x:Name="duration" Style="{StaticResource TextBoxStyle}" Width="100" Background="Transparent" TextAlignment="Center">
                             <TextBox.Text>
-                                <Binding Path="(model:GlobalData.DemoDuration)" StringFormat="{}{0:F2}">
+                                <Binding Path="(model:GlobalData.DemoDuration)" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <viewmodel:DemoDurationValidationRule />
                                     </Binding.ValidationRules>

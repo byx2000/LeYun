@@ -33,7 +33,7 @@
 
             <TextBox Grid.Row="0" Grid.Column="1" x:Name="xVal" Style="{StaticResource TextBoxStyle}" Margin="0 10 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
-                    <Binding Path="X" StringFormat="{}{0:F2}">
+                    <Binding Path="X" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <dlg:XValidationRule />
                         </Binding.ValidationRules>
@@ -42,16 +42,16 @@
             </TextBox>
             <TextBox Grid.Row="4" Grid.Column="1" x:Name="yVal" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left" >
                 <TextBox.Text>
-                    <Binding Path="Demand" StringFormat="{}{0:F2}">
+                    <Binding Path="Demand" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <dlg:YValidationRule />
+                            <dlg:DemandValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
             <TextBox Grid.Row="2" Grid.Column="1" x:Name="demand" Style="{StaticResource TextBoxStyle}" Margin="0 15 0 0" Width="100" TextAlignment="Center" HorizontalAlignment="Left">
                 <TextBox.Text>
-                    <Binding Path="Y" StringFormat="{}{0:F2}">
+                    <Binding Path="Y" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <dlg:DemandValidationRule />
                         </Binding.ValidationRules>
