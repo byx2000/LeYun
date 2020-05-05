@@ -26,21 +26,24 @@ namespace LeYun.Model
         public const string NodeButtonWidthKey = "NodeButtonWidth";
         public const string DemoDurationKey = "DemoDuration";
         public const string PopupAfterDemoKey = "PopupAfterDemo";
+        //public const string ShowProgressDuringDemoKey = "ShowProgressDuringDemo";
+
+        //
 
         // 各个子页面
-        public static PathProjectPage PathProjectPage = null;
-        public static RouteRecordPage RouteRecordPage = null;
-        public static SettingPage SettingPage = null;
-        public static AboutPage AboutPage = null;
+        public static PathProjectPage PathProjectPage;
+        public static RouteRecordPage RouteRecordPage;
+        public static SettingPage SettingPage;
+        public static AboutPage AboutPage;
 
         // 各个子页面的ViewModel
-        public static PathProjectPageViewModel PathProjectPageViewModel = null;
-        public static RouteRecordPageViewModel RouteRecordPageViewModel = null;
-        public static SettingPageViewModel SettingPageViewModel = null;
-        public static AboutPageViewModel AboutPageViewModel = null;
+        public static PathProjectPageViewModel PathProjectPageViewModel;
+        public static RouteRecordPageViewModel RouteRecordPageViewModel;
+        public static SettingPageViewModel SettingPageViewModel;
+        public static AboutPageViewModel AboutPageViewModel;
 
         // 当前页面
-        private static Page currentPage = null;
+        private static Page currentPage;
         public static Page CurrentPage
         {
             get { return currentPage; }
