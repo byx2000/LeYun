@@ -23,35 +23,11 @@ namespace LeYun.ViewModel
         public DelegateCommand ClearHistoryCommand { get; }
         public DelegateCommand RestoreDefaultCommand { get; }
 
-        // 当前记录保存路径
-        //private string currentRecordPath = GlobalData.RecordPath;
-        //public string CurrentRecordPath 
-        //{ 
-        //    get { return currentRecordPath; } 
-        //    set
-        //    {
-        //        currentRecordPath = value;
-        //        RaisePropertyChanged("CurrentRecordPath");
-        //    }
-        //}
-
-        // 当前激活状态
-        private bool isActive = GlobalData.IsActive;
-        public bool IsActive
-        {
-            get { return isActive; }
-            set 
-            { 
-                isActive = value;
-                RaisePropertyChanged("IsActive");
-            }
-        }
-
         // 构造函数
         public SettingPageViewModel()
         {
             ChangeRecordLocationCommand = new DelegateCommand(ChangeRecordLocation);
-            ActivateCommand = new DelegateCommand(Activate, CanActivate);
+            ActivateCommand = new DelegateCommand(Activate);
             ClearHistoryCommand = new DelegateCommand(ClearHistory);
             RestoreDefaultCommand = new DelegateCommand(RestoreDefault);
         }
@@ -59,13 +35,7 @@ namespace LeYun.ViewModel
         // 恢复默认设置
         private void RestoreDefault(object obj)
         {
-            GlobalData.MaxNodeX = 30;
-            GlobalData.MaxNodeY = 20;
-            //GlobalData.RecordPath = "./record";
-            GlobalData.LineThickness = 2.5;
-            GlobalData.NodeButtonWidth = 15;
-            GlobalData.DemoDuration = 20;
-            GlobalData.PopupAfterDemo = true;
+            GlobalData.RestoreSettings();
             MsgBox.Show("已恢复默认设置！");
         }
 
@@ -94,12 +64,6 @@ namespace LeYun.ViewModel
             }
 
             MsgBox.Show("已清除所有历史记录！");
-        }
-
-        // 判断是否能激活
-        private bool CanActivate(object arg)
-        {
-            return !IsActive;
         }
 
         // 激活
@@ -140,7 +104,6 @@ namespace LeYun.ViewModel
                     }
 
                     GlobalData.RecordPath = dlg.SelectedPath;
-                    //GlobalData.WriteConfiguration(GlobalData.RecordPathKey, dlg.SelectedPath);
 
                     // 成功提示
                     SystemSounds.Beep.Play();

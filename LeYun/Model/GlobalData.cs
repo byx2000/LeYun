@@ -27,8 +27,7 @@ namespace LeYun.Model
         public const string DemoDurationKey = "DemoDuration";
         public const string PopupAfterDemoKey = "PopupAfterDemo";
         public const string ShowProgressDuringDemoKey = "ShowProgressDuringDemo";
-
-        //
+        public const string ShowCarRuntimeInfoDuringDemoKey = "ShowCarRuntimeInfoDuringDemo";
 
         // 各个子页面
         public static PathProjectPage PathProjectPage;
@@ -175,6 +174,18 @@ namespace LeYun.Model
             }
         }
 
+        // 演示时是否显示车辆实时信息
+        private static bool showCarRuntimeInfoDuringDemo = true;
+        public static bool ShowCarRuntimeInfoDuringDemo
+        {
+            get { return showCarRuntimeInfoDuringDemo; }
+            set 
+            { 
+                showCarRuntimeInfoDuringDemo = value;
+                RaisePropertyChanged("ShowCarRuntimeInfoDuringDemo");
+            }
+        }
+
         // 从配置文件读取所有设置
         public static void ReadSettings()
         {
@@ -189,9 +200,11 @@ namespace LeYun.Model
                 DemoDuration = double.Parse(ReadConfiguration(DemoDurationKey));
                 PopupAfterDemo = bool.Parse(ReadConfiguration(PopupAfterDemoKey));
                 ShowProgressDuringDemo = bool.Parse(ReadConfiguration(ShowProgressDuringDemoKey));
+                ShowCarRuntimeInfoDuringDemo = bool.Parse(ReadConfiguration(ShowCarRuntimeInfoDuringDemoKey));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MsgBox.Show("配置文件读取失败！\n" + e.Message);
                 MaxNodeX = 30;
                 MaxNodeY = 20;
                 RecordPath = "./record";
@@ -201,6 +214,7 @@ namespace LeYun.Model
                 DemoDuration = 20;
                 PopupAfterDemo = true;
                 ShowProgressDuringDemo = true;
+                ShowCarRuntimeInfoDuringDemo = true;
             }
         }
 
@@ -218,11 +232,25 @@ namespace LeYun.Model
                 WriteConfiguration(DemoDurationKey, DemoDuration.ToString());
                 WriteConfiguration(PopupAfterDemoKey, PopupAfterDemo.ToString());
                 WriteConfiguration(ShowProgressDuringDemoKey, ShowProgressDuringDemo.ToString());
+                WriteConfiguration(ShowCarRuntimeInfoDuringDemoKey, ShowCarRuntimeInfoDuringDemo.ToString());
             }
             catch (Exception)
             {
-
+                
             }
+        }
+
+        // 恢复默认设置
+        public static void RestoreSettings()
+        {
+            MaxNodeX = 30;
+            MaxNodeY = 20;
+            LineThickness = 2.5;
+            NodeButtonWidth = 15;
+            DemoDuration = 20;
+            PopupAfterDemo = true;
+            ShowProgressDuringDemo = true;
+            ShowCarRuntimeInfoDuringDemo = true;
         }
 
         // 初始化所有页面

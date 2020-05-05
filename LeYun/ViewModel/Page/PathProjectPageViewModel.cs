@@ -304,11 +304,14 @@ namespace LeYun.ViewModel
                         // 启动下一线条动画
                         Segments[iStart + t + 1].BeginAnimation();
 
-                        // 更新车辆完成百分比
-                        new Thread(delegate() 
+                        if (GlobalData.ShowCarRuntimeInfoDuringDemo)
                         {
-                            CarRuntimeInfos.AddCompletedPercent(iCarTemp, 1.0 / Record.Paths[iCarTemp].Count);
-                        }).Start();
+                            // 更新车辆完成百分比
+                            new Thread(delegate ()
+                            {
+                                CarRuntimeInfos.AddCompletedPercent(iCarTemp, 1.0 / Record.Paths[iCarTemp].Count);
+                            }).Start();
+                        }
                     };
 
                     last = Record.Nodes[iNode];
@@ -322,13 +325,15 @@ namespace LeYun.ViewModel
                 Segments[Segments.Count - 1].Duration = last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600;
                 Segments[Segments.Count - 1].Delay = nodeStayTime;
                 Segments[Segments.Count - 1].AnimationCompleted = delegate
-                {
-                    // 更新车辆运行时信息
-                    new Thread(delegate ()
+                {       
+                    if (GlobalData.ShowCarRuntimeInfoDuringDemo)
                     {
-                        CarRuntimeInfos.SetFinishedState(iCarTemp, true);
-                    }).Start();
-                    
+                        // 更新车辆运行时信息
+                        new Thread(delegate ()
+                        {
+                            CarRuntimeInfos.SetFinishedState(iCarTemp, true);
+                        }).Start();
+                    }
 
                     // 如果是最后一辆车，则演示结束
                     if (iCarTemp == index)

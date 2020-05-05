@@ -498,16 +498,32 @@
                 </Grid>
             </Grid>
 
-            <!--用于在演示时禁用绘图面板-->
+            <!--演示时禁用绘图面板-->
             <Grid Grid.Column="0" Background="Transparent"
-                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
-            
-            <!--用于在演示时显示车辆运行时信息-->
-            <custom:FloatingCard Grid.Column="1" Margin="15" Background="White"
-                                 Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"/>
-            <Grid Grid.Column="1" Background="White" Margin="15"
-                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}">
+                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource  BoolToVisibility}}"/>
 
+            <!--演示时禁用配送点和车辆列表-->
+            <Grid Grid.Column="1" Background="Transparent"
+                  Visibility="{Binding IsPlayingDemo, Converter={StaticResource  BoolToVisibility}}"/>
+
+            <!--用于在演示时显示车辆运行时信息-->
+            <!--<custom:FloatingCard Grid.Column="1" Margin="15" Background="White">
+                
+            </custom:FloatingCard>-->
+            <Grid Grid.Column="1" Background="White" Margin="15">
+                <Grid.Visibility>
+                    <MultiBinding>
+                        <MultiBinding.Converter>
+                            <commonconverter:BoolAndConverter>
+                                <commonconverter:BoolAndConverter.ResultConverter>
+                                    <commonconverter:BoolToVisibility />
+                                </commonconverter:BoolAndConverter.ResultConverter>
+                            </commonconverter:BoolAndConverter>
+                        </MultiBinding.Converter>
+                        <Binding Path="IsPlayingDemo"/>
+                        <Binding Path="(model:GlobalData.ShowCarRuntimeInfoDuringDemo)"/>
+                    </MultiBinding>
+                </Grid.Visibility>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
