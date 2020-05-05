@@ -346,19 +346,22 @@ namespace LeYun.ViewModel
                 };
             }
 
-            //启动时间动画
-            DoubleAnimation timeAnim = new DoubleAnimation();
-            timeAnim.From = 0;
-            timeAnim.To = totalTime / 60;
-            timeAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
-            CurrentTime.BeginAnimation(AnimatableValue.ValueProperty, timeAnim);
+            if (GlobalData.ShowProgressDuringDemo)
+            {
+                //启动时间动画
+                DoubleAnimation timeAnim = new DoubleAnimation();
+                timeAnim.From = 0;
+                timeAnim.To = totalTime / 60;
+                timeAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
+                CurrentTime.BeginAnimation(AnimatableValue.ValueProperty, timeAnim);
 
-            // 启动演示进度动画
-            DoubleAnimation progressAnim = new DoubleAnimation();
-            progressAnim.From = 0;
-            progressAnim.To = 1;
-            progressAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
-            CurrentDemoProgress.BeginAnimation(AnimatableValue.ValueProperty, progressAnim);
+                // 启动演示进度动画
+                DoubleAnimation progressAnim = new DoubleAnimation();
+                progressAnim.From = 0;
+                progressAnim.To = 1;
+                progressAnim.Duration = new Duration(TimeSpan.FromSeconds(totalDemoTime));
+                CurrentDemoProgress.BeginAnimation(AnimatableValue.ValueProperty, progressAnim);
+            }
 
             // 启动线条动画
             for (int i = 0; i < startIndex.Count; ++i)

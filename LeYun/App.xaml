@@ -20,6 +20,9 @@
                     
                     <!--转换器-->
                     <commonconverter:BoolToVisibility x:Key="BoolToVisibility"/>
+                    <commonconverter:BoolAndConverter x:Key="BoolAndConverter"/>
+                    <commonconverter:BoolOrConverter x:Key="BoolOrConverter"/>
+                    <commonconverter:BoolNotConverter x:Key="BoolNotConverter"/>
                     <viewmodel:NodeButtonMarginConverter x:Key="nodeButtonMarginConverter"/>
                     <viewmodel:NodeButtonXConverter x:Key="nodeButtonXConverter"/>
                     <viewmodel:NodeButtonYConverter x:Key="nodeButtonYConverter"/>

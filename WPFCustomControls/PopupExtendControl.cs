@@ -95,7 +95,7 @@ namespace WPFCustomControls
         }
 
         private void Host_MouseEnter(object sender, MouseEventArgs e)
-        {
+        {         
             popup.IsOpen = true;
         }
     }

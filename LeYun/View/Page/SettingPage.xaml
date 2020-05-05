@@ -405,7 +405,7 @@
                     <ToggleButton Margin="0 20 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示时显示车辆实时信息"
                               />
                     <ToggleButton Margin="0 10 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示时显示配送进度"
-                              />
+                              IsChecked="{Binding Path=(model:GlobalData.ShowProgressDuringDemo)}"/>
                     <ToggleButton Margin="0 10 0 0" Style="{StaticResource ToggleButtonStyle}" Content="演示结束后弹出提示"
                               IsChecked="{Binding Path=(model:GlobalData.PopupAfterDemo)}"/>
                 </StackPanel>

@@ -22,6 +22,21 @@ namespace LeYun.Model.CommonConverter
         }
     }
 
+    //class ComplexConverter : IValueConverter
+    //{
+    //    public IValueConverter ResultConverter { get; set; } = new EmptyConverter();
+
+    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        return ResultConverter.Convert(value, targetType, parameter, culture);
+    //    }
+
+    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
     class BoolAndConverter : IMultiValueConverter
     {
         public IValueConverter ResultConverter { get; set; } = new EmptyConverter();
@@ -62,7 +77,22 @@ namespace LeYun.Model.CommonConverter
         }
     }
 
-    public class BoolToVisibility : IValueConverter
+    class BoolNotConverter : IValueConverter
+    {
+        public IValueConverter ResultConverter { get; set; } = new EmptyConverter();
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return ResultConverter.Convert(!(bool)value, targetType, parameter, culture);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class BoolToVisibility : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

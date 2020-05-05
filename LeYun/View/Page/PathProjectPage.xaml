@@ -7,6 +7,7 @@
         xmlns:custom="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
         xmlns:model="clr-namespace:LeYun.Model"
         xmlns:local="clr-namespace:LeYun.View"
+        xmlns:commonconverter="clr-namespace:LeYun.Model.CommonConverter"
         mc:Ignorable="d"
         x:Name="page"
         d:DesignHeight="800" d:DesignWidth="1500">
@@ -30,9 +31,15 @@
             <Border Grid.Row="0" Background="White" BorderBrush="#d6d7d9"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 15 0 15">
                 <!--保存-->
-                <custom:PopupExtendControl>
+                <custom:PopupExtendControl
+                    IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
                         <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30">
+                            <Button.Visibility>
+                                <Binding Path="IsPlaying">
+
+                                </Binding>
+                            </Button.Visibility>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -114,7 +121,8 @@
                 </ComboBox>
                 
                 <!--添加车辆-->
-                <custom:PopupExtendControl>
+                <custom:PopupExtendControl
+                    IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
                         <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0">
                             <Grid>
@@ -144,7 +152,8 @@
                 </custom:PopupExtendControl>
 
                 <!--添加节点-->
-                <custom:PopupExtendControl>
+                <custom:PopupExtendControl
+                    IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
                         <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0">
                             <Grid>
@@ -200,9 +209,21 @@
         </Grid>
         
         <!--演示时在操作区域显示时间-->
-        <Grid Grid.Row="0" Background="#666666"
-              Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}">
-            
+        <!--Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"-->
+        <Grid Grid.Row="0" Background="#666666">
+            <Grid.Visibility>
+                <MultiBinding>
+                    <MultiBinding.Converter>
+                        <commonconverter:BoolAndConverter >
+                            <commonconverter:BoolAndConverter.ResultConverter>
+                                <commonconverter:BoolToVisibility />
+                            </commonconverter:BoolAndConverter.ResultConverter>
+                        </commonconverter:BoolAndConverter>
+                    </MultiBinding.Converter>
+                    <Binding Path="IsPlayingDemo"/>
+                    <Binding Path="(model:GlobalData.ShowProgressDuringDemo)"/>
+                </MultiBinding>
+            </Grid.Visibility>
             <custom:ProgressBar Foreground="#ff7573" Background="#666666" EnableAnimation="False" 
                                 Value="{Binding CurrentDemoProgress.Value}"/>
 

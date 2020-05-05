@@ -26,7 +26,7 @@ namespace LeYun.Model
         public const string NodeButtonWidthKey = "NodeButtonWidth";
         public const string DemoDurationKey = "DemoDuration";
         public const string PopupAfterDemoKey = "PopupAfterDemo";
-        //public const string ShowProgressDuringDemoKey = "ShowProgressDuringDemo";
+        public const string ShowProgressDuringDemoKey = "ShowProgressDuringDemo";
 
         //
 
@@ -163,6 +163,18 @@ namespace LeYun.Model
             }
         }
 
+        // 演示时是否显示进度
+        private static bool showProgressDuringDemo = true;
+        public static bool ShowProgressDuringDemo
+        {
+            get { return showProgressDuringDemo; }
+            set 
+            { 
+                showProgressDuringDemo = value;
+                RaisePropertyChanged("ShowProgressDuringDemo");
+            }
+        }
+
         // 从配置文件读取所有设置
         public static void ReadSettings()
         {
@@ -176,6 +188,7 @@ namespace LeYun.Model
                 NodeButtonWidth = double.Parse(ReadConfiguration(NodeButtonWidthKey));
                 DemoDuration = double.Parse(ReadConfiguration(DemoDurationKey));
                 PopupAfterDemo = bool.Parse(ReadConfiguration(PopupAfterDemoKey));
+                ShowProgressDuringDemo = bool.Parse(ReadConfiguration(ShowProgressDuringDemoKey));
             }
             catch (Exception)
             {
@@ -187,6 +200,7 @@ namespace LeYun.Model
                 NodeButtonWidth = 15;
                 DemoDuration = 20;
                 PopupAfterDemo = true;
+                ShowProgressDuringDemo = true;
             }
         }
 
@@ -203,6 +217,7 @@ namespace LeYun.Model
                 WriteConfiguration(NodeButtonWidthKey, NodeButtonWidth.ToString());
                 WriteConfiguration(DemoDurationKey, DemoDuration.ToString());
                 WriteConfiguration(PopupAfterDemoKey, PopupAfterDemo.ToString());
+                WriteConfiguration(ShowProgressDuringDemoKey, ShowProgressDuringDemo.ToString());
             }
             catch (Exception)
             {
