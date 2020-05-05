@@ -39,8 +39,6 @@ namespace LeYun.ViewModel
         public DelegateCommand SetAlgoParamCommand { get; }
         public DelegateCommand ImportNodesFromFileCommand { get; }
         public DelegateCommand ImportCarsFromFileCommand { get; }
-        public DelegateCommand ShowAddCarPopupCommand { get; }
-        public DelegateCommand ShowAddNodePopupCommand { get; }
         public DelegateCommand SetRunParamCommand { get; }
         public DelegateCommand MouseAddNodeCommand { get; }
         public DelegateCommand ShowSavePopupCommand { get; }
@@ -110,30 +108,6 @@ namespace LeYun.ViewModel
         // 算法参数
         private int GenerationCount = 2000;
         private double WTime = 1, WDis = 1, WCar = 100;
-
-        // 车辆添加方式弹窗
-        private bool isAddCarPopupVisible = false;
-        public bool IsAddCarPopupVisible 
-        { 
-            get { return isAddCarPopupVisible; }
-            private set
-            {
-                isAddCarPopupVisible = value;
-                RaisePropertyChanged("IsAddCarPopupVisible");
-            }
-        }
-
-        // 节点添加方式弹窗
-        private bool isAddNodePopupVisible = false;
-        public bool IsAddNodePopupVisible
-        {
-            get { return isAddNodePopupVisible; }
-            private set
-            {
-                isAddNodePopupVisible = value;
-                RaisePropertyChanged("IsAddNodePopupVisible");
-            }
-        }
 
         // 保存弹窗
         private bool isSavePopupVisible = false;
@@ -222,8 +196,6 @@ namespace LeYun.ViewModel
             SetAlgoParamCommand = new DelegateCommand(SetAlgoParam, CanSetAlgoParam);
             ImportNodesFromFileCommand = new DelegateCommand(ImportNodesFromFile);
             ImportCarsFromFileCommand = new DelegateCommand(ImportCarsFromFile);
-            ShowAddCarPopupCommand = new DelegateCommand(ShowAddCarPopup, CantExecuteDuringDemo);
-            ShowAddNodePopupCommand = new DelegateCommand(ShowAddNodePopup, CantExecuteDuringDemo);
             SetRunParamCommand = new DelegateCommand(SetRunParam, CantExecuteDuringDemo);
             MouseAddNodeCommand = new DelegateCommand(MouseAddNode, CantExecuteDuringDemo);
             ShowSavePopupCommand = new DelegateCommand(ShowSavePopup, CantExecuteDuringDemo);
@@ -518,20 +490,6 @@ namespace LeYun.ViewModel
                 Record.CarSpeed = viewModel.CarSpeed;
                 Record.NodeStayTime = viewModel.NodeStayTime;
             }
-        }
-
-        // 显示节点添加方式弹窗
-        private void ShowAddNodePopup(object obj)
-        {
-            IsAddNodePopupVisible = false;
-            IsAddNodePopupVisible = true;
-        }
-
-        // 显示车辆添加方式弹窗
-        private void ShowAddCarPopup(object obj)
-        {
-            IsAddCarPopupVisible = false;
-            IsAddCarPopupVisible = true;
         }
 
         // 从文件导入车辆信息

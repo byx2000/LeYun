@@ -108,7 +108,7 @@
                     <TextBlock  Text="车辆数优先"/>
                     <TextBlock  Text="自定义设置"/>
                 </ComboBox>
-                <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
+                <!--<Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
                         Command="{Binding ShowAddCarPopupCommand}"
                         viewmodel:MouseBehaviour.MouseEnterCommand="{Binding ShowAddCarPopupCommand}">
                     <Grid>
@@ -137,8 +137,39 @@
                             Command="{Binding ImportCarsFromFileCommand}"/>
                         </Grid>
                     </Border>
-                </Popup>
-                <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0" 
+                </Popup>-->
+                
+                <custom:PopupExtendControl>
+                    <custom:PopupExtendControl.HostContent>
+                        <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0d1;"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加车辆" FontSize="12" Margin="10 0 0 0"/>
+                            </Grid>
+                        </Button>
+                    </custom:PopupExtendControl.HostContent>
+                    <custom:PopupExtendControl.PopupContent >
+                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="12" Width="Auto" Height="25"
+                            Command="{Binding AddCarCommand}"/>
+                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                            Command="{Binding ImportCarsFromFileCommand}"/>
+                            </Grid>
+                        </Border>
+                    </custom:PopupExtendControl.PopupContent>
+                </custom:PopupExtendControl>
+                
+                
+                <!--<Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0" 
                         Command="{Binding ShowAddNodePopupCommand}"
                         viewmodel:MouseBehaviour.MouseEnterCommand="{Binding ShowAddNodePopupCommand}">
                     <Grid>
@@ -166,7 +197,37 @@
                             Command="{Binding ImportNodesFromFileCommand}"/>
                         </Grid>
                     </Border>
-                </Popup>
+                </Popup>-->
+
+                <custom:PopupExtendControl>
+                    <custom:PopupExtendControl.HostContent>
+                        <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf041;"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加节点" FontSize="12" Margin="10 0 0 0"/>
+                            </Grid>
+                        </Button>
+                    </custom:PopupExtendControl.HostContent>
+                    <custom:PopupExtendControl.PopupContent>
+                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="100">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="12" Width="Auto" Height="25"
+                            Command="{Binding AddNodeCommand}"/>
+                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                            Command="{Binding ImportNodesFromFileCommand}"/>
+                            </Grid>
+                        </Border>
+                    </custom:PopupExtendControl.PopupContent>
+                </custom:PopupExtendControl>
+                
                 <Button x:Name="ClearButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="0 0 10 0" Command="{Binding ClearCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
