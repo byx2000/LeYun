@@ -1,4 +1,6 @@
-﻿using LeYun.View.Dlg;
+﻿using LeYun.View;
+using LeYun.View.Dlg;
+using LeYun.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace LeYun.Model
 {
@@ -14,6 +17,7 @@ namespace LeYun.Model
     {
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
 
+        // 配置文件键值
         public const string MaxNodeXKey = "MaxNodeX";
         public const string MaxNodeYKey = "MaxNodeY";
         public const string RecordPathKey = "RecordPath";
@@ -22,6 +26,42 @@ namespace LeYun.Model
         public const string NodeButtonWidthKey = "NodeButtonWidth";
         public const string DemoDurationKey = "DemoDuration";
         public const string PopupAfterDemoKey = "PopupAfterDemo";
+
+        // 各个子页面
+        public static PathProjectPage PathProjectPage = null;
+        public static RouteRecordPage RouteRecordPage = null;
+        public static SettingPage SettingPage = null;
+        public static AboutPage AboutPage = null;
+
+        // 各个子页面的ViewModel
+        public static PathProjectPageViewModel PathProjectPageViewModel = null;
+        public static RouteRecordPageViewModel RouteRecordPageViewModel = null;
+        public static SettingPageViewModel SettingPageViewModel = null;
+        public static AboutPageViewModel AboutPageViewModel = null;
+
+        // 当前页面
+        private static Page currentPage = null;
+        public static Page CurrentPage
+        {
+            get { return currentPage; }
+            set 
+            { 
+                currentPage = value;
+                RaisePropertyChanged("CurrentPage");
+            }
+        }
+
+        // 页面标签选中情况
+        private static bool isPathProjectPageChecked = false;
+        public static bool IsPathProjectPageChecked
+        {
+            get { return isPathProjectPageChecked; }
+            set 
+            { 
+                isPathProjectPageChecked = value;
+                RaisePropertyChanged("IsPathProjectPageChecked");
+            }
+        }
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
@@ -36,7 +76,7 @@ namespace LeYun.Model
         }
 
         // 节点Y坐标最大值
-        private static double maxNodeY;
+        private static double maxNodeY = 20;
         public static double MaxNodeY
         {
             get { return maxNodeY; }
@@ -48,7 +88,17 @@ namespace LeYun.Model
         }
 
         // 记录存储路径
-        public static string RecordPath = "./record/";
+        private static string recordPath = "./record/";
+        public static string RecordPath
+        {
+            get { return recordPath; }
+            set 
+            { 
+                recordPath = value;
+                RaisePropertyChanged("RecordPath");
+            }
+        }
+
 
         // 激活状态
         private static bool isActive = false;
@@ -113,6 +163,7 @@ namespace LeYun.Model
         // 静态构造函数
         static GlobalData()
         {
+            // 读取配置文件
             try
             {
                 MaxNodeX = int.Parse(ReadConfiguration(MaxNodeXKey));
@@ -126,6 +177,7 @@ namespace LeYun.Model
             }
             catch (Exception)
             {
+                MsgBox.Show("配置文件读取失败！");
                 MaxNodeX = 30;
                 MaxNodeY = 20;
                 RecordPath = "./record";
@@ -135,6 +187,21 @@ namespace LeYun.Model
                 DemoDuration = 20;
                 PopupAfterDemo = true;
             }
+
+            // 创建各个子页面
+            PathProjectPage = new PathProjectPage();
+            RouteRecordPage = new RouteRecordPage();
+            SettingPage = new SettingPage();
+            AboutPage = new AboutPage();
+
+            // 创建各个子页面的ViewModel
+            PathProjectPageViewModel = new PathProjectPageViewModel();
+            RouteRecordPageViewModel = new RouteRecordPageViewModel();
+            SettingPageViewModel = new SettingPageViewModel();
+            AboutPageViewModel = new AboutPageViewModel();
+
+            currentPage = PathProjectPage;
+            IsPathProjectPageChecked = true;
         }
 
         // 通知属性改变

@@ -139,8 +139,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" FontSize="22" FontWeight="Bold" HorizontalAlignment="Left"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Left"
                                            Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
                                 
                             </Grid>
@@ -158,8 +158,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
                                            Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
@@ -190,8 +190,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" 
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" 
                                            Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
@@ -209,8 +209,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
                                            Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2} km}"/>
                                 
                             </Grid>
@@ -228,8 +228,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
                                            Text="{Binding CurrentRecord.UseCarCount, StringFormat={}{0} 辆}"/>
                                 
                             </Grid>
@@ -247,8 +247,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" HorizontalAlignment="Left" Foreground="#838383"/>
-                                <TextBox Grid.Row="1" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold"
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
                                            Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
                             </Grid>
                         </Grid>

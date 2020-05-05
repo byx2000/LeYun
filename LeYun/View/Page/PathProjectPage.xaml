@@ -99,9 +99,9 @@
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 15 15 15">
 
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" Foreground="Black"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" FontSize="12" Foreground="Black"/>
                 <ComboBox x:Name="ModeChoose" Style="{StaticResource ComboBoxStyle}" Width="120" Margin="0" 
-                     FontSize="15" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0"
+                     FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="0"
                           IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}"
                           viewmodel:ComboBoxBehavior.SelectionChangedCommand="{Binding ModeChangeCommand}">
                     <TextBlock  Text="时间优先"/>

@@ -124,7 +124,6 @@
     <Compile Include="ViewModel\Dialog\NodeInfoDlgViewModel.cs" />
     <Compile Include="ViewModel\Dialog\RenameDlgViewModel.cs" />
     <Compile Include="ViewModel\Dialog\RunParamSetDlgViewModel.cs" />
-    <Compile Include="ViewModel\MainWindow\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Behavior\MouseBehaviour.cs" />
     <Compile Include="ViewModel\Observer\MouseObserver.cs" />
     <Compile Include="ViewModel\Page\PathProjectPageViewModel.cs" />
@@ -166,9 +165,6 @@
     </Compile>
     <Compile Include="View\Dialog\MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Dialog\NodeDetailDlg.xaml.cs">
-      <DependentUpon>NodeDetailDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialog\NodeInfoDlg.xaml.cs">
       <DependentUpon>NodeInfoDlg.xaml</DependentUpon>
@@ -239,10 +235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\MsgBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Dialog\NodeDetailDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -337,6 +329,9 @@
       <Project>{8f5236a4-15b0-4752-a674-0744d06564bf}</Project>
       <Name>WPFCustomControls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\MainWindow\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

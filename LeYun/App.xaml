@@ -365,21 +365,21 @@
                     <!--搜索编辑框样式-->
                     <Style x:Key="SearchTextBoxStyle" TargetType="{x:Type TextBox}">
                         <Setter Property="Height" Value="30"/>
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="15"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
-                                    <Border x:Name="border" BorderBrush="{StaticResource ThemeColor}" BorderThickness="2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                        <Grid>
+                                    <Border x:Name="border" BorderBrush="{StaticResource ThemeColor}" BorderThickness="2" Background="{TemplateBinding Background}" UseLayoutRounding="False">
+                                        <Grid UseLayoutRounding="False">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <Border x:Name="icon" Background="{StaticResource ThemeColor}" Margin="0 0 5 0">
+                                            <Border x:Name="icon" Background="{StaticResource ThemeColor}" Margin="0 0 5 0" UseLayoutRounding="False">
                                                 <TextBlock Style="{StaticResource IconTextBlock}" Foreground="{StaticResource TextColorLight}" Text="&#xf002;" Margin="5 0 5 0"/>
                                             </Border>
-                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="按名称查找" Foreground="{StaticResource TextColorGray}" HorizontalAlignment="Left" Visibility="Hidden"/>
-                                            <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" FontSize="15" Text="按名称查找" Foreground="{StaticResource TextColorGray}" HorizontalAlignment="Left" Visibility="Hidden" UseLayoutRounding="True"/>
+                                            <ScrollViewer UseLayoutRounding="True" Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -756,7 +756,7 @@
                                     <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <!--<Setter Property="FontWeight" Value="Bold"/>-->
                                     <Setter Property="Height" Value="35"/>
                                 </Style>
                             </Setter.Value>

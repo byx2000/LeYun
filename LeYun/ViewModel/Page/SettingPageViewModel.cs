@@ -24,16 +24,16 @@ namespace LeYun.ViewModel
         public DelegateCommand RestoreDefaultCommand { get; }
 
         // 当前记录保存路径
-        private string currentRecordPath = GlobalData.RecordPath;
-        public string CurrentRecordPath 
-        { 
-            get { return currentRecordPath; } 
-            set
-            {
-                currentRecordPath = value;
-                RaisePropertyChanged("CurrentRecordPath");
-            }
-        }
+        //private string currentRecordPath = GlobalData.RecordPath;
+        //public string CurrentRecordPath 
+        //{ 
+        //    get { return currentRecordPath; } 
+        //    set
+        //    {
+        //        currentRecordPath = value;
+        //        RaisePropertyChanged("CurrentRecordPath");
+        //    }
+        //}
 
         // 当前激活状态
         private bool isActive = GlobalData.IsActive;
@@ -139,10 +139,8 @@ namespace LeYun.ViewModel
                         }                        
                     }
 
-                    // 更新配置文件
                     GlobalData.RecordPath = dlg.SelectedPath;
-                    GlobalData.WriteConfiguration(GlobalData.RecordPathKey, dlg.SelectedPath);
-                    CurrentRecordPath = dlg.SelectedPath;
+                    //GlobalData.WriteConfiguration(GlobalData.RecordPathKey, dlg.SelectedPath);
 
                     // 成功提示
                     SystemSounds.Beep.Play();

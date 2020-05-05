@@ -8,13 +8,13 @@
         xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
         xmlns:model="clr-namespace:LeYun.Model"
         mc:Ignorable="d"
-        Width="1304" Height="824" ResizeMode="CanMinimize"
+        Width="1350" Height="800" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Icon="pack://application:,,,/Img/icon.png"
-        x:Name="mainWindow" Topmost="True"
-        viewmodel:WindowBehavior.LoadedCommand="{Binding FullScreenCommand}"
-        viewmodel:WindowBehavior.ClosingCommand="{Binding SaveConfigurationCommand}">
+        x:Name="mainWindow"
+        MouseMove="mainWindow_MouseMove"
+        Closing="mainWindow_Closing" Style="{StaticResource ShadowWindowStyle}">
 
     <Window.Resources>
         <!--用于侧边栏选项的单选按钮样式-->
@@ -52,9 +52,9 @@
         </Style>
     </Window.Resources>
     
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewmodel:MainWindowViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <!--窗格设计-->
     <Border Background="#f1f1f1">
@@ -65,7 +65,7 @@
             </Grid.RowDefinitions>
 
             <!--标题栏-->
-            <Border Grid.Row="0" Background="{StaticResource ThemeColorLight}" />
+            <Border x:Name="TitleBar" Grid.Row="0" Background="{StaticResource ThemeColorLight}" />
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10 0 0 0">
                 <!--logo-->
                 <Image Source="pack://application:,,,/Img/logo.png" Margin="10"/>
@@ -78,13 +78,8 @@
 
             <!--最小化和关闭按钮-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 0 0">
-                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" FontSize="30"
-                        Command="{Binding MinimizeCommand}" 
-                        CommandParameter="{Binding ElementName=mainWindow}"/>
-
-                <Button Style="{StaticResource TitleBarCloseButtonStyle}" FontSize="30"
-                        Command="{Binding CloseCommand}" 
-                        CommandParameter="{Binding ElementName=mainWindow}"/>
+                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" FontSize="30" Click="Minimize_Click"/>
+                <Button Style="{StaticResource TitleBarCloseButtonStyle}" FontSize="30" Click="Close_Click"/>
             </StackPanel>
 
             <!--主内容区-->
@@ -95,14 +90,15 @@
                 </Grid.ColumnDefinitions>
 
                 <!--页面导航-->
-                <Frame Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
+                <Frame Grid.Column="1" NavigationUIVisibility="Hidden" 
+                       Content="{Binding Path=(model:GlobalData.CurrentPage)}"/>
 
                 <!--左边选项栏-->
                 <Border Background="#226ad1"/>
                 <UniformGrid Grid.Column="0" Rows="5" Margin="0 10 0 0" Height="300" VerticalAlignment="Top">
 
                     <!--线路规划-->
-                    <RadioButton Style="{StaticResource RadioButtonStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="0" IsChecked="{Binding IsPathProjectPageCheck}">
+                    <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="PathProjectPage_Checked" IsChecked="{Binding Path=(model:GlobalData.IsPathProjectPageChecked)}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf041;" FontSize="20"/>
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="线路规划" FontSize="16" Margin="10 0 0 0"/>
@@ -110,7 +106,7 @@
                     </RadioButton>
 
                     <!--历史记录-->
-                    <RadioButton Style="{StaticResource RadioButtonStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="1">
+                    <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="RouteRecordPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1da;" FontSize="20"/>
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="历史记录" FontSize="16" Margin="10 0 0 0"/>
@@ -118,7 +114,7 @@
                     </RadioButton>
 
                     <!--系统设置-->
-                    <RadioButton Style="{StaticResource RadioButtonStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="2">
+                    <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="SettingPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;" FontSize="20"/>
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="系统设置" FontSize="16" Margin="10 0 0 0"/>
@@ -126,7 +122,7 @@
                     </RadioButton>
 
                     <!--关于我们-->
-                    <RadioButton Style="{StaticResource RadioButtonStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="3">
+                    <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="AboutPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20"/>
                             <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="关于我们" FontSize="16" Margin="10 0 0 0"/>

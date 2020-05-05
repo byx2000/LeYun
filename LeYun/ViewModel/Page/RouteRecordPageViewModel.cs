@@ -23,16 +23,9 @@ namespace LeYun.ViewModel
         // 命令
         public DelegateCommand LoadRecordsCommand { get; }
         public DelegateCommand ViewCarDetailCommand { get; }
-        public DelegateCommand ViewNodeDetailCommand { get; }
         public DelegateCommand ImportRecordCommand { get; }
         public DelegateCommand RenameRecordCommand { get; }
         public DelegateCommand DeleteRecordCommand { get; }
-
-        // 主窗口视图模型
-        private MainWindowViewModel mainWindowViewModel;
-
-        // 线路规划页面视图模型
-        private PathProjectPageViewModel pathProjectPageViewModel;
 
         // 所有历史记录
         public ObservableCollection<ProblemRecord> Records { get; }
@@ -94,16 +87,12 @@ namespace LeYun.ViewModel
         public ObservableCollection<ProblemRecord> SearchResult { get; } = new ObservableCollection<ProblemRecord>();
 
         // 构造函数
-        public RouteRecordPageViewModel(MainWindowViewModel mainWindowViewModel, PathProjectPageViewModel pathProjectPageViewModel)
+        public RouteRecordPageViewModel()
         {
-            this.mainWindowViewModel = mainWindowViewModel;
-            this.pathProjectPageViewModel = pathProjectPageViewModel;
-
             Records = new ObservableCollection<ProblemRecord>();
             LoadRecordsCommand = new DelegateCommand(LoadRecords);
             ViewCarDetailCommand = new DelegateCommand(ViewCarDetail);
             ImportRecordCommand = new DelegateCommand(ImportRecord);
-            ViewNodeDetailCommand = new DelegateCommand(ViewNodeDetail);
             RenameRecordCommand = new DelegateCommand(RenameRecord);
             DeleteRecordCommand = new DelegateCommand(DeleteRecord);
         }
@@ -141,30 +130,12 @@ namespace LeYun.ViewModel
             }
         }
 
-        // 查看节点详情
-        private void ViewNodeDetail(object obj)
-        {
-            int iNode = (int)obj;
-
-            NodeDetailDlg dlg = new NodeDetailDlg();
-            NodeDetailDlgViewModel viewModel = new NodeDetailDlgViewModel();
-            List<Node> nodes = new List<Node>();
-            int oldID = CurrentRecord.Nodes[iNode].ID;
-            nodes.Add(CurrentRecord.Nodes[iNode]);
-            nodes[0].ID = 1;
-            viewModel.Nodes = nodes;
-
-            dlg.DataContext = viewModel;
-            dlg.ShowDialog();
-
-            CurrentRecord.Nodes[iNode].ID = oldID;
-        }
-
         // 导入历史记录
         private void ImportRecord(object obj)
         {
-            mainWindowViewModel.CurrentPage = mainWindowViewModel.pathProjectPage;
-            pathProjectPageViewModel.Record = CurrentRecord;
+            GlobalData.CurrentPage = GlobalData.PathProjectPage;
+            GlobalData.IsPathProjectPageChecked = true;
+            GlobalData.PathProjectPageViewModel.Record = CurrentRecord;
 
             ObservableCollection<Segment> Segments = new ObservableCollection<Segment>();
             for (int i = 0; i < CurrentRecord.Paths.Count; ++i)
@@ -182,9 +153,7 @@ namespace LeYun.ViewModel
                 }
             }
 
-            pathProjectPageViewModel.Segments = Segments;
-
-            mainWindowViewModel.IsPathProjectPageCheck = true;
+            GlobalData.PathProjectPageViewModel.Segments = Segments;
         }
 
         // 查看车辆详情
@@ -378,14 +347,21 @@ namespace LeYun.ViewModel
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            int recordListCount = (int)values[0];
-            int searchTextLength = (int)values[1];
-            int searchResultCount = (int)values[2];
-            if (recordListCount == 0 || (searchTextLength > 0 && searchResultCount == 0))
+            try
             {
-                return Visibility.Visible;
+                int recordListCount = (int)values[0];
+                int searchTextLength = (int)values[1];
+                int searchResultCount = (int)values[2];
+                if (recordListCount == 0 || (searchTextLength > 0 && searchResultCount == 0))
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
             }
-            else
+            catch (Exception)
             {
                 return Visibility.Hidden;
             }
