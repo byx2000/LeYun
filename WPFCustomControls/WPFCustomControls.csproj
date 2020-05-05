@@ -61,6 +61,7 @@
     <Compile Include="Dialog.cs" />
     <Compile Include="FloatingCard.cs" />
     <Compile Include="HorizontalBarChart.cs" />
+    <Compile Include="PopupExtendControl.cs" />
     <Compile Include="ProgressBar.cs" />
     <Compile Include="ProgressPie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
