@@ -109,7 +109,7 @@ namespace LeYun.ViewModel
 
         // 算法参数
         private int GenerationCount = 2000;
-        private double WTime = 100, WDis = 1, WCar = 1;
+        private double WTime = 1, WDis = 1, WCar = 100;
 
         // 车辆添加方式弹窗
         private bool isAddCarPopupVisible = false;
