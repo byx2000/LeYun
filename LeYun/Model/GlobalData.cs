@@ -160,10 +160,9 @@ namespace LeYun.Model
             }
         }
 
-        // 静态构造函数
-        static GlobalData()
+        // 从配置文件读取所有设置
+        public static void ReadSettings()
         {
-            // 读取配置文件
             try
             {
                 MaxNodeX = int.Parse(ReadConfiguration(MaxNodeXKey));
@@ -177,7 +176,6 @@ namespace LeYun.Model
             }
             catch (Exception)
             {
-                MsgBox.Show("配置文件读取失败！");
                 MaxNodeX = 30;
                 MaxNodeY = 20;
                 RecordPath = "./record";
@@ -187,7 +185,31 @@ namespace LeYun.Model
                 DemoDuration = 20;
                 PopupAfterDemo = true;
             }
+        }
 
+        // 保存所有设置到配置文件
+        public static void SaveSettings()
+        {
+            try
+            {
+                WriteConfiguration(MaxNodeXKey, MaxNodeX.ToString());
+                WriteConfiguration(MaxNodeYKey, MaxNodeY.ToString());
+                WriteConfiguration(RecordPathKey, RecordPath);
+                WriteConfiguration(ActiveStateKey, IsActive.ToString());
+                WriteConfiguration(LineThicknessKey, LineThickness.ToString());
+                WriteConfiguration(NodeButtonWidthKey, NodeButtonWidth.ToString());
+                WriteConfiguration(DemoDurationKey, DemoDuration.ToString());
+                WriteConfiguration(PopupAfterDemoKey, PopupAfterDemo.ToString());
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        // 初始化所有页面
+        public static void InitPages()
+        {
             // 创建各个子页面
             PathProjectPage = new PathProjectPage();
             RouteRecordPage = new RouteRecordPage();
@@ -200,7 +222,14 @@ namespace LeYun.Model
             SettingPageViewModel = new SettingPageViewModel();
             AboutPageViewModel = new AboutPageViewModel();
 
-            currentPage = PathProjectPage;
+            // 设置各个页面的视图模型
+            PathProjectPage.DataContext = PathProjectPageViewModel;
+            RouteRecordPage.DataContext = RouteRecordPageViewModel;
+            SettingPage.DataContext = SettingPageViewModel;
+            AboutPage.DataContext = AboutPageViewModel;
+
+            // 默认显示线路规划页面
+            CurrentPage = PathProjectPage;
             IsPathProjectPageChecked = true;
         }
 

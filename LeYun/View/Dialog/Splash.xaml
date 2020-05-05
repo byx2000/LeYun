@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
         xmlns:model="clr-namespace:LeYun.Model" Topmost="True"
-        Height="250" Width="450" WindowStartupLocation="CenterScreen" Background="#387cdf" Style="{StaticResource ShadowWindowStyle}">
+        Height="250" Width="450" WindowStartupLocation="CenterScreen" Background="#387cdf" Style="{StaticResource ShadowWindowStyle}"
+        Loaded="Splash_Loaded">
     <Window.Resources>
         <local:ProgressWidthConverter x:Key="progressWidthConverter"/>
         <local:ProgressValueConverter x:Key="progressValueConverter"/>

@@ -14,7 +14,7 @@
         Icon="pack://application:,,,/Img/icon.png"
         x:Name="mainWindow"
         MouseMove="mainWindow_MouseMove"
-        Closing="mainWindow_Closing" Style="{StaticResource ShadowWindowStyle}">
+        Style="{StaticResource ShadowWindowStyle}">
 
     <Window.Resources>
         <!--用于侧边栏选项的单选按钮样式-->

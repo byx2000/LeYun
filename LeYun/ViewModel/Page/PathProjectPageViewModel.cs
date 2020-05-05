@@ -41,7 +41,6 @@ namespace LeYun.ViewModel
         public DelegateCommand ImportCarsFromFileCommand { get; }
         public DelegateCommand SetRunParamCommand { get; }
         public DelegateCommand MouseAddNodeCommand { get; }
-        public DelegateCommand ShowSavePopupCommand { get; }
         public DelegateCommand SaveCarCommand { get; }
         public DelegateCommand SaveNodeCommand { get; }
         public DelegateCommand SaveResultCommand { get; }
@@ -108,18 +107,6 @@ namespace LeYun.ViewModel
         // 算法参数
         private int GenerationCount = 2000;
         private double WTime = 1, WDis = 1, WCar = 100;
-
-        // 保存弹窗
-        private bool isSavePopupVisible = false;
-        public bool IsSavePopupVisible
-        {
-            get { return isSavePopupVisible; }
-            set
-            {
-                isSavePopupVisible = value;
-                RaisePropertyChanged("IsSavePopupVisible");
-            }
-        }
 
         // 是否在演示
         private bool isPlayingDemo = false;
@@ -198,7 +185,6 @@ namespace LeYun.ViewModel
             ImportCarsFromFileCommand = new DelegateCommand(ImportCarsFromFile);
             SetRunParamCommand = new DelegateCommand(SetRunParam, CantExecuteDuringDemo);
             MouseAddNodeCommand = new DelegateCommand(MouseAddNode, CantExecuteDuringDemo);
-            ShowSavePopupCommand = new DelegateCommand(ShowSavePopup, CantExecuteDuringDemo);
             SaveCarCommand = new DelegateCommand(SaveCar, CanSaveCar);
             SaveNodeCommand = new DelegateCommand(SaveNode, CanSaveNode);
             SaveResultCommand = new DelegateCommand(SaveResult, CanSaveResult);
@@ -455,13 +441,6 @@ namespace LeYun.ViewModel
                     MsgBox.Show("保存车辆数据文件失败！\n" + e.Message);
                 }
             }
-        }
-
-        // 显示保存弹窗
-        private void ShowSavePopup(object obj)
-        {
-            IsSavePopupVisible = false;
-            IsSavePopupVisible = true;
         }
 
         // 鼠标添加节点
