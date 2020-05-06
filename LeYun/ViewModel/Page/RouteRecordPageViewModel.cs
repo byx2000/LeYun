@@ -28,7 +28,7 @@ namespace LeYun.ViewModel
         public DelegateCommand DeleteRecordCommand { get; }
 
         // 所有历史记录
-        public ObservableCollection<ProblemRecord> Records { get; }
+        public ObservableCollection<ProblemRecord> Records { get; set; } = GlobalData.Records;
 
         // 当前选中的记录编号
         private int currentRecordIndex;
@@ -89,7 +89,6 @@ namespace LeYun.ViewModel
         // 构造函数
         public RouteRecordPageViewModel()
         {
-            Records = new ObservableCollection<ProblemRecord>();
             LoadRecordsCommand = new DelegateCommand(LoadRecords);
             ViewCarDetailCommand = new DelegateCommand(ViewCarDetail);
             ImportRecordCommand = new DelegateCommand(ImportRecord);
@@ -100,9 +99,14 @@ namespace LeYun.ViewModel
         // 删除记录
         private void DeleteRecord(object obj)
         {
-            FileInfo file = new FileInfo(CurrentRecord.Filename);
-            file.Delete();
-            Records.Remove(CurrentRecord);
+            try
+            {
+                GlobalData.RemoveRecord(CurrentRecord);
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show("删除失败！\n" + e.Message);
+            }
         }
 
         // 重命名记录
@@ -120,12 +124,11 @@ namespace LeYun.ViewModel
             {
                 try
                 {
-                    CurrentRecord.Name = viewModel.NewName;
-                    CurrentRecord.SaveToFile(CurrentRecord.Filename);
+                    GlobalData.RenameRecord(CurrentRecord, viewModel.NewName);
                 }
                 catch (Exception e)
                 {
-                    MsgBox.Show("更新记录失败！\n" + e.Message);
+                    MsgBox.Show("重命名失败！\n" + e.Message);
                 }
             }
         }
@@ -135,7 +138,7 @@ namespace LeYun.ViewModel
         {
             GlobalData.CurrentPage = GlobalData.PathProjectPage;
             GlobalData.IsPathProjectPageChecked = true;
-            GlobalData.PathProjectPageViewModel.Record = CurrentRecord;
+            GlobalData.PathProjectPageViewModel.Record = (ProblemRecord)CurrentRecord.Clone();
 
             ObservableCollection<Segment> Segments = new ObservableCollection<Segment>();
             for (int i = 0; i < CurrentRecord.Paths.Count; ++i)
@@ -203,88 +206,24 @@ namespace LeYun.ViewModel
             dlg.ShowDialog();
         }
 
-        // 加载时读取所有历史记录
+        // 加载时
         private void LoadRecords(object obj)
         {
-            new Thread(delegate ()
+            // 清空搜索词
+            SearchText = "";
+
+            // 清空搜索结果
+            SearchResult.Clear();
+
+            // 默认选择第一项
+            if (Records.Count > 0)
             {
-                Application.Current.Dispatcher.BeginInvoke(new Action(delegate
-                {
-                    // 读取文件
-                    try
-                    {
-                        // 读取所有历史记录
-                        DirectoryInfo dir = new DirectoryInfo(GlobalData.RecordPath);
-                        FileInfo[] files = dir.GetFiles();
-
-                        List<ProblemRecord> records = new List<ProblemRecord>();
-                        for (int i = 0; i < files.Length; ++i)
-                        {
-                            if (files[i].Extension == ".rec")
-                            {
-                                records.Add(new ProblemRecord());
-                                records[i].ReadFromFile(files[i].FullName);
-                                records[i].Filename = files[i].FullName;
-                            }
-                        }
-
-                        // 按照时间先后排序
-                        records.Sort(delegate (ProblemRecord r1, ProblemRecord r2)
-                        {
-                            return r2.CreateTime.CompareTo(r1.CreateTime);
-                        });
-
-                        Records.Clear();
-                        for (int i = 0; i < records.Count; ++i)
-                        {
-                            Records.Add(records[i]);
-                        }
-
-                        // 清空搜索词
-                        SearchText = "";
-
-                        // 清空搜索结果
-                        SearchResult.Clear();
-
-                        // 默认选择第一项
-                        if (Records.Count > 0)
-                        {
-                            CurrentRecordIndex = 0;
-                        }
-                        else
-                        {
-                            CurrentRecordIndex = -1;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Records.Clear();
-                        MsgBox.Show("读取记录出错！\n" + e.Message);
-                    }
-
-                    // 计算相关数据
-                    for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
-                    {
-                        Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
-                        Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
-                        Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
-                        Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
-
-                        for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
-                        {
-                            Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
-                            Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
-                            Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
-                            Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
-                        }
-
-                        for (int iNode = 1; iNode < Records[iRecord].Nodes.Count; ++iNode)
-                        {
-                            Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
-                        }
-                    }
-                }));
-            }).Start();
+                CurrentRecordIndex = 0;
+            }
+            else
+            {
+                CurrentRecordIndex = -1;
+            }
         }
     }
 

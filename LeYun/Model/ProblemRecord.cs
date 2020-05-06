@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace LeYun.Model
 {
-    class ProblemRecord : ViewModelBase
+    class ProblemRecord : ViewModelBase, ICloneable
     {
         private const string RecordDataFileFlag = "RecordData";
 
@@ -156,6 +156,28 @@ namespace LeYun.Model
                 totalLoadRate = value;
                 RaisePropertyChanged("TotalLoadRate");
             }
+        }
+
+        // 复制
+        public object Clone()
+        {
+            ProblemRecord record = new ProblemRecord();
+            record.CreateTime = CreateTime;
+            record.Name = (string)Name.Clone();
+            record.CarSpeed = CarSpeed;
+            record.NodeStayTime = NodeStayTime;
+            record.Cars = (CarCollection)Cars.Clone();
+            record.Nodes = (NodeCollection)Nodes.Clone();
+            for (int i = 0; i < Paths.Count; ++i)
+            {
+                record.Paths.Add(new ObservableCollection<int>());
+                for (int j = 0; j < Paths[i].Count; ++j)
+                {
+                    record.Paths[i].Add(Paths[i][j]);
+                }
+            }
+
+            return record;
         }
 
         // 保存到文件

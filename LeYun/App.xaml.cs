@@ -34,9 +34,12 @@ namespace LeYun
             {
                 // 读取设置
                 GlobalData.ReadSettings();
-            } 
+            }
 
-            // 如果软件未激活，则弹出广告
+            // 读取历史记录
+            GlobalData.ReadRecords();
+
+            // 如果软件未激活，则弹出广告和激活对话框
             if (!GlobalData.IsActive)
             {
                 AdDlg adDlg = new AdDlg();
@@ -56,6 +59,9 @@ namespace LeYun
         // 应用程序退出
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            // 保存历史记录
+            GlobalData.SaveRecords();
+
             // 保存设置
             GlobalData.SaveSettings();
         }

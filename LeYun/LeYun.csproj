@@ -133,6 +133,9 @@
     <Compile Include="ViewModel\Behavior\ThumbBehavior.cs" />
     <Compile Include="ViewModel\Basic\ViewModelBase.cs" />
     <Compile Include="ViewModel\Behavior\WindowBehavior.cs" />
+    <Compile Include="View\Dialog\ActivateDlg.xaml.cs">
+      <DependentUpon>ActivateDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\AdDlg.xaml.cs">
       <DependentUpon>AdDlg.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
     <Compile Include="View\Page\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Dialog\ActivateDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Dialog\AdDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

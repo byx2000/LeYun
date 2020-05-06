@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LeYun.Model
 {
-    class NodeCollection : ObservableCollection<Node>
+    class NodeCollection : ObservableCollection<Node>, ICloneable
     {
         private const string NodeDataFileFlag = "NodeData";
 
@@ -67,6 +67,16 @@ namespace LeYun.Model
                     }
                 }
             }
+        }
+
+        public object Clone()
+        {
+            NodeCollection nodes = new NodeCollection();
+            for (int i = 0; i < Count; ++i)
+            {
+                nodes.Add((Node)this[i].Clone());
+            }
+            return nodes;
         }
     }
 }

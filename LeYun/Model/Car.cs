@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeYun.Model
 {
-    class Car : ViewModelBase
+    class Car : ViewModelBase, ICloneable
     {
 		// 编号
 		private int id;
@@ -127,6 +127,15 @@ namespace LeYun.Model
 				path = value;
 				RaisePropertyChanged("Path");
 			}
+		}
+
+		public object Clone()
+		{
+			Car car = new Car();
+			car.ID = ID;
+			car.WeightLimit = WeightLimit;
+			car.DisLimit = DisLimit;
+			return car;
 		}
 	}
 }

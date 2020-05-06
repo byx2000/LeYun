@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeYun.Model
 {
-    class Node : ViewModelBase
+    class Node : ViewModelBase, ICloneable
     {
         // 编号
         private int id;
@@ -74,6 +74,16 @@ namespace LeYun.Model
         public double Distance(Node n)
         {
             return Math.Sqrt((X - n.X) * (X - n.X) + (Y - n.Y) * (Y - n.Y));
+        }
+
+        public object Clone()
+        {
+            Node node = new Node();
+            node.ID = ID;
+            node.X = X;
+            node.Y = Y;
+            node.Demand = Demand;
+            return node;
         }
     }
 }

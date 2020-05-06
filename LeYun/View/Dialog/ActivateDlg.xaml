@@ -1,0 +1,26 @@
+﻿<wpfcustomcontrols:Dialog  xmlns:wpfcustomcontrols="clr-namespace:WPFCustomControls;assembly=WPFCustomControls"
+                           x:Class="LeYun.View.Dlg.ActivateDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeYun.View.Dlg"
+        mc:Ignorable="d"
+        Title="软件激活" Height="360" Width="400" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="0 10 0 0" Text="试用版软件不包含以下功能：" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 10 0 0" Text="●动画演示：" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 10 0 0" Text="●历史记录搜索：" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 10 0 0" Text="●车辆详情查看：" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="请输入激活码："/>
+                <TextBox x:Name="key" Style="{StaticResource TextBoxStyle}" Width="200" Background="Transparent" Text="XXX-XXX-XXX"/>
+            </StackPanel>
+            <Grid Margin="0 20 0 0">
+                <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Content="激活"/>
+                <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Content="取消"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</wpfcustomcontrols:Dialog>

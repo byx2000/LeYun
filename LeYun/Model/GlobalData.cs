@@ -3,10 +3,13 @@ using LeYun.View.Dlg;
 using LeYun.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -64,6 +67,20 @@ namespace LeYun.Model
                 RaisePropertyChanged("IsPathProjectPageChecked");
             }
         }
+
+        // 历史记录
+        private static ObservableCollection<ProblemRecord> records = new ObservableCollection<ProblemRecord>();
+        public static ObservableCollection<ProblemRecord> Records
+        {
+            get { return records; }
+            set 
+            { 
+                records = value;
+                RaisePropertyChanged("Records");
+            }
+        }
+
+
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
@@ -277,6 +294,129 @@ namespace LeYun.Model
             // 默认显示线路规划页面
             CurrentPage = PathProjectPage;
             IsPathProjectPageChecked = true;
+        }
+
+        // 读取所有历史记录
+        public static void ReadRecords()
+        {
+            new Thread(delegate ()
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(delegate
+                {
+                    // 读取文件
+                    try
+                    {
+                        // 读取所有历史记录
+                        DirectoryInfo dir = new DirectoryInfo(RecordPath);
+                        FileInfo[] files = dir.GetFiles();
+
+                        List<ProblemRecord> records = new List<ProblemRecord>();
+                        for (int i = 0; i < files.Length; ++i)
+                        {
+                            if (files[i].Extension == ".rec")
+                            {
+                                records.Add(new ProblemRecord());
+                                records[i].ReadFromFile(files[i].FullName);
+                                records[i].Filename = files[i].FullName;
+                            }
+                        }
+
+                        // 按照时间先后排序
+                        records.Sort(delegate (ProblemRecord r1, ProblemRecord r2)
+                        {
+                            return r2.CreateTime.CompareTo(r1.CreateTime);
+                        });
+
+                        Records.Clear();
+                        for (int i = 0; i < records.Count; ++i)
+                        {
+                            Records.Add(records[i]);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Records.Clear();
+                        MsgBox.Show("读取记录出错！\n" + e.Message);
+                    }
+
+                    // 计算相关数据
+                    for (int iRecord = 0; iRecord < Records.Count; ++iRecord)
+                    {
+                        Records[iRecord].TotalTime = Records[iRecord].GetTotalTime();
+                        Records[iRecord].TotalDis = Records[iRecord].GetTotalDistance();
+                        Records[iRecord].UseCarCount = Records[iRecord].GetUseCarCount();
+                        Records[iRecord].TotalLoadRate = Records[iRecord].GetTotalLoadRate();
+
+                        for (int iCar = 0; iCar < Records[iRecord].Paths.Count; ++iCar)
+                        {
+                            Records[iRecord].Cars[iCar].Dis = Records[iRecord].GetCarDistance(iCar);
+                            Records[iRecord].Cars[iCar].Weight = Records[iRecord].GetCarWeight(iCar);
+                            Records[iRecord].Cars[iCar].Path = Records[iRecord].GetCarPath(iCar);
+                            Records[iRecord].Cars[iCar].Time = Records[iRecord].GetCarTime(iCar);
+                        }
+
+                        for (int iNode = 1; iNode < Records[iRecord].Nodes.Count; ++iNode)
+                        {
+                            Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
+                        }
+                    }
+                }));
+            }).Start();
+        }
+
+        // 保存所有历史记录
+        public static void SaveRecords()
+        {
+            try
+            {
+                for (int i = 0; i < Records.Count; ++i)
+                {
+                    Records[i].SaveToFile(Records[i].Filename);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("保存历史记录失败！\n" + e.Message);
+            }
+        }
+
+        // 添加历史记录
+        public static void AddRecord(ProblemRecord rec)
+        {
+            ProblemRecord record = (ProblemRecord)rec.Clone();
+
+            record.TotalTime = record.GetTotalTime();
+            record.TotalDis = record.GetTotalDistance();
+            record.TotalLoadRate = record.GetTotalLoadRate();
+            record.UseCarCount = record.GetUseCarCount();
+            for (int iCar = 0; iCar < record.Paths.Count; ++iCar)
+            {
+                record.Cars[iCar].Dis = record.GetCarDistance(iCar);
+                record.Cars[iCar].Weight = record.GetCarWeight(iCar);
+                record.Cars[iCar].Path = record.GetCarPath(iCar);
+                record.Cars[iCar].Time = record.GetCarTime(iCar);
+            }
+            for (int iNode = 1; iNode < record.Nodes.Count; ++iNode)
+            {
+                record.Nodes[iNode].ServedTime = record.GetNodeServedTime(iNode);
+            }
+
+            record.Filename = RecordPath + "/" + record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss") + ".rec";
+            Records.Insert(0, record);
+        }
+
+        // 删除历史记录
+        public static void RemoveRecord(ProblemRecord record)
+        {
+            FileInfo file = new FileInfo(record.Filename);
+            file.Delete();
+            Records.Remove(record);
+        }
+
+        // 重命名历史记录
+        public static void RenameRecord(ProblemRecord record, string newName)
+        {
+            record.Name = newName;
         }
 
         // 通知属性改变

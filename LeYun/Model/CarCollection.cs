@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LeYun.Model
 {
-    class CarCollection : ObservableCollection<Car>
+    class CarCollection : ObservableCollection<Car>, ICloneable
     {
         private const string CarDataFileFlag = "CarData";
 
@@ -65,6 +65,16 @@ namespace LeYun.Model
                     }
                 }
             }
+        }
+
+        public object Clone()
+        {
+            CarCollection cars = new CarCollection();
+            for (int i = 0; i < Count; ++i)
+            {
+                cars.Add((Car)this[i].Clone());
+            }
+            return cars;
         }
     }
 }

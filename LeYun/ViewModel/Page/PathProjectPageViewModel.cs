@@ -727,9 +727,12 @@ namespace LeYun.ViewModel
                 // 保存结果
                 try
                 {
+                    //Record.CreateTime = DateTime.Now;
+                    //Record.Name = record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
+                    //Record.SaveToFile(GlobalData.RecordPath + "/" + record.Name + ".rec");
                     Record.CreateTime = DateTime.Now;
-                    Record.Name = record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
-                    Record.SaveToFile(GlobalData.RecordPath + "/" + record.Name + ".rec");
+                    Record.Name = Record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss");
+                    GlobalData.AddRecord(Record);
                 }
                 catch (Exception e)
                 {
