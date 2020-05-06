@@ -30,28 +30,15 @@ namespace LeYun.ViewModel
         // 所有历史记录
         public ObservableCollection<ProblemRecord> Records { get; set; } = GlobalData.Records;
 
-        // 当前选中的记录编号
-        private int currentRecordIndex;
-        public int CurrentRecordIndex
-        {
-            get { return currentRecordIndex; }
-            set
-            {
-                currentRecordIndex = value;
-                RaisePropertyChanged("CurrentRecordIndex");
-                RaisePropertyChanged("CurrentRecord");
-            }
-        }
-
         // 当前选中记录
-        private ProblemRecord currentRecord;
-        public ProblemRecord CurrentRecord
+        private ProblemRecord selectedRecord;
+        public ProblemRecord SelectedRecord
         {
-            get { return currentRecord; }
+            get { return selectedRecord; }
             set
             {
-                currentRecord = value;
-                RaisePropertyChanged("CurrentRecord");
+                selectedRecord = value;
+                RaisePropertyChanged("SelectedRecord");
             }
         }
 
@@ -101,7 +88,7 @@ namespace LeYun.ViewModel
         {
             try
             {
-                GlobalData.RemoveRecord(CurrentRecord);
+                GlobalData.RemoveRecord(SelectedRecord);
             }
             catch (Exception e)
             {
@@ -115,7 +102,7 @@ namespace LeYun.ViewModel
             RenameDlg dlg = new RenameDlg();
             RenameDlgViewModel viewModel = new RenameDlgViewModel();
             viewModel.Title = "重命名";
-            viewModel.NewName = CurrentRecord.Name;
+            viewModel.NewName = SelectedRecord.Name;
 
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
@@ -124,7 +111,7 @@ namespace LeYun.ViewModel
             {
                 try
                 {
-                    GlobalData.RenameRecord(CurrentRecord, viewModel.NewName);
+                    GlobalData.RenameRecord(SelectedRecord, viewModel.NewName);
                 }
                 catch (Exception e)
                 {
@@ -138,21 +125,21 @@ namespace LeYun.ViewModel
         {
             GlobalData.CurrentPage = GlobalData.PathProjectPage;
             GlobalData.IsPathProjectPageChecked = true;
-            GlobalData.PathProjectPageViewModel.Record = (ProblemRecord)CurrentRecord.Clone();
+            GlobalData.PathProjectPageViewModel.Record = (ProblemRecord)SelectedRecord.Clone();
 
             ObservableCollection<Segment> Segments = new ObservableCollection<Segment>();
-            for (int i = 0; i < CurrentRecord.Paths.Count; ++i)
+            for (int i = 0; i < SelectedRecord.Paths.Count; ++i)
             {
-                if (CurrentRecord.Paths[i].Count > 0)
+                if (SelectedRecord.Paths[i].Count > 0)
                 {
                     Brush brush = Util.RandomColorBrush();
-                    Point last = new Point(CurrentRecord.Nodes[0].X, CurrentRecord.Nodes[0].Y);
-                    for (int j = 0; j < CurrentRecord.Paths[i].Count; ++j)
+                    Point last = new Point(SelectedRecord.Nodes[0].X, SelectedRecord.Nodes[0].Y);
+                    for (int j = 0; j < SelectedRecord.Paths[i].Count; ++j)
                     {
-                        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = CurrentRecord.Nodes[CurrentRecord.Paths[i][j]].X, Y2 = CurrentRecord.Nodes[CurrentRecord.Paths[i][j]].Y, Stroke = brush });
-                        last = new Point(CurrentRecord.Nodes[CurrentRecord.Paths[i][j]].X, CurrentRecord.Nodes[CurrentRecord.Paths[i][j]].Y);
+                        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].X, Y2 = SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].Y, Stroke = brush });
+                        last = new Point(SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].X, SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].Y);
                     }
-                    Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = CurrentRecord.Nodes[0].X, Y2 = CurrentRecord.Nodes[0].Y, Stroke = brush });
+                    Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = SelectedRecord.Nodes[0].X, Y2 = SelectedRecord.Nodes[0].Y, Stroke = brush });
                 }
             }
 
@@ -174,7 +161,7 @@ namespace LeYun.ViewModel
             int iCar = (int)obj;
 
             // 车辆未使用时弹出提示
-            if (CurrentRecord.Cars[iCar].Path.Count == 0)
+            if (SelectedRecord.Cars[iCar].Path.Count == 0)
             {
                 SystemSounds.Beep.Play();
                 MsgBox.Show("该车辆未使用！");
@@ -186,21 +173,21 @@ namespace LeYun.ViewModel
 
             viewModel.ID = iCar;
 
-            viewModel.WeightLimit = CurrentRecord.Cars[iCar].WeightLimit;
-            viewModel.Weight = CurrentRecord.Cars[iCar].Weight;
+            viewModel.WeightLimit = SelectedRecord.Cars[iCar].WeightLimit;
+            viewModel.Weight = SelectedRecord.Cars[iCar].Weight;
 
-            viewModel.DisLimit = CurrentRecord.Cars[iCar].DisLimit;
-            viewModel.Dis = CurrentRecord.Cars[iCar].Dis;
+            viewModel.DisLimit = SelectedRecord.Cars[iCar].DisLimit;
+            viewModel.Dis = SelectedRecord.Cars[iCar].Dis;
 
-            viewModel.Time = CurrentRecord.Cars[iCar].Time;
-            viewModel.TotalTime = CurrentRecord.TotalTime;
+            viewModel.Time = SelectedRecord.Cars[iCar].Time;
+            viewModel.TotalTime = SelectedRecord.TotalTime;
 
-            viewModel.NodeCount = CurrentRecord.Cars[iCar].Path.Count;
-            viewModel.TotalNodeCount = CurrentRecord.Nodes.Count - 1;
+            viewModel.NodeCount = SelectedRecord.Cars[iCar].Path.Count;
+            viewModel.TotalNodeCount = SelectedRecord.Nodes.Count - 1;
 
-            viewModel.NodeList = CurrentRecord.Cars[iCar].Path;
+            viewModel.NodeList = SelectedRecord.Cars[iCar].Path;
 
-            viewModel.Start = CurrentRecord.Nodes[0];
+            viewModel.Start = SelectedRecord.Nodes[0];
 
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
@@ -218,11 +205,11 @@ namespace LeYun.ViewModel
             // 默认选择第一项
             if (Records.Count > 0)
             {
-                CurrentRecordIndex = 0;
+                SelectedRecord = Records[0];
             }
             else
             {
-                CurrentRecordIndex = -1;
+                SelectedRecord = null;
             }
         }
     }

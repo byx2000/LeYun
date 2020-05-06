@@ -48,8 +48,7 @@
                          IsEnabled="{Binding Path=(model:GlobalData.IsActive), UpdateSourceTrigger=PropertyChanged, Converter={StaticResource searchEnableConverter}}"/>
                 <!--全部记录列表-->
                 <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
-                    SelectedIndex="{Binding CurrentRecordIndex}"
-                    SelectedItem="{Binding CurrentRecord}"
+                    SelectedItem="{Binding SelectedRecord}"
                     ItemsSource="{Binding Records}">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -71,7 +70,7 @@
                         Visibility="{Binding ElementName=searchBox, Path=Text.Length, Converter={StaticResource searchResultVisibilityConverter}}">
                     <DataGrid x:Name="searchResult" Style="{StaticResource DataGridStyle}" Margin="10"
                               ItemsSource="{Binding SearchResult}"
-                              SelectedItem="{Binding CurrentRecord}">
+                              SelectedItem="{Binding SelectedRecord}">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="导入"
@@ -141,7 +140,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Left"
-                                           Text="{Binding CurrentRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
+                                           Text="{Binding SelectedRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
                                 
                             </Grid>
                         </Grid>
@@ -160,7 +159,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.NodeStayTime, StringFormat={}{0:F2} min}"/>
+                                           Text="{Binding SelectedRecord.NodeStayTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
                         </Grid>
@@ -192,7 +191,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送总时间" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" 
-                                           Text="{Binding CurrentRecord.TotalTime, StringFormat={}{0:F2} min}"/>
+                                           Text="{Binding SelectedRecord.TotalTime, StringFormat={}{0:F2} min}"/>
                                 
                             </Grid>
                         </Grid>
@@ -211,7 +210,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆总里程" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalDis, StringFormat={}{0:F2} km}"/>
+                                           Text="{Binding SelectedRecord.TotalDis, StringFormat={}{0:F2} km}"/>
                                 
                             </Grid>
                         </Grid>
@@ -230,7 +229,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="使用车辆数" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.UseCarCount, StringFormat={}{0} 辆}"/>
+                                           Text="{Binding SelectedRecord.UseCarCount, StringFormat={}{0} 辆}"/>
                                 
                             </Grid>
                         </Grid>
@@ -249,7 +248,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="总满载率" FontSize="15" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold"
-                                           Text="{Binding CurrentRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
+                                           Text="{Binding SelectedRecord.TotalLoadRate, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -260,7 +259,7 @@
                 <Border Grid.Row="2" Margin="0 15 0 0">
                     <Grid>
                         <DataGrid Grid.Row="1" x:Name="carList" Style="{StaticResource DataGridStyle}" Margin="10"
-                                  ItemsSource="{Binding Path=CurrentRecord.Cars}">
+                                  ItemsSource="{Binding Path=SelectedRecord.Cars}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="车辆编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}" 
                                                     Binding="{Binding ID}"/>
@@ -298,7 +297,7 @@
                 <Border Grid.Row="3" Margin="0 15 0 0">
                     <Grid>
                         <DataGrid Grid.Row="2" x:Name="nodeList" Style="{StaticResource DataGridStyle}" Margin="10"
-                                  ItemsSource="{Binding Path=CurrentRecord.Nodes}">
+                                  ItemsSource="{Binding Path=SelectedRecord.Nodes}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="节点编号" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding ID}"/>
@@ -310,15 +309,6 @@
                                                     Binding="{Binding Demand, StringFormat={}{0:F2}}"/>
                                 <DataGridTextColumn Header="服务时间(min)" Width="*" ElementStyle="{StaticResource DataGridCellContentStyle}"
                                                     Binding="{Binding ServedTime, StringFormat={}{0:F2}}"/>
-                                <!--<DataGridTemplateColumn Header="操作" Width="*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Style="{StaticResource ButtonStyle}" x:Name="DetailBtn" Width="70" Height="25" Content="详情" Margin="10 0 0 0"
-                                                    Command="{Binding ElementName=page, Path=DataContext.ViewNodeDetailCommand}"
-                                                    CommandParameter="{Binding ElementName=nodeList, Path=SelectedIndex}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>-->
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

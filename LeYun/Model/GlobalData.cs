@@ -80,7 +80,17 @@ namespace LeYun.Model
             }
         }
 
-
+        // 当前问题记录
+        //private static ProblemRecord currentRecord; 
+        //public static ProblemRecord CurrentRecord
+        //{
+        //    get { return currentRecord; }
+        //    set 
+        //    { 
+        //        currentRecord = value;
+        //        RaisePropertyChanged("CurrentRecord");
+        //    }
+        //}
 
         // 节点X坐标最大值
         private static double maxNodeX = 30;
