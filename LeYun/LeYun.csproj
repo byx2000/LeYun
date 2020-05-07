@@ -113,6 +113,7 @@
     <Compile Include="Model\Segment.cs" />
     <Compile Include="Model\Util.cs" />
     <Compile Include="ViewModel\Behavior\AutoSelectBehavior.cs" />
+    <Compile Include="ViewModel\Observer\DataGridRowObserver.cs" />
     <Compile Include="ViewModel\Page\AboutPageViewModel.cs" />
     <Compile Include="ViewModel\Behavior\ComboBoxBehavior.cs" />
     <Compile Include="ViewModel\Basic\DelegateCommand.cs" />
@@ -124,7 +125,7 @@
     <Compile Include="ViewModel\Dialog\NodeInfoDlgViewModel.cs" />
     <Compile Include="ViewModel\Dialog\RenameDlgViewModel.cs" />
     <Compile Include="ViewModel\Dialog\RunParamSetDlgViewModel.cs" />
-    <Compile Include="ViewModel\Behavior\MouseBehaviour.cs" />
+    <Compile Include="ViewModel\Behavior\MouseBehavior.cs" />
     <Compile Include="ViewModel\Observer\MouseObserver.cs" />
     <Compile Include="ViewModel\Page\PathProjectPageViewModel.cs" />
     <Compile Include="ViewModel\Page\RouteRecordPageViewModel.cs" />

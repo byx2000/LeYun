@@ -329,7 +329,7 @@
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent" 
-                                    viewmodel:MouseBehaviour.MouseLeftButtonDownCommand="{Binding MouseAddNodeCommand}"
+                                    viewmodel:MouseBehavior.MouseLeftButtonDownCommand="{Binding MouseAddNodeCommand}"
                                     viewmodel:SizeObserver.Observe="True"
                                     viewmodel:SizeObserver.ObservedWidth="{Binding CanvasWidth, Mode=OneWayToSource}"
                                     viewmodel:SizeObserver.ObservedHeight="{Binding CanvasHeight, Mode=OneWayToSource}"

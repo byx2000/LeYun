@@ -705,8 +705,21 @@ namespace LeYun.ViewModel
             {
                 Record.Paths.Clear();
 
+                // 保存路径
+                //for (int i = 0; i < paths.Length; ++i)
+                //{
+                //    Record.Paths.Add(new ObservableCollection<int>());
+                //    for (int j = 0; j < paths[i].Length; ++j)
+                //    {
+                //        Record.Paths[i].Add(paths[i][j]);
+                //    }
+                //}
+
+                // 生成路径
+                //Record.GetPathSegments();
+
                 // 绘制路径
-                Segments.Clear();
+                //Segments.Clear();
                 for (int i = 0; i < paths.Length; ++i)
                 {
                     Record.Paths.Add(new ObservableCollection<int>());
@@ -837,6 +850,11 @@ namespace LeYun.ViewModel
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            if (!(values[0] is double))
+            {
+                return 0;
+            }
+
             double canvasWidth = (double)values[0];
             double xInput = (double)values[1];
             return xInput / GlobalData.MaxNodeX * canvasWidth;
@@ -852,6 +870,11 @@ namespace LeYun.ViewModel
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            if (!(values[0] is double))
+            {
+                return 0;
+            }
+
             double canvasHeight = (double)values[0];
             double yInput = (double)values[1];
             return yInput / GlobalData.MaxNodeY * canvasHeight;
@@ -915,7 +938,12 @@ namespace LeYun.ViewModel
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int curIndex = (int)values[0];
-            int selectedIndex = (int)values[1];
+            //int selectedIndex = (int)values[1];
+            int selectedIndex = -1;
+            if (values[1] is int)
+            {
+                selectedIndex = (int)values[1];
+            }
             if (curIndex == 0)
             {
                 return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#dc4e41"));

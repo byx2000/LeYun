@@ -40,16 +40,128 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--搜索框-->
                 <TextBox Grid.Row="0" x:Name="searchBox" Style="{StaticResource SearchTextBoxStyle}" Margin="10" 
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                          viewmodel:AutoSelectBehavior.AutoSelectOnFocus="True"
                          IsEnabled="{Binding Path=(model:GlobalData.IsActive), UpdateSourceTrigger=PropertyChanged, Converter={StaticResource searchEnableConverter}}"/>
+                <!--预览窗口-->
+                <!--<Popup StaysOpen="True" PopupAnimation="Fade" AllowsTransparency="True" Placement="Relative"
+                       PlacementTarget="{Binding ElementName=page}"
+                       IsOpen="{Binding IsPreviewShow}"
+                       HorizontalOffset="{Binding PreviewX}"
+                       VerticalOffset="{Binding PreviewY}">
+                    <Grid Width="300" Height="200" Background="White">
+                        <Border BorderBrush="Black" BorderThickness="1"/>
+                        <Image Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5"/>
+                        <ItemsControl Name="myItemsControl" ItemsSource="{Binding PreviewRecord.Segments}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas ClipToBounds="True" Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Line Stroke="{Binding Stroke}" StrokeThickness="1">
+                                        <Line.X1>
+                                            <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="X1"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                            </MultiBinding>
+                                        </Line.X1>
+                                        <Line.Y1>
+                                            <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                                <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="Y1"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                            </MultiBinding>
+                                        </Line.Y1>
+                                        <Line.X2>
+                                            <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="X2"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                            </MultiBinding>
+                                        </Line.X2>
+                                        <Line.Y2>
+                                            <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                                <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="Y2"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                            </MultiBinding>
+                                        </Line.Y2>
+                                    </Line>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="0"/>
+                                    <Setter Property="Canvas.Top" Value="0"/>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                        </ItemsControl>
+                        <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding PreviewRecord.Nodes}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas ClipToBounds="True" Background="Transparent"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="{x:Type ContentPresenter}">
+                                    <Setter Property="Canvas.Left">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                                <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="X"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Canvas.Top">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                                <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                                <Binding Path="Y"/>
+                                                <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Thumb x:Name="btn" Style="{StaticResource NodeButtonStyle}" AllowDrop="True"
+                                           Tag="{Binding ElementName=page}"
+                                           Width="5"
+                                           Height="5">
+                                        <Thumb.Margin>
+                                            <MultiBinding Converter="{StaticResource nodeButtonMarginConverter}">
+                                                <Binding ElementName="btn" Path="ActualWidth"/>
+                                                <Binding ElementName="btn" Path="ActualHeight"/>
+                                            </MultiBinding>
+                                        </Thumb.Margin>
+                                        <Thumb.Background>
+                                            <MultiBinding Converter="{StaticResource nodeButtonColorConverter}">
+                                                <Binding Path="ID"/>
+                                                <Binding ElementName="page" Path="DataContext.CurrentNodeIndex"/>
+                                            </MultiBinding>
+                                        </Thumb.Background>
+                                    </Thumb>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Popup>-->
                 <!--全部记录列表-->
                 <DataGrid Grid.Row="1" x:Name="RouteRecordList" Style="{StaticResource DataGridStyle}" Margin="10"
-                    SelectedItem="{Binding SelectedRecord}"
-                    ItemsSource="{Binding Records}">
+                          SelectedItem="{Binding SelectedRecord}"
+                          ItemsSource="{Binding Records}"
+                          viewmodel:DataGridRowObserver.Observed="True"
+                          viewmodel:DataGridRowObserver.MouseDoubleClickCommand="{Binding ImportRecordCommand}">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="导入"
@@ -70,14 +182,13 @@
                         Visibility="{Binding ElementName=searchBox, Path=Text.Length, Converter={StaticResource searchResultVisibilityConverter}}">
                     <DataGrid x:Name="searchResult" Style="{StaticResource DataGridStyle}" Margin="10"
                               ItemsSource="{Binding SearchResult}"
-                              SelectedItem="{Binding SelectedRecord}">
+                              SelectedItem="{Binding SelectedRecord}"
+                              viewmodel:DataGridRowObserver.Observed="True"
+                              viewmodel:DataGridRowObserver.MouseDoubleClickCommand="{Binding ImportRecordCommand}">
                         <DataGrid.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="导入"
                                       Command="{Binding ImportRecordCommand}"/>
-                                <!--<MenuItem Header="重命名"
-                                      Command="{Binding RenameRecordCommand}"/>
-                                <MenuItem Header="删除"/>-->
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                         <DataGrid.Columns>
@@ -101,6 +212,108 @@
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="没有历史记录" FontSize="25" Foreground="#8f8f8f" Margin="0 20 0 0"/>
                     </StackPanel>
                 </Border>
+                <!--预览图-->
+                <Grid Grid.Row="2" Background="White" Margin="0 10 0 0">
+                    <Image Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5"/>
+                    <ItemsControl Name="myItemsControl" ItemsSource="{Binding SelectedRecord.Segments}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas ClipToBounds="True" Background="Transparent"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Line Stroke="{Binding Stroke}" StrokeThickness="1">
+                                    <Line.X1>
+                                        <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="X1"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                        </MultiBinding>
+                                    </Line.X1>
+                                    <Line.Y1>
+                                        <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="Y1"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                        </MultiBinding>
+                                    </Line.Y1>
+                                    <Line.X2>
+                                        <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="X2"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                        </MultiBinding>
+                                    </Line.X2>
+                                    <Line.Y2>
+                                        <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="Y2"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                        </MultiBinding>
+                                    </Line.Y2>
+                                </Line>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="0"/>
+                                <Setter Property="Canvas.Top" Value="0"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                    <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding SelectedRecord.Nodes}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas ClipToBounds="True" Background="Transparent"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="Canvas.Left">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
+                                            <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="X"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeX)"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Canvas.Top">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource nodeButtonYConverter}">
+                                            <Binding Path="ActualHeight" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=Canvas}"/>
+                                            <Binding Path="Y"/>
+                                            <Binding Path="(model:GlobalData.MaxNodeY)"/>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Thumb x:Name="btn" Style="{StaticResource NodeButtonStyle}" AllowDrop="True"
+                                           Tag="{Binding ElementName=page}"
+                                           Width="5"
+                                           Height="5">
+                                    <Thumb.Margin>
+                                        <MultiBinding Converter="{StaticResource nodeButtonMarginConverter}">
+                                            <Binding ElementName="btn" Path="ActualWidth"/>
+                                            <Binding ElementName="btn" Path="ActualHeight"/>
+                                        </MultiBinding>
+                                    </Thumb.Margin>
+                                    <Thumb.Background>
+                                        <MultiBinding Converter="{StaticResource nodeButtonColorConverter}">
+                                            <Binding Path="ID"/>
+                                            <Binding ElementName="page" Path="DataContext.CurrentNodeIndex"/>
+                                        </MultiBinding>
+                                    </Thumb.Background>
+                                </Thumb>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
             </Grid>
             
             <!--历史记录详情-->

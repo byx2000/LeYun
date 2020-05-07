@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace LeYun.Model
 {
@@ -157,6 +158,19 @@ namespace LeYun.Model
                 RaisePropertyChanged("TotalLoadRate");
             }
         }
+
+        // 路径线条
+        private ObservableCollection<Segment> segments = new ObservableCollection<Segment>();
+        public ObservableCollection<Segment> Segments
+        {
+            get { return segments; }
+            set 
+            { 
+                segments = value;
+                RaisePropertyChanged("Segments");
+            }
+        }
+
 
         // 复制
         public object Clone()
@@ -453,6 +467,25 @@ namespace LeYun.Model
             }
 
             return 0;
+        }
+
+        // 计算路径线条
+        public void GetPathSegments()
+        {
+            for (int i = 0; i < Paths.Count; ++i)
+            {
+                if (Paths[i].Count > 0)
+                {
+                    Brush brush = Util.RandomColorBrush();
+                    Point last = new Point(Nodes[0].X, Nodes[0].Y);
+                    for (int j = 0; j < Paths[i].Count; ++j)
+                    {
+                        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Nodes[Paths[i][j]].X, Y2 = Nodes[Paths[i][j]].Y, Stroke = brush });
+                        last = new Point(Nodes[Paths[i][j]].X, Nodes[Paths[i][j]].Y);
+                    }
+                    Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Nodes[0].X, Y2 = Nodes[0].Y, Stroke = brush });
+                }
+            }
         }
     }
 }

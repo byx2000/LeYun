@@ -13,6 +13,7 @@
         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Icon="pack://application:,,,/Img/icon.png"
         x:Name="mainWindow"
+        Title="乐运"
         MouseMove="mainWindow_MouseMove"
         Style="{StaticResource ShadowWindowStyle}">
 

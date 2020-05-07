@@ -25,16 +25,16 @@
         </StackPanel>
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <TextBlock Style="{StaticResource LinkTextStyle}" Text="开发团队" FontSize="24" Foreground="#696969" 
-                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewTeamCommand}"/>
+                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewTeamCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
             <TextBlock Style="{StaticResource LinkTextStyle}" Text="使用帮助" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
+                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
             <TextBlock Style="{StaticResource LinkTextStyle}" Text="更新日志" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewUpdateLogCommand}"/>
+                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewUpdateLogCommand}"/>
             <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
             <TextBlock Style="{StaticResource LinkTextStyle}" Text="商务合作" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehaviour.MouseLeftButtonUpCommand="{Binding ViewBusinessCommand}"/>
+                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewBusinessCommand}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

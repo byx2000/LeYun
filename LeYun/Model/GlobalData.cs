@@ -369,6 +369,8 @@ namespace LeYun.Model
                         {
                             Records[iRecord].Nodes[iNode].ServedTime = Records[iRecord].GetNodeServedTime(iNode);
                         }
+
+                        Records[iRecord].GetPathSegments();
                     }
                 }));
             }).Start();
@@ -410,6 +412,8 @@ namespace LeYun.Model
             {
                 record.Nodes[iNode].ServedTime = record.GetNodeServedTime(iNode);
             }
+
+            record.GetPathSegments();
 
             record.Filename = RecordPath + "/" + record.CreateTime.ToString("yyyy-MM-dd-HH-mm-ss") + ".rec";
             Records.Insert(0, record);

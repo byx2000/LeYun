@@ -8,11 +8,11 @@ using System.Windows.Input;
 
 namespace LeYun.ViewModel
 {
-    class MouseBehaviour
+    class MouseBehavior
     {
         // 鼠标按下事件（包括左键、右键和中键）
         public static readonly DependencyProperty MouseDownCommandProperty =
-            DependencyProperty.RegisterAttached("MouseDownCommand", typeof(ICommand), typeof(MouseBehaviour), 
+            DependencyProperty.RegisterAttached("MouseDownCommand", typeof(ICommand), typeof(MouseBehavior), 
                 new FrameworkPropertyMetadata(new PropertyChangedCallback(MouseDownCommandChanged)));
 
         private static void MouseDownCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -40,7 +40,7 @@ namespace LeYun.ViewModel
 
         // 鼠标左键按下事件
         public static readonly DependencyProperty MouseLeftButtonDownCommandProperty =
-            DependencyProperty.RegisterAttached("MouseLeftButtonDownCommand", typeof(ICommand), typeof(MouseBehaviour),
+            DependencyProperty.RegisterAttached("MouseLeftButtonDownCommand", typeof(ICommand), typeof(MouseBehavior),
                 new FrameworkPropertyMetadata(new PropertyChangedCallback(MouseLeftButtonDownCommandChanged)));
 
         private static void MouseLeftButtonDownCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -68,7 +68,7 @@ namespace LeYun.ViewModel
 
         // 鼠标左键松开事件
         public static readonly DependencyProperty MouseLeftButtonUpCommandProperty =
-            DependencyProperty.RegisterAttached("MouseLeftButtonUpCommand", typeof(ICommand), typeof(MouseBehaviour),
+            DependencyProperty.RegisterAttached("MouseLeftButtonUpCommand", typeof(ICommand), typeof(MouseBehavior),
                 new FrameworkPropertyMetadata(new PropertyChangedCallback(MouseLeftButtonUpCommandChanged)));
 
         private static void MouseLeftButtonUpCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -96,7 +96,7 @@ namespace LeYun.ViewModel
 
         // 鼠标移动事件
         public static readonly DependencyProperty MouseMoveCommandProperty =
-            DependencyProperty.RegisterAttached("MouseMoveCommand", typeof(ICommand), typeof(MouseBehaviour),
+            DependencyProperty.RegisterAttached("MouseMoveCommand", typeof(ICommand), typeof(MouseBehavior),
                 new FrameworkPropertyMetadata(new PropertyChangedCallback(MouseMoveCommandChanged)));
 
         private static void MouseMoveCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -133,7 +133,7 @@ namespace LeYun.ViewModel
         }
 
         public static readonly DependencyProperty MouseEnterCommandProperty =
-            DependencyProperty.RegisterAttached("MouseEnterCommand", typeof(ICommand), typeof(MouseBehaviour), new PropertyMetadata(new PropertyChangedCallback(OnMouseEnterCommandChanged)));
+            DependencyProperty.RegisterAttached("MouseEnterCommand", typeof(ICommand), typeof(MouseBehavior), new PropertyMetadata(new PropertyChangedCallback(OnMouseEnterCommandChanged)));
 
         private static void OnMouseEnterCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -145,6 +145,33 @@ namespace LeYun.ViewModel
         {
             FrameworkElement element = (FrameworkElement)sender;
             ICommand command = GetMouseEnterCommand(element);
+            command.Execute(e);
+        }
+
+        // 鼠标移出事件
+        public static ICommand GetMouseLeaveCommand(DependencyObject obj)
+        {
+            return (ICommand)obj.GetValue(MouseLeaveCommandProperty);
+        }
+
+        public static void SetMouseLeaveCommand(DependencyObject obj, ICommand value)
+        {
+            obj.SetValue(MouseLeaveCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty MouseLeaveCommandProperty =
+            DependencyProperty.RegisterAttached("MouseLeaveCommand", typeof(ICommand), typeof(MouseBehavior), new PropertyMetadata(new PropertyChangedCallback(OnMouseLeaveCommandChanged)));
+
+        private static void OnMouseLeaveCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)d;
+            element.MouseLeave += Element_MouseLeave;
+        }
+
+        private static void Element_MouseLeave(object sender, MouseEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)sender;
+            ICommand command = GetMouseLeaveCommand(element);
             command.Execute(e);
         }
     }

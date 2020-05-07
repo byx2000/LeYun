@@ -126,24 +126,7 @@ namespace LeYun.ViewModel
             GlobalData.CurrentPage = GlobalData.PathProjectPage;
             GlobalData.IsPathProjectPageChecked = true;
             GlobalData.PathProjectPageViewModel.Record = (ProblemRecord)SelectedRecord.Clone();
-
-            ObservableCollection<Segment> Segments = new ObservableCollection<Segment>();
-            for (int i = 0; i < SelectedRecord.Paths.Count; ++i)
-            {
-                if (SelectedRecord.Paths[i].Count > 0)
-                {
-                    Brush brush = Util.RandomColorBrush();
-                    Point last = new Point(SelectedRecord.Nodes[0].X, SelectedRecord.Nodes[0].Y);
-                    for (int j = 0; j < SelectedRecord.Paths[i].Count; ++j)
-                    {
-                        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].X, Y2 = SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].Y, Stroke = brush });
-                        last = new Point(SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].X, SelectedRecord.Nodes[SelectedRecord.Paths[i][j]].Y);
-                    }
-                    Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = SelectedRecord.Nodes[0].X, Y2 = SelectedRecord.Nodes[0].Y, Stroke = brush });
-                }
-            }
-
-            GlobalData.PathProjectPageViewModel.Segments = Segments;
+            GlobalData.PathProjectPageViewModel.Segments = SelectedRecord.Segments;
         }
 
         // 查看车辆详情
