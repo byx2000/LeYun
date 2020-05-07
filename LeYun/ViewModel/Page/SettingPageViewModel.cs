@@ -27,9 +27,15 @@ namespace LeYun.ViewModel
         public SettingPageViewModel()
         {
             ChangeRecordLocationCommand = new DelegateCommand(ChangeRecordLocation);
-            ActivateCommand = new DelegateCommand(Activate);
+            ActivateCommand = new DelegateCommand(Activate, CanActivate);
             ClearHistoryCommand = new DelegateCommand(ClearHistory);
             RestoreDefaultCommand = new DelegateCommand(RestoreDefault);
+        }
+
+        // 是否能激活
+        private bool CanActivate(object arg)
+        {
+            return !GlobalData.IsActive;
         }
 
         // 恢复默认设置
@@ -69,18 +75,22 @@ namespace LeYun.ViewModel
         // 激活
         private void Activate(object obj)
         {
-            if ((string)obj == "123-456-789")
-            {
-                GlobalData.IsActive = true;
-                SystemSounds.Beep.Play();
-                MsgBox.Show("激活成功！");
-                
-            }
-            else
-            {
-                SystemSounds.Beep.Play();
-                MsgBox.Show("激活码错误！\n激活码形式如下：XXX-XXX-XXX");
-            }
+            //if ((string)obj == "123-456-789")
+            //{
+            //    GlobalData.IsActive = true;
+            //    SystemSounds.Beep.Play();
+            //    MsgBox.Show("激活成功！");
+
+            //}
+            //else
+            //{
+            //    SystemSounds.Beep.Play();
+            //    MsgBox.Show("激活码错误！\n激活码形式如下：XXX-XXX-XXX");
+            //}
+
+            ActivateDlg dlg = new ActivateDlg();
+            dlg.ShowDialog();
+            //MsgBox.Show("激活");
         }
 
         // 改变历史记录存储位置
@@ -141,7 +151,7 @@ namespace LeYun.ViewModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new Thickness(0, 0, 0, (double)value);
+            return new Thickness((double)value, 0, 0, 0);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
