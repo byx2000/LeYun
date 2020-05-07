@@ -126,7 +126,7 @@ namespace LeYun.ViewModel
             GlobalData.CurrentPage = GlobalData.PathProjectPage;
             GlobalData.IsPathProjectPageChecked = true;
             GlobalData.PathProjectPageViewModel.Record = (ProblemRecord)SelectedRecord.Clone();
-            GlobalData.PathProjectPageViewModel.Segments = SelectedRecord.Segments;
+            //GlobalData.PathProjectPageViewModel.Segments = SelectedRecord.Segments;
         }
 
         // 查看车辆详情

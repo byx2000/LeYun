@@ -93,16 +93,16 @@ namespace LeYun.ViewModel
         }
 
         // 路径线条
-        private ObservableCollection<Segment> segments = new ObservableCollection<Segment>();
-        public ObservableCollection<Segment> Segments
-        {
-            get { return segments; }
-            set
-            {
-                segments = value;
-                RaisePropertyChanged("Segments");
-            }
-        }
+        //private ObservableCollection<Segment> segments = new ObservableCollection<Segment>();
+        //public ObservableCollection<Segment> Segments
+        //{
+        //    get { return segments; }
+        //    set
+        //    {
+        //        segments = value;
+        //        RaisePropertyChanged("Segments");
+        //    }
+        //}
 
         // 算法参数
         private int GenerationCount = 2000;
@@ -197,7 +197,7 @@ namespace LeYun.ViewModel
         // 节点拖动
         private void NodeDrag(object obj)
         {
-            Segments.Clear();
+            Record.Segments.Clear();
             DragDeltaEventArgs args = (DragDeltaEventArgs)obj;
             Node node = (Node)((Thumb)(args.Source)).DataContext;
             if (CurrentNodeIndex != node.ID) // 优化拖动性能
@@ -216,7 +216,7 @@ namespace LeYun.ViewModel
         // 判断是否能播放演示
         private bool CanPlayDemo(object arg)
         {
-            return Record.Nodes.Count > 0 && Record.Cars.Count > 0 && Record.Paths.Count > 0 && Segments.Count > 0 && !IsPlayingDemo;
+            return Record.Nodes.Count > 0 && Record.Cars.Count > 0 && Record.Paths.Count > 0 && Record.Segments.Count > 0 && !IsPlayingDemo;
         }
 
         // 播放演示
@@ -233,7 +233,7 @@ namespace LeYun.ViewModel
             CurrentNodeIndex = -1;
 
             // 清空所有线条
-            Segments.Clear();
+            Record.Segments.Clear();
 
             // 清空车辆运行时信息
             CarRuntimeInfos.Clear();
@@ -268,14 +268,14 @@ namespace LeYun.ViewModel
                 }
 
                 // 保存起始线条
-                int iStart = Segments.Count;
+                int iStart = Record.Segments.Count;
                 startIndex.Add(iStart);
 
                 // 提前添加所有线条
                 Brush brush = Util.RandomColorBrush();
                 for (int i = 0; i < Record.Paths[iCar].Count + 1; ++i)
                 {
-                    Segments.Add(new Segment { Stroke = brush });
+                    Record.Segments.Add(new Segment { Stroke = brush });
                 }
 
                 // 初始化车辆运行时信息
@@ -288,21 +288,21 @@ namespace LeYun.ViewModel
                     int iNode = Record.Paths[iCar][i];
 
                     // 设置动画
-                    Segments[iStart + i].XAnimationFrom = last.X;
-                    Segments[iStart + i].YAnimationFrom = last.Y;
-                    Segments[iStart + i].XAnimationTo = Record.Nodes[iNode].X;
-                    Segments[iStart + i].YAnimationTo = Record.Nodes[iNode].Y;
-                    Segments[iStart + i].Duration = last.Distance(Record.Nodes[iNode]) / Record.CarSpeed * rate * 3600;
+                    Record.Segments[iStart + i].XAnimationFrom = last.X;
+                    Record.Segments[iStart + i].YAnimationFrom = last.Y;
+                    Record.Segments[iStart + i].XAnimationTo = Record.Nodes[iNode].X;
+                    Record.Segments[iStart + i].YAnimationTo = Record.Nodes[iNode].Y;
+                    Record.Segments[iStart + i].Duration = last.Distance(Record.Nodes[iNode]) / Record.CarSpeed * rate * 3600;
                     if (i != 0)
                     {
-                        Segments[iStart + i].Delay = nodeStayTime;
+                        Record.Segments[iStart + i].Delay = nodeStayTime;
                     }
 
                     int t = i;
-                    Segments[iStart + i].AnimationCompleted = delegate
+                    Record.Segments[iStart + i].AnimationCompleted = delegate
                     {
                         // 启动下一线条动画
-                        Segments[iStart + t + 1].BeginAnimation();
+                        Record.Segments[iStart + t + 1].BeginAnimation();
 
                         if (GlobalData.ShowCarRuntimeInfoDuringDemo)
                         {
@@ -318,13 +318,13 @@ namespace LeYun.ViewModel
                 }
 
                 // 设置最后一段线条的动画
-                Segments[Segments.Count - 1].XAnimationFrom = last.X;
-                Segments[Segments.Count - 1].YAnimationFrom = last.Y;
-                Segments[Segments.Count - 1].XAnimationTo = Record.Nodes[0].X;
-                Segments[Segments.Count - 1].YAnimationTo = Record.Nodes[0].Y;
-                Segments[Segments.Count - 1].Duration = last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600;
-                Segments[Segments.Count - 1].Delay = nodeStayTime;
-                Segments[Segments.Count - 1].AnimationCompleted = delegate
+                Record.Segments[Record.Segments.Count - 1].XAnimationFrom = last.X;
+                Record.Segments[Record.Segments.Count - 1].YAnimationFrom = last.Y;
+                Record.Segments[Record.Segments.Count - 1].XAnimationTo = Record.Nodes[0].X;
+                Record.Segments[Record.Segments.Count - 1].YAnimationTo = Record.Nodes[0].Y;
+                Record.Segments[Record.Segments.Count - 1].Duration = last.Distance(Record.Nodes[0]) / Record.CarSpeed * rate * 3600;
+                Record.Segments[Record.Segments.Count - 1].Delay = nodeStayTime;
+                Record.Segments[Record.Segments.Count - 1].AnimationCompleted = delegate
                 {       
                     if (GlobalData.ShowCarRuntimeInfoDuringDemo)
                     {
@@ -371,7 +371,7 @@ namespace LeYun.ViewModel
             // 启动线条动画
             for (int i = 0; i < startIndex.Count; ++i)
             {
-                Segments[startIndex[i]].BeginAnimation();
+                Record.Segments[startIndex[i]].BeginAnimation();
             }
         }
 
@@ -385,7 +385,7 @@ namespace LeYun.ViewModel
             }
 
             Record.Cars.Remove(iCar);
-            Segments.Clear();
+            Record.Segments.Clear();
         }
 
         // 删除节点
@@ -398,7 +398,7 @@ namespace LeYun.ViewModel
             }
 
             Record.Nodes.Remove(iNode);
-            Segments.Clear();
+            Record.Segments.Clear();
         }
 
         // 判断是否能保存节点数据
@@ -454,7 +454,7 @@ namespace LeYun.ViewModel
         // 鼠标添加节点
         private void MouseAddNode(object obj)
         {
-            Segments.Clear();
+            Record.Segments.Clear();
             double x = MouseX / CanvasWidth * GlobalData.MaxNodeX;
             double y = MouseY / CanvasHeight * GlobalData.MaxNodeY;
             Record.Nodes.Add(new Node { X = x, Y = y, Demand = 0 });
@@ -473,7 +473,7 @@ namespace LeYun.ViewModel
 
             if (!viewModel.IsCancel)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 Record.CarSpeed = viewModel.CarSpeed;
                 Record.NodeStayTime = viewModel.NodeStayTime;
             }
@@ -488,7 +488,7 @@ namespace LeYun.ViewModel
             };
             if (dlg.ShowDialog() == true)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 try
                 {
                     Record.Cars.ReadFromFile(dlg.FileName);
@@ -509,7 +509,7 @@ namespace LeYun.ViewModel
             };
             if (dlg.ShowDialog() == true)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 try
                 {
                     Record.Nodes.ReadFromFile(dlg.FileName);
@@ -536,7 +536,7 @@ namespace LeYun.ViewModel
         // 判断是否能保存结果
         private bool CanSaveResult(object arg)
         {
-            return Record.Cars.Count > 0 && Record.Nodes.Count > 0 && Segments.Count > 0 && !IsPlayingDemo;
+            return Record.Cars.Count > 0 && Record.Nodes.Count > 0 && Record.Segments.Count > 0 && !IsPlayingDemo;
         }
 
         // 保存结果
@@ -571,7 +571,7 @@ namespace LeYun.ViewModel
             if (!viewModel.IsCancel)
             {
                 Record.Cars.Add(new Car { WeightLimit = viewModel.WeightLimit, DisLimit = viewModel.DisLimit });
-                Segments.Clear();
+                Record.Segments.Clear();
             }
         }
 
@@ -591,7 +591,7 @@ namespace LeYun.ViewModel
 
             if (!viewModel.IsCancel)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 Record.Cars[index].WeightLimit = viewModel.WeightLimit;
                 Record.Cars[index].DisLimit = viewModel.DisLimit;
             }
@@ -634,7 +634,7 @@ namespace LeYun.ViewModel
 
             if (!viewModel.IsCancel)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 Record.Nodes[index].X = viewModel.X;
                 Record.Nodes[index].Y = viewModel.Y;
                 Record.Nodes[index].Demand = viewModel.Demand;
@@ -646,7 +646,7 @@ namespace LeYun.ViewModel
         {
             Record.Nodes.Clear();
             Record.Cars.Clear();
-            Segments.Clear();
+            Record.Segments.Clear();
         }
 
         // 求解
@@ -706,36 +706,36 @@ namespace LeYun.ViewModel
                 Record.Paths.Clear();
 
                 // 保存路径
-                //for (int i = 0; i < paths.Length; ++i)
-                //{
-                //    Record.Paths.Add(new ObservableCollection<int>());
-                //    for (int j = 0; j < paths[i].Length; ++j)
-                //    {
-                //        Record.Paths[i].Add(paths[i][j]);
-                //    }
-                //}
-
-                // 生成路径
-                //Record.GetPathSegments();
-
-                // 绘制路径
-                //Segments.Clear();
                 for (int i = 0; i < paths.Length; ++i)
                 {
                     Record.Paths.Add(new ObservableCollection<int>());
-                    if (paths[i].Length > 0)
+                    for (int j = 0; j < paths[i].Length; ++j)
                     {
-                        Brush brush = Util.RandomColorBrush();
-                        Point last = new Point(Record.Nodes[0].X, Record.Nodes[0].Y);
-                        for (int j = 0; j < paths[i].Length; ++j)
-                        {
-                            Record.Paths[i].Add(paths[i][j]);
-                            Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Record.Nodes[paths[i][j]].X, Y2 = Record.Nodes[paths[i][j]].Y, Stroke = brush });
-                            last = new Point(Record.Nodes[paths[i][j]].X, Record.Nodes[paths[i][j]].Y);
-                        }
-                        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Record.Nodes[0].X, Y2 = Record.Nodes[0].Y, Stroke = brush });
+                        Record.Paths[i].Add(paths[i][j]);
                     }
                 }
+
+                // 生成路径
+                Record.GenerateSegments();
+
+                // 绘制路径
+                //Segments.Clear();
+                //for (int i = 0; i < paths.Length; ++i)
+                //{
+                //    Record.Paths.Add(new ObservableCollection<int>());
+                //    if (paths[i].Length > 0)
+                //    {
+                //        Brush brush = Util.RandomColorBrush();
+                //        Point last = new Point(Record.Nodes[0].X, Record.Nodes[0].Y);
+                //        for (int j = 0; j < paths[i].Length; ++j)
+                //        {
+                //            Record.Paths[i].Add(paths[i][j]);
+                //            Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Record.Nodes[paths[i][j]].X, Y2 = Record.Nodes[paths[i][j]].Y, Stroke = brush });
+                //            last = new Point(Record.Nodes[paths[i][j]].X, Record.Nodes[paths[i][j]].Y);
+                //        }
+                //        Segments.Add(new Segment { X1 = last.X, Y1 = last.Y, X2 = Record.Nodes[0].X, Y2 = Record.Nodes[0].Y, Stroke = brush });
+                //    }
+                //}
 
                 // 保存结果
                 try
@@ -784,7 +784,7 @@ namespace LeYun.ViewModel
 
                     if (!viewMode.IsCancel)
                     {
-                        Segments.Clear();
+                        Record.Segments.Clear();
                         GenerationCount = viewMode.GenerationCount;
                         WTime = viewMode.WTime;
                         WDis = viewMode.WDis;
@@ -811,7 +811,7 @@ namespace LeYun.ViewModel
 
             if (!viewMode.IsCancel)
             {
-                Segments.Clear();
+                Record.Segments.Clear();
                 GenerationCount = viewMode.GenerationCount;
                 WTime = viewMode.WTime;
                 WDis = viewMode.WDis;

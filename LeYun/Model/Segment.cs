@@ -12,7 +12,7 @@ using System.Windows.Media.Animation;
 
 namespace LeYun.Model
 {
-    class Segment : Animatable, INotifyPropertyChanged
+    class Segment : Animatable, INotifyPropertyChanged, ICloneable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -115,7 +115,20 @@ namespace LeYun.Model
 
         protected override Freezable CreateInstanceCore()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return new Segment() { Stroke = this.Stroke.Clone() };
+        }
+
+        // 复制
+        object ICloneable.Clone()
+        {
+            Segment seg = new Segment();
+            seg.X1 = X1;
+            seg.Y1 = Y1;
+            seg.X2 = X2;
+            seg.Y2 = Y2;
+            seg.Stroke = Stroke.Clone();
+            return seg;
         }
     }
 }

@@ -182,6 +182,8 @@ namespace LeYun.Model
             record.NodeStayTime = NodeStayTime;
             record.Cars = (CarCollection)Cars.Clone();
             record.Nodes = (NodeCollection)Nodes.Clone();
+
+            // 复制路径
             for (int i = 0; i < Paths.Count; ++i)
             {
                 record.Paths.Add(new ObservableCollection<int>());
@@ -189,6 +191,12 @@ namespace LeYun.Model
                 {
                     record.Paths[i].Add(Paths[i][j]);
                 }
+            }
+
+            // 复制线条
+            for (int i = 0; i < Segments.Count; ++i)
+            {
+                record.Segments.Add((Segment)Segments[i].Clone());
             }
 
             return record;
@@ -469,9 +477,32 @@ namespace LeYun.Model
             return 0;
         }
 
-        // 计算路径线条
-        public void GetPathSegments()
+        // 计算所有信息
+        public void GenerateAllInfo()
         {
+            TotalTime = GetTotalTime();
+            TotalDis = GetTotalDistance();
+            UseCarCount = GetUseCarCount();
+            TotalLoadRate = GetTotalLoadRate();
+
+            for (int iCar = 0; iCar < Paths.Count; ++iCar)
+            {
+                Cars[iCar].Dis = GetCarDistance(iCar);
+                Cars[iCar].Weight = GetCarWeight(iCar);
+                Cars[iCar].Path = GetCarPath(iCar);
+                Cars[iCar].Time = GetCarTime(iCar);
+            }
+
+            for (int iNode = 1; iNode < Nodes.Count; ++iNode)
+            {
+                Nodes[iNode].ServedTime = GetNodeServedTime(iNode);
+            }
+        }
+
+        // 计算路径线条
+        public void GenerateSegments()
+        {
+            Segments.Clear();
             for (int i = 0; i < Paths.Count; ++i)
             {
                 if (Paths[i].Count > 0)

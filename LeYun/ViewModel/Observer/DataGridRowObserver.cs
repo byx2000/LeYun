@@ -46,9 +46,18 @@ namespace LeYun.ViewModel
         private static void Row_MouseLeave(object sender, MouseEventArgs e)
         {
             DataGridRow row = sender as DataGridRow;
+            if (row == null)
+            {
+                return;
+            }
+
             DependencyObject obj = row;
             while (!(obj is DataGrid))
             {
+                if (obj == null)
+                {
+                    return;
+                }
                 obj = VisualTreeHelper.GetParent(obj);
             }
 
@@ -62,9 +71,18 @@ namespace LeYun.ViewModel
         private static void Row_MouseEnter(object sender, MouseEventArgs e)
         {
             DataGridRow row = sender as DataGridRow;
+            if (row == null)
+            {
+                return;
+            }
+
             DependencyObject obj = row;
             while (!(obj is DataGrid))
             {
+                if (obj == null)
+                {
+                    return;
+                }
                 obj = VisualTreeHelper.GetParent(obj);
             }
 
@@ -78,9 +96,18 @@ namespace LeYun.ViewModel
         private static void Row_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DataGridRow row = sender as DataGridRow;
+            if (row == null)
+            {
+                return;
+            }
+
             DependencyObject obj = row;
             while (!(obj is DataGrid))
             {
+                if (obj == null)
+                {
+                    return;
+                }
                 obj = VisualTreeHelper.GetParent(obj);
             }
 

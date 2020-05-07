@@ -275,7 +275,7 @@
                 
 
                 <!--线条画布-->
-                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Segments}" Margin="15 15 0 15">
+                <ItemsControl Name="myItemsControl" ItemsSource="{Binding Record.Segments}" Margin="15 15 0 15">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas ClipToBounds="True" Background="Transparent"/>
@@ -405,7 +405,7 @@
                 
                 <!--图例-->
                 <!--<custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>-->
-                <Grid Grid.Row="0" Margin="15 0 0 15" VerticalAlignment="Bottom">
+                <Grid Grid.Row="0" Margin="15 0 0 15" VerticalAlignment="Bottom" IsHitTestVisible="False">
                     <StackPanel Orientation="Horizontal" Margin="20 10 0 10">
                         <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="14"/>
                         <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
