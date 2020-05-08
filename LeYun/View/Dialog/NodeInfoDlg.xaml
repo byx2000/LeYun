@@ -69,16 +69,16 @@
                        Text="{Binding Converter={StaticResource yRangeConverter}}"/>-->
             <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0">
                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="14" Foreground="#387cdf"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0"
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"
                            Text="X坐标的范围为0-"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13"
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="{StaticResource SmallerFontSize}"
                            Text="{Binding Path=(model:GlobalData.MaxNodeX), UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0 10 0 0">
                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf071;" FontSize="14" Foreground="#387cdf"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13" Margin="5 0 0 0"
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"
                            Text="Y坐标的范围为0-"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="13"
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="{StaticResource SmallerFontSize}"
                            Text="{Binding Path=(model:GlobalData.MaxNodeY), UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource CenterAlignTextBlock}" Text="t" HorizontalAlignment="Left" Margin="5 15 0 0"/>

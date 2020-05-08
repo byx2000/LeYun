@@ -6,6 +6,7 @@
              xmlns:viewmodel="clr-namespace:LeYun.ViewModel" 
              xmlns:dlg="clr-namespace:LeYun.ViewModel.Dlg" 
              xmlns:model="clr-namespace:LeYun.Model" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:commonconverter="clr-namespace:LeYun.Model.CommonConverter"
              ShutdownMode="OnExplicitShutdown"
              Startup="Application_Startup"
@@ -47,6 +48,10 @@
                     <SolidColorBrush Color="#808080" x:Key="DisableColor"/>
                     <SolidColorBrush Color="#fff1f0" x:Key="ErrorColor"/>
 
+                    <!--字体大小-->
+                    <sys:Double x:Key="NormalFontSize">14</sys:Double>
+                    <sys:Double x:Key="SmallerFontSize">12</sys:Double>
+                    <sys:Double x:Key="BiggerFontSize">16</sys:Double>
 
                     <!--阴影窗口样式-->
                     <Style x:Key="ShadowWindowStyle" TargetType="{x:Type Window}">
@@ -169,7 +174,7 @@
                     <Style x:Key="CenterAlignTextBlock" TargetType="TextBlock">
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                     </Style>
 
                     <!--用于绘制字体图标的文本框样式-->
@@ -177,7 +182,7 @@
                         <Setter Property="FontFamily" Value="../Font/#FontAwesome"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontSize" Value="{StaticResource BiggerFontSize}"/>
                     </Style>
 
                     <!--链接文本样式-->
@@ -194,6 +199,7 @@
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="IsReadOnly" Value="True"/>
                         <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                     </Style>
                     
                     <!--窗口标题栏关闭按钮样式-->
@@ -244,9 +250,10 @@
                     <Style x:Key="ButtonStyle" TargetType="Button">
                         <Setter Property="Background" Value="{StaticResource ThemeColor}"/>
                         <Setter Property="Foreground" Value="{StaticResource TextColorLight}"/>
-                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Width" Value="105"/>
                         <Setter Property="Height" Value="30"/>
                         <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
@@ -300,7 +307,7 @@
 
                     <!--ToggleButton样式-->
                     <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="HorizontalAlignment" Value="Left"/>
                         <Setter Property="Template">
                             <Setter.Value>
@@ -329,7 +336,7 @@
 
                     <!--编辑框样式-->
                     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -372,7 +379,7 @@
                     <!--搜索编辑框样式-->
                     <Style x:Key="SearchTextBoxStyle" TargetType="{x:Type TextBox}">
                         <Setter Property="Height" Value="30"/>
-                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -385,7 +392,7 @@
                                             <Border x:Name="icon" Background="{StaticResource ThemeColor}" Margin="0 0 5 0" UseLayoutRounding="False">
                                                 <TextBlock Style="{StaticResource IconTextBlock}" Foreground="{StaticResource TextColorLight}" Text="&#xf002;" Margin="5 0 5 0"/>
                                             </Border>
-                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" FontSize="15" Text="按名称查找" Foreground="{StaticResource TextColorGray}" HorizontalAlignment="Left" Visibility="Hidden" UseLayoutRounding="True"/>
+                                            <TextBlock x:Name="hint" Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" FontSize="{StaticResource NormalFontSize}" Text="按名称查找" Foreground="{StaticResource TextColorGray}" HorizontalAlignment="Left" Visibility="Hidden" UseLayoutRounding="True"/>
                                             <ScrollViewer UseLayoutRounding="True" Grid.Column="1" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalAlignment="Center"/>
                                         </Grid>
                                     </Border>
@@ -413,6 +420,7 @@
                         <Setter Property="IsTabStop" Value="false"/>
                         <Setter Property="Focusable" Value="false"/>
                         <Setter Property="ClickMode" Value="Press"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -449,7 +457,7 @@
                         <Style.Resources>
                             <Style TargetType="{x:Type ScrollBar}" BasedOn="{x:Null}" />
                         </Style.Resources>
-
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="Template">
                             <Setter.Value>
@@ -531,7 +539,7 @@
                                 <ControlTemplate TargetType="GridViewColumnHeader">
                                     <Grid>
                                         <Border x:Name="HeaderBorder" Padding="{TemplateBinding Padding}" Background="White">
-                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{TemplateBinding Content}" Margin="5" FontSize="14"/>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{TemplateBinding Content}" Margin="5" FontSize="{StaticResource NormalFontSize}"/>
                                         </Border>
                                     </Grid>
                                 </ControlTemplate>
@@ -687,7 +695,7 @@
                         <Setter Property="Grid.IsSharedSizeScope" Value="true" />
                         <Setter Property="HasDropShadow" Value="True" />
                         <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                         <Setter Property="ItemContainerStyle">
                             <Setter.Value>
                                 <Style TargetType="{x:Type MenuItem}">
@@ -733,7 +741,7 @@
                         <Setter Property="HorizontalAlignment" Value="Center" />
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="TextWrapping" Value="Wrap"/>
-                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontSize" Value="{StaticResource SmallerFontSize}"/>
                     </Style>
 
                     <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
@@ -758,12 +766,12 @@
                             <Setter.Value>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
                                     <Setter Property="Foreground" Value="#838383"/>
                                     <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    <!--<Setter Property="FontWeight" Value="Bold"/>-->
+                                    <Setter Property="FontWeight" Value="Bold"/>
                                     <Setter Property="Height" Value="35"/>
                                 </Style>
                             </Setter.Value>

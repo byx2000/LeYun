@@ -31,14 +31,12 @@
             <Border Grid.Row="0" Background="White" BorderBrush="#d6d7d9"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15 15 0 15">
                 <!--保存-->
-                <custom:PopupExtendControl
+                <custom:PopupExtendControl x:Name="Save"
                     IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
-                        <Button x:Name="save" Style="{StaticResource ButtonStyle}" Width="100" Height="30">
+                        <Button x:Name="save" Style="{StaticResource ButtonStyle}">
                             <Button.Visibility>
-                                <Binding Path="IsPlaying">
-
-                                </Binding>
+                                <Binding Path="IsPlaying"/>
                             </Button.Visibility>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -46,23 +44,23 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0c7;"/>
-                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="保存" FontSize="12" Margin="10 0 0 0"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="保存" Margin="10 0 0 0"/>
                             </Grid>
                         </Button>
                     </custom:PopupExtendControl.HostContent>
                     <custom:PopupExtendControl.PopupContent>
-                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="100">
+                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="105">
                             <Grid >
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="保存车辆" Margin="5 5 5 5" FontSize="12" Width="Auto" Height="25"
+                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="保存车辆" Margin="5 5 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
                                     Command="{Binding SaveCarCommand}"/>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="保存节点" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="保存节点" Margin="5 0 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
                                     Command="{Binding SaveNodeCommand}"/>
-                                <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Content="保存结果" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                                <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Content="保存结果" Margin="5 0 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
                                     Command="{Binding SaveResultCommand}"/>
                             </Grid>
                         </Border>
@@ -70,19 +68,19 @@
                 </custom:PopupExtendControl>
                 
                 <!--设置运行参数-->
-                <Button Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding SetRunParamCommand}" Margin="10 0 0 0">
+                <Button Style="{StaticResource ButtonStyle}" Command="{Binding SetRunParamCommand}" Margin="10 0 0 0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;"/>
-                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="运行参数" FontSize="12" Margin="10 0 0 0"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="运行参数" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>
                 
                 <!--设置算法参数-->
-                <Button x:Name="setAlgoParam" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0" 
+                <Button x:Name="setAlgoParam" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0" 
                     CommandParameter="{Binding ElementName=ModeChoose, Path=SelectedIndex}"
                     Command="{Binding SetAlgoParamCommand}">
                     <Grid>
@@ -91,7 +89,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;"/>
-                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="算法参数" FontSize="12" Margin="10 0 0 0"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="算法参数" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>
                 
@@ -104,15 +102,15 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf008;"/>
-                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="动画演示" FontSize="12" Margin="10 0 0 0"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="动画演示" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>
             </StackPanel>
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 15 15 15">
                 <!--计算模式选择-->
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" FontSize="12" Foreground="Black"/>
+                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="计算模式：" Foreground="Black"/>
                 <ComboBox x:Name="ModeChoose" Style="{StaticResource ComboBoxStyle}" Width="120" Margin="0" 
-                     FontSize="12" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="1"
+                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="White" SelectedIndex="1"
                           IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource notConverter}}"
                           viewmodel:ComboBoxBehavior.SelectionChangedCommand="{Binding ModeChangeCommand}">
                     <TextBlock  Text="时间优先"/>
@@ -124,27 +122,27 @@
                 <custom:PopupExtendControl
                     IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
-                        <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 0 0">
+                        <Button x:Name="AddVehicleButton" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf0d1;"/>
-                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加车辆" FontSize="12" Margin="10 0 0 0"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加车辆" Margin="10 0 0 0"/>
                             </Grid>
                         </Button>
                     </custom:PopupExtendControl.HostContent>
                     <custom:PopupExtendControl.PopupContent >
-                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="100">
+                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="105">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="12" Width="Auto" Height="25"
+                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
                             Command="{Binding AddCarCommand}"/>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
+                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
                             Command="{Binding ImportCarsFromFileCommand}"/>
                             </Grid>
                         </Border>
@@ -155,61 +153,60 @@
                 <custom:PopupExtendControl
                     IsEnabled="{Binding IsPlayingDemo, Converter={StaticResource BoolNotConverter}}">
                     <custom:PopupExtendControl.HostContent>
-                        <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="10 0 10 0">
+                        <Button x:Name="AddPointButton" Style="{StaticResource ButtonStyle}" Margin="10 0 10 0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf041;"/>
-                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加节点" FontSize="12" Margin="10 0 0 0"/>
+                                <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="添加节点" Margin="10 0 0 0"/>
                             </Grid>
                         </Button>
                     </custom:PopupExtendControl.HostContent>
                     <custom:PopupExtendControl.PopupContent>
-                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="100">
+                        <Border Background="White" BorderThickness="1 0 1 1" BorderBrush="#387cdf" Width="105">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="12" Width="Auto" Height="25"
-                            Command="{Binding AddNodeCommand}"/>
-                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="12" Width="Auto" Height="25"
-                            Command="{Binding ImportNodesFromFileCommand}"/>
+                                <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" Content="手动输入" Margin="5 5 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
+                                        Command="{Binding AddNodeCommand}"/>
+                                <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Content="文件导入" Margin="5 0 5 5" FontSize="{StaticResource SmallerFontSize}" Width="Auto" Height="25"
+                                        Command="{Binding ImportNodesFromFileCommand}"/>
                             </Grid>
                         </Border>
                     </custom:PopupExtendControl.PopupContent>
                 </custom:PopupExtendControl>
                 
                 <!--清空-->
-                <Button x:Name="ClearButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Margin="0 0 10 0" Command="{Binding ClearCommand}">
+                <Button x:Name="ClearButton" Style="{StaticResource ButtonStyle}" Margin="0 0 10 0" Command="{Binding ClearCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1f8;"/>
-                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="清空" FontSize="12" Margin="10 0 0 0"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="清空" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>
                 
                 <!--开始计算-->
-                <Button x:Name="StartButton" Style="{StaticResource ButtonStyle}" Width="100" Height="30" Command="{Binding SolveCommand}">
+                <Button x:Name="StartButton" Style="{StaticResource ButtonStyle}" Command="{Binding SolveCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf04b;"/>
-                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="开始计算" FontSize="12" Margin="10 0 0 0"/>
+                        <TextBlock Grid.Column="1" Style="{StaticResource CenterAlignTextBlock}" Text="开始计算" Margin="10 0 0 0"/>
                     </Grid>
                 </Button>
             </StackPanel>
         </Grid>
         
         <!--演示时在操作区域显示时间-->
-        <!--Visibility="{Binding IsPlayingDemo, Converter={StaticResource isVisibleConverter}}"-->
         <Grid Grid.Row="0" Background="#666666">
             <Grid.Visibility>
                 <MultiBinding>
@@ -226,13 +223,6 @@
             </Grid.Visibility>
             <custom:ProgressBar Foreground="#ff7573" Background="#666666" EnableAnimation="False" 
                                 Value="{Binding CurrentDemoProgress.Value}"/>
-
-            <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf017;" Foreground="White" FontSize="50"/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30" Margin="20 0 0 0" Text="配送时间："/>
-                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Foreground="White" FontSize="30"
-                        Text="{Binding CurrentTime.Value, StringFormat={}{0:F2} min}"/>
-            </StackPanel>-->
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -262,18 +252,10 @@
 
             <custom:FloatingCard Grid.Column="0" Margin="15 15 0 15"/>
             <Grid Grid.Column="0">
-                <!--<Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>-->
-                
-                
                 <!--背景图片-->
                 <Grid Grid.Row="0" Grid.RowSpan="2">
                     <Image Source="pack://application:,,,/Img/map.png" Stretch="Fill" Opacity="0.5" Margin="15 15 0 15"/>
                 </Grid>
-                
-
                 <!--线条画布-->
                 <ItemsControl Name="myItemsControl" ItemsSource="{Binding Record.Segments}" Margin="15 15 0 15">
                     <ItemsControl.ItemsPanel>
@@ -283,7 +265,6 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <!--<Line X1="{Binding X1}" Y1="{Binding Y1}" X2="{Binding X2}" Y2="{Binding Y2}" Stroke="Black" StrokeThickness="2.5"/>-->
                             <Line Stroke="{Binding Stroke}" StrokeThickness="{Binding Path=(model:GlobalData.LineThickness), UpdateSourceTrigger=PropertyChanged}">
                                 <Line.X1>
                                     <MultiBinding Converter="{StaticResource nodeButtonXConverter}">
@@ -323,7 +304,6 @@
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
-
                 <!--节点画布-->
                 <ItemsControl Grid.Column="0" x:Name="canvas" Background="Transparent" ItemsSource="{Binding Record.Nodes}" Margin="15 15 0 15">
                     <ItemsControl.ItemsPanel>
@@ -402,23 +382,21 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
                 <!--图例-->
-                <!--<custom:FloatingCard Grid.Row="1"  Margin="15 0 0 15"/>-->
                 <Grid Grid.Row="0" Margin="15 0 0 15" VerticalAlignment="Bottom" IsHitTestVisible="False">
                     <StackPanel Orientation="Horizontal" Margin="20 10 0 10">
-                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="14"/>
+                        <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="图例：" FontSize="{StaticResource SmallerFontSize}"/>
                         <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
                             <Border Background="#dd5145" Width="15" Height="15" CornerRadius="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中心" FontSize="14" Margin="5 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中心" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
                             <Border Background="#387cdf" Width="15" Height="15" CornerRadius="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="普通节点" FontSize="14" Margin="5 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="普通节点" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="30 0 0 0">
                             <Border Background="#ffbd39" Width="15" Height="15" CornerRadius="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="当前选中节点" FontSize="14" Margin="5 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="当前选中节点" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="50 0 0 0">
                             <Border Height="5" BorderBrush="Black" BorderThickness="1 0 1 1" Margin="0 5 0 0">
@@ -429,7 +407,7 @@
                                     </MultiBinding>
                                 </Border.Width>
                             </Border>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="1km" FontSize="14" Margin="5 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="1km" FontSize="{StaticResource SmallerFontSize}" Margin="5 0 0 0"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -442,8 +420,7 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-
-                <!--配送点数据栏-->
+                <!--配送点列表-->
                 <custom:FloatingCard Grid.Row="0" Margin="15"/>
                 <Grid Grid.Row="0" Margin="15">
                     <custom:AutoScrollListView x:Name="NodesList" Grid.Row="0" ItemContainerStyle="{StaticResource ListViewItemStyle}" ScrollViewer.CanContentScroll="False" BorderThickness="0" Margin="10"
@@ -461,14 +438,41 @@
                         </ListView.ContextMenu>
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                                <GridViewColumn Header="编号" Width="Auto"  DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="x坐标" Width="Auto" DisplayMemberBinding="{Binding X, StringFormat={}{0:F2}}" />
-                                <GridViewColumn Header="y坐标" Width="Auto" DisplayMemberBinding="{Binding Y, StringFormat={}{0:F2}}"/>
-                                <GridViewColumn Header="需求量" Width="Auto" DisplayMemberBinding="{Binding Demand, StringFormat={}{0:F2}}"/>
+                                <GridViewColumn Header="编号" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding ID}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="x坐标" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding X, StringFormat={}{0:F2}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="y坐标" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding Y, StringFormat={}{0:F2}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="需求量" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding Demand, StringFormat={}{0:F2}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </custom:AutoScrollListView>
-
                 </Grid>
                 <!--车辆列表-->
                 <custom:FloatingCard Grid.Row="1" Margin="15 0 15 15"/>
@@ -488,13 +492,33 @@
                         </ListView.ContextMenu>
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                                <GridViewColumn Header="编号" Width="Auto"  DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="最大载重" Width="Auto" DisplayMemberBinding="{Binding WeightLimit, StringFormat={}{0:F2}}" />
-                                <GridViewColumn Header="最大里程" Width="Auto" DisplayMemberBinding="{Binding DisLimit, StringFormat={}{0:F2}}"/>
+                                <GridViewColumn Header="编号" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding ID}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="最大载重" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding WeightLimit, StringFormat={}{0:F2}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="最大里程" Width="Auto">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock FontSize="{StaticResource SmallerFontSize}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Text="{Binding DisLimit, StringFormat={}{0:F2}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </custom:AutoScrollListView>
-
                 </Grid>
             </Grid>
 
@@ -552,7 +576,7 @@
                                 <DataTemplate>
                                     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <StackPanel x:Name="running" Orientation="Horizontal">
-                                            <TextBlock Text="&#xf110;" FontSize="14">
+                                            <TextBlock Text="&#xf110;">
                                                 <TextBlock.Style>
                                                     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource IconTextBlock}">
                                                         <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
@@ -575,12 +599,12 @@
                                                     </Style>
                                                 </TextBlock.Style>
                                             </TextBlock>
-                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" FontSize="14" Margin="5 0 0 0"
-                                                       Text="{Binding CompletedPercent, Converter={StaticResource times100}, StringFormat={}{0:F0}%}"/>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Margin="5 0 0 0"
+                                                       Text="{Binding CompletedPercent, Converter={StaticResource times100}, StringFormat={}{0:F0}%}" FontSize="{StaticResource SmallerFontSize}"/>
                                         </StackPanel>
                                         <StackPanel x:Name="finished" Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" FontSize="14"/>
-                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0" FontSize="14"/>
+                                            <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73"/>
+                                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0"/>
                                         </StackPanel>
                                     </Grid>
                                     <DataTemplate.Triggers>
@@ -598,66 +622,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-
-                <!--<ItemsControl ItemsSource="{Binding CarRuntimeInfos}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="10 15 10 0">
-                                <Border Width="30" BorderBrush="{Binding LineBrush}" BorderThickness="0 0 0 2" VerticalAlignment="Center"/>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆" Margin="10 0 0 0"/>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="{Binding ID}" Margin="10 0 0 0"/>
-                                --><!--<TextBlock x:Name="running" Style="{StaticResource CenterAlignTextBlock}" Text="配送中..." Margin="10 0 0 0"/>--><!--
-                                <StackPanel x:Name="running" Orientation="Horizontal" Margin="10 0 0 0">
-                                    <TextBlock Text="&#xf110;">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource IconTextBlock}">
-                                                <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
-                                                <Setter Property="RenderTransform">
-                                                    <Setter.Value>
-                                                        <TransformGroup>
-                                                            <RotateTransform  Angle="0"/>
-                                                        </TransformGroup>
-                                                    </Setter.Value>
-                                                </Setter>
-                                                <Style.Triggers>
-                                                    <EventTrigger RoutedEvent="Loaded">
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation From="0" To="360" RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="(RenderTransform).(TransformGroup.Children)[0].(Angle)"/>
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </EventTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送中" Margin="5 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel x:Name="finished" Orientation="Horizontal" Margin="10 0 0 0">
-                                    <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf00c;" Foreground="#1d9d73" />
-                                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="已完成" Margin="5 0 0 0"/>
-                                </StackPanel>
-                            </StackPanel>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding IsFinished}" Value="True">
-                                    <Setter TargetName="running" Property="Visibility" Value="Collapsed"/>
-                                    <Setter TargetName="finished" Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding IsFinished}" Value="False">
-                                    <Setter TargetName="running" Property="Visibility" Value="Visible"/>
-                                    <Setter TargetName="finished" Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
             </Grid>
-
         </Grid>
     </Grid>
 </Page>

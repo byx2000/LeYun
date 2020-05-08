@@ -102,7 +102,7 @@
                     <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="PathProjectPage_Checked" IsChecked="{Binding Path=(model:GlobalData.IsPathProjectPageChecked)}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf041;" FontSize="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="线路规划" FontSize="16" Margin="10 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="线路规划" FontSize="{StaticResource BiggerFontSize}" Margin="10 0 0 0"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -110,7 +110,7 @@
                     <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="RouteRecordPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf1da;" FontSize="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="历史记录" FontSize="16" Margin="10 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="历史记录" FontSize="{StaticResource BiggerFontSize}" Margin="10 0 0 0"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -118,7 +118,7 @@
                     <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="SettingPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf013;" FontSize="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="系统设置" FontSize="16" Margin="10 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="系统设置" FontSize="{StaticResource BiggerFontSize}" Margin="10 0 0 0"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -126,7 +126,7 @@
                     <RadioButton Style="{StaticResource RadioButtonStyle}" Checked="AboutPage_Checked">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf05a;" FontSize="20"/>
-                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="关于我们" FontSize="16" Margin="10 0 0 0"/>
+                            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="关于我们" FontSize="{StaticResource BiggerFontSize}" Margin="10 0 0 0"/>
                         </StackPanel>
                     </RadioButton>
                 </UniformGrid>

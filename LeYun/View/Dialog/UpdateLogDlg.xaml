@@ -13,8 +13,8 @@
             <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
         </ScrollViewer.Resources>
         <Grid Margin="10">
-            <StackPanel>
-                <TextBlock Text="v2.0 正式版"/>
+            <StackPanel  TextBlock.FontSize="{StaticResource NormalFontSize}">
+                <TextBlock Text="v2.0 正式版" />
                 <TextBlock Text="   1. 重制所有页面"/>
                 <TextBlock Text="   2. 重新设计设置项"/>
                 <TextBlock Text="   3. 弹出广告添加跳过和倒计时"/>

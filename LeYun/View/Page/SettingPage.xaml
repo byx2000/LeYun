@@ -14,7 +14,7 @@
         <viewmodel:LineWidthConverter x:Key="lineWidthConverter"/>
         <viewmodel:ErrorTipVisibilityConverter x:Key="errorTipVisibilityConverter"/>
         <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource ScrollBarStyle}"/>
-        <Style x:Key="TabRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <!--<Style x:Key="TabRadioButtonStyle" TargetType="{x:Type RadioButton}">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Template">
@@ -32,13 +32,13 @@
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#d0d0d0"/>
-                                <!--<Setter Property="Foreground" Value="White"/>-->
+                                --><!--<Setter Property="Foreground" Value="White"/>--><!--
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Page.Resources>
 
     <!--<Grid Margin="50 50 0 50">

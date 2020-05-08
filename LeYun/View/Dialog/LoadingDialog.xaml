@@ -37,7 +37,7 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Grid.Row="1" x:Name="infoText" Style="{StaticResource CenterAlignTextBlock}" Text="Loading..." Foreground="Black" FontSize="20" Margin="5 0 5 10"/>
+            <TextBlock Grid.Row="1" x:Name="infoText" Style="{StaticResource CenterAlignTextBlock}" Text="Loading..." Foreground="Black" FontSize="{StaticResource BiggerFontSize}" Margin="5 0 5 10"/>
         </Grid>
     </Border>
 </Window>
