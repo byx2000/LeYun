@@ -5,13 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LeYun.View" xmlns:viewmodel="clr-namespace:LeYun.ViewModel"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1120" Background="White">
+      d:DesignHeight="868" d:DesignWidth="1454" Background="White">
 
-    <!--<Page.DataContext>
-        <viewmodel:AboutPageViewModel />
-    </Page.DataContext>-->
-    
-    <Grid Margin="50 30 50 50">
+    <!--<Grid Margin="50 30 50 50">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -77,6 +73,49 @@
                     <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
                 </Image.Effect>
             </Image>
+        </Grid>
+    </Grid>-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="About us" FontWeight="Bold"  FontSize="40" Margin="0 30 0 30"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="100 0 0 0">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="关于乐运" FontWeight="Bold" FontSize="{StaticResource BiggerFontSize}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource BiggerFontSize}" TextWrapping="Wrap" Margin="0 30 0 0" Width="320"
+                               Text="乐运由零渡速递公司开发，致力于优化路径规划、提高物流效率，本产品支持使用者自由使用或与他人分享，但请勿用于商业用途，产品开发方零渡速递公司对产品保留最终解释权。"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="联系我们" FontWeight="Bold" FontSize="{StaticResource BiggerFontSize}" Margin="0 50 0 0"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="广告投放：张小姐" Margin="0 30 0 0" FontSize="{StaticResource BiggerFontSize}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="电子邮箱：1178990733@qq.com" Margin="0 30 0 0" FontSize="{StaticResource BiggerFontSize}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="业务咨询：傅小姐" Margin="0 30 0 0" FontSize="{StaticResource BiggerFontSize}"/>
+                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="电子邮箱：1017958063@qq.com" Margin="0 30 0 0" FontSize="{StaticResource BiggerFontSize}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1" Margin="100 0 100 100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource LinkTextStyle}" Text="开发团队" FontSize="{StaticResource BiggerFontSize}"
+                               viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewTeamCommand}"/>
+                    <Border Height="20" BorderBrush="Black" BorderThickness="2 0 0 0" Margin="30 0 30 0"/>
+                    <TextBlock Style="{StaticResource LinkTextStyle}" Text="版本更新" FontSize="{StaticResource BiggerFontSize}"
+                               viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewUpdateLogCommand}"/>
+                    <Border Height="20" BorderBrush="Black" BorderThickness="2 0 0 0" Margin="30 0 30 0"/>
+                    <TextBlock Style="{StaticResource LinkTextStyle}" Text="使用说明" FontSize="{StaticResource BiggerFontSize}"
+                               viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
+                </StackPanel>
+                <Image Grid.Row="1" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Center"/>
+            </Grid>
         </Grid>
     </Grid>
     

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeYun.View.Dlg"
         mc:Ignorable="d"
-        Title="使用帮助" Height="400" Width="600" WindowStartupLocation="CenterScreen">
+        Title="使用说明" Height="400" Width="600" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <TextBox BorderThickness="0" Text="https://github.com/byx2000/LeYun" FontSize="{StaticResource NormalFontSize}"/>
     </Grid>
