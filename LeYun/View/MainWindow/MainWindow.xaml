@@ -15,7 +15,8 @@
         x:Name="mainWindow"
         Title="乐运"
         MouseMove="mainWindow_MouseMove"
-        Style="{StaticResource ShadowWindowStyle}">
+        Style="{StaticResource ShadowWindowStyle}"
+        Loaded="mainWindow_Loaded">
 
     <Window.Resources>
         <!--用于侧边栏选项的单选按钮样式-->

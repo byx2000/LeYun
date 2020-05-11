@@ -66,5 +66,14 @@ namespace LeYun.View
         {
             GlobalData.CurrentPage = GlobalData.AboutPage;
         }
+
+        private void mainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!GlobalData.IsActive)
+            {
+                ActivateDlg dlg = new ActivateDlg();
+                dlg.ShowDialog();
+            }
+        }
     }
 }
