@@ -20,6 +20,11 @@ namespace LeYun.Model
 
         public void Remove(int index)
         {
+            if (index < 0 || index >= Count)
+            {
+                return;
+            }
+
             base.RemoveItem(index);
             for (int i = 0; i < Count; ++i)
             {
