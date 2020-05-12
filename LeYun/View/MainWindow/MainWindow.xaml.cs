@@ -37,6 +37,11 @@ namespace LeYun.View
         // 关闭
         private void Close_Click(object sender, RoutedEventArgs e)
         {
+            if (!ChooseBox.Show("确认退出？"))
+            {
+                return;
+            }
+
             Close();
         }
 

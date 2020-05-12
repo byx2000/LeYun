@@ -83,6 +83,10 @@
 
                     <!--具有弹出动画的窗口-->
                     <Style x:Key="WindowLoadAnimationStyle" TargetType="{x:Type Window}">
+                        <Setter Property="AllowsTransparency" Value="true"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="ResizeMode" Value="NoResize"/>
+                        <Setter Property="WindowStyle" Value="None"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Window}">

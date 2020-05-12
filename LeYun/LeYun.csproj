@@ -143,6 +143,9 @@
     <Compile Include="View\Dialog\BusinessDlg.xaml.cs">
       <DependentUpon>BusinessDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Dialog\ChooseBox.xaml.cs">
+      <DependentUpon>ChooseBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Dialog\DevelopmentTeamDlg.xaml.cs">
       <DependentUpon>DevelopmentTeamDlg.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Dialog\BusinessDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialog\ChooseBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
