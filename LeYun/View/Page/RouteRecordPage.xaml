@@ -351,7 +351,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆的平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="车辆平均速度" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" FontWeight="Bold" HorizontalAlignment="Left" FontSize="{StaticResource BiggerFontSize}"
                                            Text="{Binding SelectedRecord.CarSpeed, StringFormat={}{0:F2} km/h}"/>
                                 
@@ -370,7 +370,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="配送点停留时间" HorizontalAlignment="Left" Foreground="#838383"/>
+                                <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="节点停留时间" HorizontalAlignment="Left" Foreground="#838383"/>
                                 <TextBox Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource CopyableTextStyle}" HorizontalAlignment="Left" FontWeight="Bold" FontSize="{StaticResource BiggerFontSize}"
                                            Text="{Binding SelectedRecord.NodeStayTime, StringFormat={}{0:F2} min}"/>
                                 
