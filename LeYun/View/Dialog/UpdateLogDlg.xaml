@@ -14,7 +14,12 @@
         </ScrollViewer.Resources>
         <Grid Margin="10">
             <StackPanel  TextBlock.FontSize="{StaticResource NormalFontSize}">
-                <TextBlock Text="v2.0 正式版" />
+                <TextBlock Text="v2.1 正式版" />
+                <TextBlock Text="   1. 动画演示时添加时间显示"/>
+                <TextBlock Text="   2. 历史记录页面添加预览功能"/>
+                <TextBlock Text="   3. 完善软件使用说明"/>
+                <TextBlock Text="   4. bug修复"/>
+                <TextBlock Text="v2.0 正式版" Margin="0 10 0 0"/>
                 <TextBlock Text="   1. 重制所有页面"/>
                 <TextBlock Text="   2. 重新设计设置项"/>
                 <TextBlock Text="   3. 弹出广告添加跳过和倒计时"/>
