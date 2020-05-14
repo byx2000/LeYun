@@ -28,7 +28,7 @@
 
                 <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}"  x:Name="infoText" Foreground="Black" TextWrapping="Wrap" Margin="10 0 10 0"/>
 
-                <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="ok" Content="确定"  Width="80" Height="30" Click="closeWindow" VerticalAlignment="Bottom" Margin="0 0 0 10"/>
+                <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="ok" Content="确定"  Width="70" Height="25" Click="closeWindow" VerticalAlignment="Bottom" Margin="0 0 0 10"/>
             </Grid>
         </Border>
     </Grid>

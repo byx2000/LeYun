@@ -25,8 +25,8 @@
             </Border>
 
             <TextBlock Grid.Row="1" Style="{StaticResource CenterAlignTextBlock}" x:Name="infoText" FontSize="{StaticResource NormalFontSize}" Foreground="Black" TextWrapping="Wrap" Margin="20 0 20 0"/>
-            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="okBtn" Content="确定"  Width="80" Height="30" VerticalAlignment="Bottom" Margin="20 0 0 10" HorizontalAlignment="Left" Click="ok_Click"/>
-            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="cancelBtn" Content="取消"  Width="80" Height="30" VerticalAlignment="Bottom" Margin="0 0 20 10" HorizontalAlignment="Right" Click="cancel_Click"/>
+            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="okBtn" Content="确定"  Width="70" Height="25" VerticalAlignment="Bottom" Margin="20 0 0 10" HorizontalAlignment="Left" Click="ok_Click"/>
+            <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" x:Name="cancelBtn" Content="取消"  Width="70" Height="25" VerticalAlignment="Bottom" Margin="0 0 20 10" HorizontalAlignment="Right" Click="cancel_Click"/>
         </Grid>
     </Border>
 </Window>

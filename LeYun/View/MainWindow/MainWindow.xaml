@@ -83,10 +83,10 @@
 
             <!--最小化和关闭按钮-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 0 0">
-                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" FontSize="30" Click="Minimize_Click"/>
-                <Button x:Name="maximumButton" Style="{StaticResource TitleBarMaximumButtonStyle}" FontSize="30" Click="FullScreen_Click"/>
-                <Button x:Name="restoreButton" Style="{StaticResource TitleBarRestoreButtonStyle}" FontSize="30" Click="FullScreen_Click" Visibility="Collapsed"/>
-                <Button Style="{StaticResource TitleBarCloseButtonStyle}" FontSize="30" Click="Close_Click"/>
+                <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" Width="50" Height="40" FontSize="30" Click="Minimize_Click"/>
+                <Button x:Name="maximumButton" Style="{StaticResource TitleBarMaximumButtonStyle}" Width="50" Height="40" FontSize="25" Click="FullScreen_Click"/>
+                <Button x:Name="restoreButton" Style="{StaticResource TitleBarRestoreButtonStyle}" Width="50" Height="40" FontSize="25" Click="FullScreen_Click" Visibility="Collapsed"/>
+                <Button Style="{StaticResource TitleBarCloseButtonStyle}" Width="50" Height="40" FontSize="30" Click="Close_Click"/>
             </StackPanel>
 
             <!--主内容区-->
