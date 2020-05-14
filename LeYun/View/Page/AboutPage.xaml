@@ -7,82 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="868" d:DesignWidth="1454" Background="White">
 
-    <!--<Grid Margin="50 30 50 50">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="L" FontSize="50" FontWeight="Bold" Foreground="#09a9d0"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="E" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="Y" FontSize="50" FontWeight="Bold" Foreground="#2b549b"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="U" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
-            <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="N" FontSize="50" FontWeight="Bold" Foreground="#000000"/>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="开发团队" FontSize="24" Foreground="#696969" 
-                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewTeamCommand}"/>
-            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="使用帮助" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
-            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="更新日志" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewUpdateLogCommand}"/>
-            <Border BorderBrush="#b4b4b4" BorderThickness="2" Margin="20 0 20 0"/>
-            <TextBlock Style="{StaticResource LinkTextStyle}" Text="商务合作" FontSize="24" Foreground="#696969"
-                       viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewBusinessCommand}"/>
-        </StackPanel>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.8*"/>
-                    <RowDefinition Height="0.2*"/>
-                </Grid.RowDefinitions>
-                <Image Source="pack://application:,,,/Img/p1.png" VerticalAlignment="Top" Margin="0 20 0 0" Stretch="Fill">
-                    <Image.Effect>
-                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
-                    </Image.Effect>
-                </Image>
-            </Grid>
-            
-            
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 50 0">
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="ZERO EXPRESS" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold"/>
-                    <TextBlock Style="{StaticResource CenterAlignTextBlock}" Text="零渡速递" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold"/>
-                </StackPanel>
-                <TextBlock Background="White" Grid.Row="1" TextWrapping="Wrap" Margin="-150 0 50 50" TextAlignment="Justify" FontSize="18" Padding="20"
-                           Text="Founded in Jaunary 2020, zero ferry express company is a high-tech company based on cloud computing and big data to develop modern logistics and distribution route optimization. The company is committed to developing a visual VRP solver desktop program(LeYun), which allows users to set up relevant data and information, and ultimately, the solution is displayed to users in graphics, documents and other forms, with practicability, advanced nature and high reliability.">
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-            </Grid>
-            <Image Grid.Column="2" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Bottom" Margin="0 20 0 0" Stretch="Fill">
-                <Image.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
-                </Image.Effect>
-            </Image>
-        </Grid>
-    </Grid>-->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="About us" FontWeight="Bold"  FontSize="40" Margin="0 30 0 30"/>
-        <Grid Grid.Row="1">
+        <TextBlock Grid.Row="0" Style="{StaticResource CenterAlignTextBlock}" Text="About us" FontWeight="Bold"  FontSize="40" Margin="0 50 0 0" FontFamily="Arial Black"/>
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -99,7 +30,7 @@
                     <TextBlock Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" Text="电子邮箱：1017958063@qq.com" Margin="0 30 0 0" FontSize="{StaticResource BiggerFontSize}"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Column="1" Margin="100 0 100 100">
+            <Grid Grid.Column="1" Margin="100 0 100 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
@@ -114,7 +45,7 @@
                     <TextBlock Style="{StaticResource LinkTextStyle}" Text="使用说明" FontSize="{StaticResource BiggerFontSize}"
                                viewmodel:MouseBehavior.MouseLeftButtonUpCommand="{Binding ViewHelpCommand}"/>
                 </StackPanel>
-                <Image Grid.Row="1" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Center"/>
+                <Image Grid.Row="1" Source="pack://application:,,,/Img/p2.png" VerticalAlignment="Center" Margin="0 40 0 0"/>
             </Grid>
         </Grid>
     </Grid>

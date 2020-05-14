@@ -675,7 +675,7 @@ namespace LeYun.ViewModel
             // 弹出loading消息框
             Application.Current.Dispatcher.BeginInvoke(new Action(delegate
             {
-                LoadingDialog.Begin("正在求解...");
+                LoadingDialog.Begin("正在求解");
             }));
 
             // 开启计算线程

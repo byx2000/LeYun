@@ -26,43 +26,43 @@
                 <TextBlock Text="⑤在输入全部结点和车辆信息后，您可在右侧信息列表选择结点/车辆，右击进行编辑，或者点击地图上的结点右击进行编辑" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
                 <TextBlock Text="⑥确认无误后，点击右上角的“开始计算”按钮进行计算，等待一定时间后，地图上会显示此次规划结果" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
                 <TextBlock Text="⑦在计算完毕后，您可点击左上角的“保存”按钮保存此次规划的节点/车辆/结果信息，在弹出“保存节点/车辆/结果数据到文件”界面选择保存位置，并输入文件名" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
-                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①若您输入的车辆/节点信息不符合规范，软件将会自动更正为正确数据，或者直接采用默认数据" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="②若您想删除输入的所有节点和车辆，可点击右上角的“清空”按钮" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                
-                <TextBlock Text="(2) 动画演示功能（需激活）" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="①若您输入的车辆/节点信息不符合规范，软件将会自动更正为正确数据，或者直接采用默认数据" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="②若您想删除输入的所有节点和车辆，可点击右上角的“清空”按钮" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+
+                <TextBlock Text="(2) 动画演示功能（需激活）" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
                 <TextBlock Text="使用步骤：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
                 <TextBlock Text="①点击左侧功能选择栏的“线路规划”按钮进入线路规划界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="②在输入此次规划基本信息并计算完成之后，您可点击左上角的“动画演示”按钮，动态显示此次规划结果" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="③演示结束后，点击弹出的“消息”对话框上的“确定”按钮，即可返回原界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①动画演示的实际时常取决于电脑配置，请您耐心等待" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="②在输入此次规划基本信息并计算完成之后，您可点击左上角的“动画演示”按钮，动态显示此次规划结果" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="③演示结束后，点击弹出的“消息”对话框上的“确定”按钮，即可返回原界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="①动画演示的实际时常取决于电脑配置，请您耐心等待" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
 
                 <TextBlock Text="(3) 历史记录功能" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
                 <TextBlock Text="使用步骤：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①点击左侧功能选择栏的“历史记录”按钮进入历史记录界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="②在左侧的历史记录信息列表，您可选择某次历史记录，并在右侧查看各项详细信息" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="③在左侧的历史记录信息列表，您可选择某项历史记录，然后右击，对该项记录进行导入/重命名/删除" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="④若您的历史记录较多，您可在“按名称查找”编辑栏中输入某次记录名称，实现快速查找（需激活）" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="⑤若您想查看某辆车的详细情况，可选择该辆车，并点击“详情”按钮，在弹出的“车辆详情”界面中了解详细情况" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="①点击左侧功能选择栏的“历史记录”按钮进入历史记录界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="②在左侧的历史记录信息列表，您可选择某次历史记录，并在右侧查看各项详细信息" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="③在左侧的历史记录信息列表，您可选择某项历史记录，然后右击，对该项记录进行导入/重命名/删除" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="④若您的历史记录较多，您可在“按名称查找”编辑栏中输入某次记录名称，实现快速查找（需激活）" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="⑤若您想查看某辆车的详细情况，可选择该辆车，并点击“详情”按钮，在弹出的“车辆详情”界面中了解详细情况" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
                 <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①您在“线路规划”界面中进行的所有计算都会自动保存在历史记录中" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="①您在“线路规划”界面中进行的所有计算都会自动保存在历史记录中" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
 
-                <TextBlock Text="(4) 系统设置功能" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="使用步骤：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①点击左侧功能选择栏的“系统设置”按钮进入系统设置界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="②根据界面提示信息，您可对软件各项参数进行设置，定制最适合您的软件" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="(4) 系统设置功能" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="使用步骤：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="①点击左侧功能选择栏的“系统设置”按钮进入系统设置界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="②根据界面提示信息，您可对软件各项参数进行设置，定制最适合您的软件" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
                 <TextBlock Text="③您可点击“清空历史记录”按钮，快速清空历史记录" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="④您可点击“恢复默认设置”按钮，恢复软件的默认设置" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①谨慎点击“清空历史记录”按钮，清空之后无法撤销，若因用户操作失误丢失数据，本公司对此数据丢失并不负责" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="④您可点击“恢复默认设置”按钮，恢复软件的默认设置" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="①谨慎点击“清空历史记录”按钮，清空之后无法撤销，若因用户操作失误丢失数据，本公司对此数据丢失并不负责" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
 
                 <TextBlock Text="(5) 软件激活" Margin="0 20 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
                 <TextBlock Text="步骤：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
                 <TextBlock Text="①点击左侧功能选择栏的“系统设置”按钮进入系统设置界面" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="②购买正版激活码之后，点击“产品功能激活”按钮，在弹出的“软件激活”对话框中输入正确的激活码，并点击确定，即可享受动画演示，历史记录查看，车辆详情演示等便捷服务" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
-                <TextBlock Text="①请注意激活码的格式，输入正确激活码，享受高效便捷的服务" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}"/>
+                <TextBlock Text="②购买正版激活码之后，点击“产品功能激活”按钮，在弹出的“软件激活”对话框中输入正确的激活码，并点击确定，即可享受动画演示，历史记录查看，车辆详情演示等便捷服务" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="注意事项：" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
+                <TextBlock Text="①请注意激活码的格式，输入正确激活码，享受高效便捷的服务" Margin="10 0 0 0" Style="{StaticResource CenterAlignTextBlock}" HorizontalAlignment="Left" FontSize="{StaticResource NormalFontSize}" TextWrapping="Wrap"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>
