@@ -92,21 +92,12 @@ namespace LeYun.ViewModel
             }
         }
 
-        // 路径线条
-        //private ObservableCollection<Segment> segments = new ObservableCollection<Segment>();
-        //public ObservableCollection<Segment> Segments
-        //{
-        //    get { return segments; }
-        //    set
-        //    {
-        //        segments = value;
-        //        RaisePropertyChanged("Segments");
-        //    }
-        //}
-
         // 算法参数
         private int GenerationCount = 2000;
         private double WTime = 1, WDis = 1, WCar = 100;
+
+        // 拥堵系数
+        private double CongestionFactor = 0;
 
         // 是否在演示
         private bool isPlayingDemo = false;
@@ -468,6 +459,7 @@ namespace LeYun.ViewModel
             RunParamSetDlgViewModel viewModel = new RunParamSetDlgViewModel();
             viewModel.CarSpeed = Record.CarSpeed;
             viewModel.NodeStayTime = Record.NodeStayTime;
+            viewModel.CongestionFactor = CongestionFactor;
             dlg.DataContext = viewModel;
             dlg.ShowDialog();
 
@@ -476,6 +468,8 @@ namespace LeYun.ViewModel
                 Record.Segments.Clear();
                 Record.CarSpeed = viewModel.CarSpeed;
                 Record.NodeStayTime = viewModel.NodeStayTime;
+                Record.CarSpeed *= (1 - viewModel.CongestionFactor);
+                CongestionFactor = 0;
             }
         }
 
@@ -681,6 +675,7 @@ namespace LeYun.ViewModel
             // 开启计算线程
             new Thread(delegate ()
             {
+                //double actualCarSpeed = Record.CarSpeed * (1 - CongestionFactor);
                 VRPSolver.Solve(x, y, d, c, m, WTime, WDis, WCar, GenerationCount, Record.CarSpeed, Record.NodeStayTime, OnSolveFinish, OnSolveError);
                 Application.Current.Dispatcher.BeginInvoke(new Action(delegate
                 {

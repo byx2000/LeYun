@@ -14,6 +14,7 @@ namespace LeYun.ViewModel.Dlg
     {
         public double CarSpeed { get; set; }
         public double NodeStayTime { get; set; }
+        public double CongestionFactor { get; set; }
     }
 
     class CarSpeedValidationRule : ValidationRule
