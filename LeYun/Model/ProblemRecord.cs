@@ -64,7 +64,7 @@ namespace LeYun.Model
         }
 
         // 配送点停留时间(min)
-        private double nodeStayTime = 5;
+        private double nodeStayTime = 30;
         public double NodeStayTime 
         {
             get { return nodeStayTime; }
