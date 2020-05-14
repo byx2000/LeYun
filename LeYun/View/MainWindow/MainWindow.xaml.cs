@@ -21,7 +21,8 @@ namespace LeYun.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        bool isFullScreen = false;
+
         // 构造函数
         public MainWindow()
         {
@@ -46,9 +47,9 @@ namespace LeYun.View
         }
 
         // 鼠标拖动
-        private void mainWindow_MouseMove(object sender, MouseEventArgs e)
+        private void TitleBar_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && e.GetPosition(this).Y <= TitleBar.ActualHeight)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
@@ -79,6 +80,48 @@ namespace LeYun.View
                 ActivateDlg dlg = new ActivateDlg();
                 dlg.ShowDialog();
             }
+        }
+
+        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            if (isFullScreen)
+            {
+                rect.Effect = shadowEffect;
+                border.Margin = new Thickness(10);
+
+                Width = 1350;
+                Height = 800;
+                Left = (SystemParameters.WorkArea.Width - Width) / 2;
+                Top = (SystemParameters.WorkArea.Height - Height) / 2;
+
+                TitleBar.MouseMove += TitleBar_MouseMove;
+
+                maximumButton.Visibility = Visibility.Visible;
+                restoreButton.Visibility = Visibility.Collapsed;
+
+                isFullScreen = false;
+            }
+            else
+            {
+                rect.Effect = null;
+                border.Margin = new Thickness(0);
+
+                Left = 0.0;
+                Top = 0.0;
+                Width = SystemParameters.WorkArea.Width;
+                Height = SystemParameters.WorkArea.Height;
+
+                TitleBar.MouseMove -= TitleBar_MouseMove;
+
+
+                maximumButton.Visibility = Visibility.Collapsed;
+                restoreButton.Visibility = Visibility.Visible;
+
+                isFullScreen = true;
+            }
+
+            
+
         }
     }
 }

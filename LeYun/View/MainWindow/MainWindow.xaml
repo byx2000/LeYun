@@ -14,9 +14,8 @@
         Icon="pack://application:,,,/Img/icon.png"
         x:Name="mainWindow"
         Title="乐运"
-        MouseMove="mainWindow_MouseMove"
-        Style="{StaticResource ShadowWindowStyle}"
         Loaded="mainWindow_Loaded">
+    <!--Style="{StaticResource ShadowWindowStyle}"-->
 
     <Window.Resources>
         <!--用于侧边栏选项的单选按钮样式-->
@@ -53,13 +52,17 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
-    <!--<Window.DataContext>
-        <viewmodel:MainWindowViewModel />
-    </Window.DataContext>-->
-
+   
     <!--窗格设计-->
-    <Border Background="#f1f1f1">
+    <Grid x:Name="border" Background="#f1f1f1" Margin="10" UseLayoutRounding="True">
+        <!--<Grid.Effect>
+            <DropShadowEffect x:Name="shadowEffect" BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+        </Grid.Effect>-->
+        <Rectangle x:Name="rect" Fill="#f1f1f1">
+            <Rectangle.Effect>
+                <DropShadowEffect x:Name="shadowEffect" BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+            </Rectangle.Effect>
+        </Rectangle>
         <Grid UseLayoutRounding="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -67,7 +70,7 @@
             </Grid.RowDefinitions>
 
             <!--标题栏-->
-            <Border x:Name="TitleBar" Grid.Row="0" Background="{StaticResource ThemeColorLight}" />
+            <Border x:Name="TitleBar" Grid.Row="0" Background="{StaticResource ThemeColorLight}" MouseMove="TitleBar_MouseMove"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="10 0 0 0">
                 <!--logo-->
                 <Image Source="pack://application:,,,/Img/logo.png" Margin="10"/>
@@ -81,6 +84,8 @@
             <!--最小化和关闭按钮-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 0 0 0">
                 <Button Style="{StaticResource TitleBarMinimizeButtonStyle}" FontSize="30" Click="Minimize_Click"/>
+                <Button x:Name="maximumButton" Style="{StaticResource TitleBarMaximumButtonStyle}" FontSize="30" Click="FullScreen_Click"/>
+                <Button x:Name="restoreButton" Style="{StaticResource TitleBarRestoreButtonStyle}" FontSize="30" Click="FullScreen_Click" Visibility="Collapsed"/>
                 <Button Style="{StaticResource TitleBarCloseButtonStyle}" FontSize="30" Click="Close_Click"/>
             </StackPanel>
 
@@ -138,6 +143,6 @@
                 </StackPanel>
             </Grid>
         </Grid>
-    </Border>
+    </Grid>
 
 </Window>

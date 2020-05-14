@@ -211,7 +211,6 @@
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="HorizontalAlignment" Value="Right"/>
                         <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="FontSize" Value="22"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
@@ -233,12 +232,53 @@
                         <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="HorizontalAlignment" Value="Right"/>
                         <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="FontSize" Value="22"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Border x:Name="border" Background="Transparent">
                                         <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf068;" Foreground="White" FontSize="{TemplateBinding FontSize}" Margin="10 5 10 5"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource ThemeColorDark}" TargetName="border"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <!--窗口标题栏最大化按钮样式-->
+                    <Style x:Key="TitleBarMaximumButtonStyle" TargetType="{x:Type Button}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="border" Background="Transparent">
+                                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf2d0;" Foreground="White" FontSize="{TemplateBinding FontSize}" Margin="10 5 10 5"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource ThemeColorDark}" TargetName="border"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <!--窗口标题栏还原按钮样式-->
+                    <Style x:Key="TitleBarRestoreButtonStyle" TargetType="{x:Type Button}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="border" Background="Transparent">
+                                        <TextBlock Style="{StaticResource IconTextBlock}" Text="&#xf2d2;" Foreground="White" FontSize="{TemplateBinding FontSize}" Margin="10 5 10 5"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
